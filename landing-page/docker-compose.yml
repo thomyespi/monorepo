@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  landing-page:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: st-landing-page
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - NODE_ENV=production

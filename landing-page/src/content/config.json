@@ -1,0 +1,95 @@
+{
+    "company": {
+        "name": "Soluciones Tecnológicas",
+        "logo": "ST",
+        "description": "Expertos en soluciones integrales para la industria y el hogar.",
+        "email": "contacto@tuempresa.com",
+        "phone": "+54 9 11 6159-1957",
+        "address": "Buenos Aires, Argentina"
+    },
+    "theme": {
+        "primary": "#8B0000",
+        "secondary": "#1a1a1a",
+        "accent": "#f3f4f6"
+    },
+    "hero": {
+        "title": "Potencia para tu industria y hogar",
+        "subtitle": "Materiales eléctricos de primera calidad con el respaldo de las mejores marcas del mercado.",
+        "cta": "Ver Productos",
+        "image": "/images/hero_premium.png"
+    },
+    "sections": [
+        {
+            "id": "values",
+            "title": "Nuestros Valores",
+            "items": [
+                {
+                    "title": "Confianza",
+                    "description": "Relaciones sólidas y duraderas."
+                },
+                {
+                    "title": "Calidad",
+                    "description": "Solo trabajamos con primeras marcas."
+                },
+                {
+                    "title": "Integridad",
+                    "description": "Transparencia en cada operación."
+                }
+            ]
+        },
+        {
+            "id": "stats",
+            "items": [
+                {
+                    "label": "Proyectos",
+                    "value": "150+"
+                },
+                {
+                    "label": "Clientes",
+                    "value": "80+"
+                },
+                {
+                    "label": "Años",
+                    "value": "10+"
+                }
+            ]
+        },
+        {
+            "id": "gallery",
+            "title": "Nuestros Trabajos",
+            "items": [
+                {
+                    "title": "Ingeniería de Paneles",
+                    "category": "Industria",
+                    "image": "/images/industrial.png"
+                },
+                {
+                    "title": "Hogar Inteligente",
+                    "category": "Residencial",
+                    "image": "/images/residential.png"
+                },
+                {
+                    "title": "Iluminación Corporativa",
+                    "category": "Comercial",
+                    "image": "/images/commercial.png"
+                }
+            ]
+        },
+        {
+            "id": "testimonials",
+            "title": "Lo que dicen de nosotros",
+            "items": [
+                {
+                    "name": "Juan Pérez",
+                    "role": "Gerente Industrial",
+                    "text": "Excelente atención y calidad de materiales. Totalmente recomendados."
+                },
+                {
+                    "name": "María García",
+                    "role": "Arquitecta",
+                    "text": "El asesoramiento técnico que brindan es fundamental para mis obras."
+                }
+            ]
+        }
+    ]
+}
