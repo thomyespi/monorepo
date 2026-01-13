@@ -15,9 +15,48 @@ import {
     Lightbulb,
     ShieldCheck
 } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import confetti from "canvas-confetti";
+
+// 3D Tilt Card Component
+function TiltCard({ children, className }: { children: React.ReactNode, className?: string }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const [rotate, setRotate] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        setRotate({ x: rotateX, y: rotateY });
+    };
+
+    const handleMouseLeave = () => {
+        setRotate({ x: 0, y: 0 });
+    };
+
+    return (
+        <motion.div
+            ref={cardRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            animate={{ rotateX: rotate.x, rotateY: rotate.y }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            style={{ transformStyle: "preserve-3d" }}
+            className={className}
+        >
+            <div style={{ transform: "translateZ(20px)" }}>
+                {children}
+            </div>
+        </motion.div>
+    );
+}
 
 // Mock data for ST products
 const PRODUCTS = [
@@ -35,6 +74,19 @@ export default function ShopPage() {
     const [selectedCategory, setSelectedCategory] = useState("Todas");
     const [cart, setCart] = useState<{ id: number; name: string; price: number; image: string; quantity: number }[]>([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 45, seconds: 12 });
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft(prev => {
+                if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+                if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+                if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+                return prev;
+            });
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
 
     const categories = ["Todas", ...Array.from(new Set(PRODUCTS.map(p => p.category)))];
 
@@ -54,6 +106,19 @@ export default function ShopPage() {
             }
             return [...prev, { id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 }];
         });
+
+        // High-tech confetti effect
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#8B0000', '#000000', '#ffffff'],
+            ticks: 200,
+            gravity: 1.2,
+            scalar: 0.8,
+            shapes: ['circle']
+        });
+
         setIsCartOpen(true);
     };
 
@@ -89,14 +154,33 @@ export default function ShopPage() {
                     </div>
 
                     <div className="flex-1 max-w-xl relative group">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors" size={20} />
-                        <input
-                            type="text"
-                            placeholder="Buscar materiales, iluminación, protección..."
-                            className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/5 outline-none transition-all"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
+                        <div className={cn(
+                            "absolute inset-0 bg-primary/20 blur-xl rounded-2xl transition-opacity duration-300",
+                            search ? "opacity-100" : "opacity-0"
+                        )} />
+                        <div className="relative">
+                            <Search className={cn(
+                                "absolute left-4 top-1/2 -translate-y-1/2 transition-colors",
+                                search ? "text-primary animate-pulse" : "text-gray-400"
+                            )} size={20} />
+                            <input
+                                type="text"
+                                placeholder="Buscar materiales, iluminación, protección..."
+                                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/5 outline-none transition-all relative z-10"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
+                            {search && (
+                                <motion.div
+                                    initial={{ opacity: 0, x: 10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none z-10"
+                                >
+                                    <span className="text-[10px] font-black text-primary tracking-widest uppercase">Escaneando...</span>
+                                    <div className="w-1.5 h-1.5 bg-primary rounded-full animate-ping" />
+                                </motion.div>
+                            )}
+                        </div>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -158,6 +242,35 @@ export default function ShopPage() {
 
                 {/* Product Grid */}
                 <div className="space-y-8">
+                    {/* Flash Sale Banner */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="relative overflow-hidden bg-primary rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl shadow-primary/20"
+                    >
+                        <div className="absolute top-0 right-0 w-1/3 h-full bg-white/10 skew-x-12 translate-x-1/2" />
+                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="space-y-4 text-center md:text-left">
+                                <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-xs font-black uppercase tracking-widest">Oferta Relámpago</span>
+                                <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-none uppercase">Hasta 40% OFF en Iluminación</h2>
+                                <p className="text-white/80 font-medium max-w-sm">Renová tu empresa con lo último en tecnología LED industrial. Solo por hoy.</p>
+                            </div>
+                            <div className="flex gap-4">
+                                {[
+                                    { label: 'HORAS', value: timeLeft.hours },
+                                    { label: 'MINS', value: timeLeft.minutes },
+                                    { label: 'SEGS', value: timeLeft.seconds }
+                                ].map((unit, i) => (
+                                    <div key={i} className="flex flex-col items-center">
+                                        <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center text-2xl md:text-3xl font-black mb-2">
+                                            {unit.value.toString().padStart(2, '0')}
+                                        </div>
+                                        <span className="text-[10px] font-black tracking-widest opacity-60 uppercase">{unit.label}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
                             <h2 className="text-3xl font-black text-gray-900 tracking-tighter uppercase leading-none">{selectedCategory}</h2>
@@ -175,30 +288,39 @@ export default function ShopPage() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ delay: index * 0.05 }}
-                                    className="bg-white rounded-4xl overflow-hidden border border-gray-100 hover:shadow-2xl hover:shadow-primary/10 transition-all group"
                                 >
-                                    <div className="aspect-5/4 relative overflow-hidden bg-gray-100">
-                                        <img
-                                            src={product.image}
-                                            alt={product.name}
-                                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur shadow-sm rounded-full text-[10px] font-black uppercase tracking-wider text-primary">
-                                            {product.category}
+                                    <TiltCard className="bg-white rounded-4xl overflow-hidden border border-gray-100 hover:shadow-2xl hover:shadow-primary/10 transition-all group h-full">
+                                        <div className="aspect-5/4 relative overflow-hidden bg-gray-100">
+                                            <img
+                                                src={product.image}
+                                                alt={product.name}
+                                                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                            <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur shadow-sm rounded-full text-[10px] font-black uppercase tracking-wider text-primary">
+                                                {product.category}
+                                            </div>
+                                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button className="px-6 py-2 bg-white text-gray-900 rounded-xl font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                                    Vista Rápida
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="p-6">
-                                        <h3 className="font-bold text-gray-900 mb-1 leading-tight group-hover:text-primary transition-colors">{product.name}</h3>
-                                        <div className="flex items-center justify-between mt-4">
-                                            <span className="text-2xl font-black text-gray-900">${product.price.toLocaleString()}</span>
-                                            <button
-                                                onClick={() => addToCart(product)}
-                                                className="p-3 bg-gray-50 hover:bg-primary text-gray-400 hover:text-white rounded-2xl transition-all shadow-sm hover:shadow-primary/30 active:scale-90"
-                                            >
-                                                <Plus size={20} />
-                                            </button>
+                                        <div className="p-6">
+                                            <h3 className="font-bold text-gray-900 mb-1 leading-tight group-hover:text-primary transition-colors">{product.name}</h3>
+                                            <div className="flex items-center justify-between mt-4">
+                                                <div className="flex flex-col">
+                                                    <span className="text-2xl font-black text-gray-900">${product.price.toLocaleString()}</span>
+                                                    <span className="text-[10px] text-green-500 font-bold">STOCK DISPONIBLE</span>
+                                                </div>
+                                                <button
+                                                    onClick={() => addToCart(product)}
+                                                    className="p-3 bg-gray-50 hover:bg-primary text-gray-400 hover:text-white rounded-2xl transition-all shadow-sm hover:shadow-primary/30 active:scale-90"
+                                                >
+                                                    <Plus size={20} />
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </TiltCard>
                                 </motion.div>
                             ))}
                         </AnimatePresence>
