@@ -28,65 +28,51 @@ export default function LoginPage() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full max-w-md relative z-10"
             >
-                <div className="bg-white/70 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl border border-white/20 shadow-primary/5 relative z-10">
-                    <div className="text-center mb-10">
-                        <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/30 rotate-3">
-                            <ShieldCheck className="text-white" size={32} />
+                <div className="bg-white/95 backdrop-blur-xl p-10 md:p-14 rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 relative z-10">
+                    <div className="text-center mb-12">
+                        <div className="w-20 h-20 bg-primary rounded-4xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-primary/30 rotate-6 group">
+                            <ShieldCheck className="text-white group-hover:scale-110 transition-transform" size={40} />
                         </div>
-                        <h1 className="text-3xl font-black text-gray-900 tracking-tighter uppercase mb-2">
-                            ST E-Shop
-                        </h1>
-                        <p className="text-gray-500 font-medium">Empresa de Calidad Premium</p>
+                        <h2 className="text-5xl font-black text-primary tracking-tighter uppercase mb-3">Ingresar</h2>
+                        <p className="text-foreground/40 font-bold text-sm tracking-widest uppercase">Portal Corporativo ST</p>
                     </div>
 
-                    <form onSubmit={handleLogin} className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="text-sm font-bold text-gray-700 ml-1 uppercase tracking-wider">Email</label>
-                            <div className="relative group">
-                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors" size={20} />
-                                <input
-                                    type="email"
-                                    required
-                                    placeholder="admin@st.com"
-                                    className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary/30 focus:ring-4 focus:ring-primary/5 outline-none transition-all text-gray-900 font-medium"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
+                    <form onSubmit={handleLogin} className="space-y-8">
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Email Corporativo</label>
+                            <input
+                                type="email"
+                                placeholder="usuario@st.com.ar"
+                                className="w-full px-8 py-5 bg-gray-50 border-none rounded-3xl focus:bg-white focus:ring-4 focus:ring-primary/5 outline-none transition-all text-primary font-black placeholder:text-foreground/20 shadow-inner"
+                            />
                         </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-bold text-gray-700 ml-1 uppercase tracking-wider">Contraseña</label>
-                            <div className="relative group">
-                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors" size={20} />
-                                <input
-                                    type="password"
-                                    required
-                                    placeholder="••••••••"
-                                    className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary/30 focus:ring-4 focus:ring-primary/5 outline-none transition-all text-gray-900 font-medium"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Contraseña</label>
+                            <input
+                                type="password"
+                                placeholder="••••••••"
+                                className="w-full px-8 py-5 bg-gray-50 border-none rounded-3xl focus:bg-white focus:ring-4 focus:ring-primary/5 outline-none transition-all text-primary font-black placeholder:text-foreground/20 shadow-inner"
+                            />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full py-4 bg-primary text-white rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2 group"
+                            className="w-full py-6 bg-primary text-white rounded-4xl font-black uppercase tracking-widest shadow-2xl shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.02] active:scale-95 transition-all"
                         >
-                            Iniciar Sesión
-                            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                            Acceder al Sistema
                         </button>
                     </form>
 
-                    <div className="mt-10 pt-8 border-t border-gray-100 text-center">
-                        <p className="text-gray-600 mb-4">¿No tenés cuenta todavía?</p>
-                        <Link
-                            href="/register"
-                            className="text-primary font-bold hover:underline underline-offset-4 decoration-2"
-                        >
-                            Crear una cuenta nueva
-                        </Link>
+                    <div className="mt-12 pt-10 border-t border-gray-100 text-center">
+                        <p className="text-foreground/40 text-sm font-bold tracking-tight">
+                            ¿Necesitás credenciales?{" "}
+                            <span
+                                onClick={() => router.push("/register")}
+                                className="text-primary hover:underline cursor-pointer font-black border-b-2 border-primary/10"
+                            >
+                                Registrarse
+                            </span>
+                        </p>
                     </div>
                 </div>
 

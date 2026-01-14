@@ -10,10 +10,10 @@ export default function Home() {
         <div className="w-24 h-24 bg-primary rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-primary/20 rotate-6">
           <ShieldCheck className="text-white" size={48} />
         </div>
-        <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter uppercase mb-4">
+        <h1 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter uppercase mb-4">
           ST E-Shop
         </h1>
-        <p className="text-xl text-gray-500 max-w-lg mb-12 font-medium">
+        <p className="text-xl text-foreground/60 max-w-lg mb-12 font-medium">
           Bienvenido a la plataforma de gestión de materiales eléctricos para profesionales y empresas.
         </p>
 
