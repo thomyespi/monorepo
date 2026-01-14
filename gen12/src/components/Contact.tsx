@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, MessageSquare, Instagram, Linkedin, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, MessageSquare, Instagram, Send, X } from "lucide-react";
 
 export function Contact() {
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
+    const [showPolicies, setShowPolicies] = useState(false);
 
     const handleWhatsAppSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,6 +19,55 @@ export function Contact() {
 
     return (
         <section className="py-32 px-6 bg-primary text-white relative rounded-t-[4rem] overflow-hidden">
+            <AnimatePresence>
+                {showPolicies && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-100 flex items-center justify-center px-6 bg-primary/95 backdrop-blur-xl"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            className="bg-white text-primary p-10 md:p-16 rounded-[3rem] max-w-2xl w-full relative shadow-2xl"
+                        >
+                            <button
+                                onClick={() => setShowPolicies(false)}
+                                className="absolute top-8 right-8 p-3 hover:bg-gray-100 rounded-full transition-colors"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+
+                            <h3 className="text-4xl font-black tracking-tighter mb-8">POLÍTICAS Y PRIVACIDAD</h3>
+
+                            <div className="space-y-6 text-primary/60 font-medium overflow-y-auto max-h-[60vh] pr-4">
+                                <section>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Protección de Datos</h4>
+                                    <p>En GEN12 Software, valoramos tu privacidad. Los datos capturados en este sitio se utilizan exclusivamente para establecer contacto directo con vos y coordinar tu proyecto.</p>
+                                </section>
+
+                                <section>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Uso de Información</h4>
+                                    <p>Tu información no es compartida, vendida ni cedida a terceros bajo ninguna circunstancia. No utilizamos tu contacto para spam publicitario.</p>
+                                </section>
+
+                                <section>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Comunicación Directa</h4>
+                                    <p>Toda la comunicación se realiza de forma directa y cifrada a través de los servidores oficiales de WhatsApp. No almacenamos tus mensajes en bases de datos intermedias, garantizando que tu idea permanezca entre vos y GEN12.</p>
+                                </section>
+
+                                <section>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Conexión Segura</h4>
+                                    <p>Este sitio opera bajo protocolos HTTPS con certificados SSL de alta seguridad, asegurando que cualquier interacción entre tu navegador y nuestra plataforma esté totalmente cifrada.</p>
+                                </section>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Geometric accents */}
             <div className="absolute top-0 right-0 w-[40%] h-full bg-white/5 skew-x-[-20deg] translate-x-1/2" />
 
@@ -111,8 +161,12 @@ export function Contact() {
                 <div className="mt-32 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
                     <p>© 2026 GEN12 SOFTWARE. TODOS LOS DERECHOS RESERVADOS.</p>
                     <div className="flex gap-10">
-                        <a href="#" className="hover:text-accent transition-colors">Politicas</a>
-                        <a href="#" className="hover:text-accent transition-colors">Linkedin</a>
+                        <button
+                            onClick={() => setShowPolicies(true)}
+                            className="hover:text-accent transition-colors cursor-pointer"
+                        >
+                            Politicas
+                        </button>
                     </div>
                 </div>
             </div>

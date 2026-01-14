@@ -5,6 +5,7 @@ import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Process } from "@/components/Process";
+import { Products } from "@/components/Products";
 import { Contact } from "@/components/Contact";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ShieldCheck } from "lucide-react";
@@ -36,10 +37,10 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             className="hidden md:flex items-center gap-12"
           >
-            {['Servicios', 'Método', 'Trabajo'].map((item) => (
+            {['Servicios', 'Método', 'Proyectos', 'Stack'].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={`#${item.toLowerCase() === 'stack' ? 'trabajo' : item.toLowerCase()}`}
                 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-primary transition-colors"
               >
                 {item}
@@ -65,13 +66,15 @@ export default function Home() {
         <Process />
       </div>
 
+      <Products />
+
       {/* Social Proof Section (Minimalist) */}
-      {/* Social Proof Section (Modern High Contrast) */}
+      {/* Social Proof Section (Modern Tech Stack Showcase) */}
       <section id="trabajo" className="py-24 bg-primary/5 border-y border-primary/10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex gap-16 md:gap-24 animate-infinite-scroll whitespace-nowrap filter grayscale hover:grayscale-0 transition-all duration-700">
-            {['SAMSUNG', 'TOYOTA', 'NETFLIX', 'MICROSOFT', 'ADIDAS', 'SAMSUNG', 'TOYOTA', 'NETFLIX', 'MICROSOFT', 'ADIDAS'].map((brand, i) => (
-              <span key={i} className="text-3xl md:text-5xl font-black tracking-widest text-primary/40 hover:text-primary transition-colors cursor-default">{brand}</span>
+            {['REACT', 'NEXT.JS', 'TYPESCRIPT', 'AI AGENTS', 'NODE.JS', 'TAILWIND CSS', 'REACT', 'NEXT.JS', 'TYPESCRIPT', 'AI AGENTS', 'NODE.JS', 'TAILWIND CSS'].map((tech, i) => (
+              <span key={i} className="text-3xl md:text-5xl font-black tracking-widest text-primary/40 hover:text-primary transition-colors cursor-default">{tech}</span>
             ))}
           </div>
         </div>
