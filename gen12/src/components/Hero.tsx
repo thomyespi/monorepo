@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function Hero() {
     return (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-40 pb-32 px-6">
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 md:pt-40 md:pb-32 px-6">
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}

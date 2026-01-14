@@ -18,7 +18,7 @@ export function Contact() {
     };
 
     return (
-        <section className="py-32 px-6 bg-primary text-white relative rounded-t-[4rem] overflow-hidden">
+        <section className="py-20 md:py-32 px-6 bg-primary text-white relative rounded-t-[4rem] overflow-hidden">
             <AnimatePresence>
                 {showPolicies && (
                     <motion.div

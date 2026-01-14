@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code2, BrainCircuit, Globe2, Layers, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -26,9 +27,15 @@ const services = [
 ];
 
 export function Services() {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     return (
-        <section className="py-32 px-6 bg-white relative">
-            <div className="max-w-7xl mx-auto">
+        <section className="py-20 md:py-32 px-6 bg-white relative">
+            <div className={cn("max-w-7xl mx-auto transition-opacity duration-500", !mounted && "opacity-0")}>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
                     <div className="max-w-2xl">
                         <motion.span

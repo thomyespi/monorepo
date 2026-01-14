@@ -12,7 +12,8 @@ export function AnimatedBackground({ className }: { className?: string }) {
     if (!mounted) return null;
 
     return (
-        <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-white", className)}>
+        <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-primary", className)}>
+            <div className="absolute inset-0 bg-white" /> {/* White overlay over primary */}
             {/* Soft Midnight Blue Blob */}
             <motion.div
                 animate={{

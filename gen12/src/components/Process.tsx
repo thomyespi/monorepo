@@ -22,7 +22,7 @@ const steps = [
 
 export function Process() {
     return (
-        <section className="py-32 px-6 relative overflow-hidden">
+        <section className="py-20 md:py-32 px-6 relative overflow-hidden">
             {/* Background Text Decor */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 opacity-[0.02] text-[30rem] font-black text-primary select-none pointer-events-none">
                 BUILD

@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ShoppingBag, Layout, Building2, LayoutPanelLeft, Cpu, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import NextImage from "next/image";
 
 const productTypes = [
     {
@@ -54,9 +55,15 @@ const productTypes = [
 ];
 
 export function Products() {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     return (
-        <section id="proyectos" className="py-32 px-6 bg-gray-50/30">
-            <div className="max-w-7xl mx-auto">
+        <section id="proyectos" className="py-20 md:py-32 px-6 bg-gray-50/30">
+            <div className={cn("max-w-7xl mx-auto transition-opacity duration-500", !mounted && "opacity-0")}>
                 <div className="max-w-2xl mb-20">
                     <motion.span
                         initial={{ opacity: 0, x: -20 }}
@@ -93,7 +100,7 @@ export function Products() {
                         >
                             {/* Visual Preview Header */}
                             <div className="h-64 overflow-hidden relative border-b border-gray-50">
-                                <Image
+                                <NextImage
                                     src={item.image}
                                     alt={item.title}
                                     fill
