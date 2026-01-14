@@ -15,6 +15,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "GEN12 Software | Innovación en Desarrollo",
   description: "Desarrollo de software premium, IA y soluciones tecnológicas escalables.",
+  openGraph: {
+    title: "GEN12 Software | Innovación en Desarrollo",
+    description: "Desarrollo de software premium, IA y soluciones tecnológicas escalables.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "GEN12 Software Preview",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GEN12 Software",
+    description: "Desarrollo de software premium e IA.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
