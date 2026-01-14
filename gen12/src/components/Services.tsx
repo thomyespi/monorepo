@@ -35,7 +35,7 @@ export function Services() {
 
     return (
         <section className="py-20 md:py-32 px-6 bg-white relative">
-            <div className={cn("max-w-7xl mx-auto transition-opacity duration-500", !mounted && "opacity-0")}>
+            <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
                     <div className="max-w-2xl">
                         <motion.span
@@ -67,6 +67,7 @@ export function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
+                            style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.5s ease-in-out", willChange: "transform, opacity" }}
                             className="group p-8 rounded-3xl bg-gray-50 border border-transparent hover:border-accent/20 hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
                         >
                             <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-10 transition-transform group-hover:scale-110", service.accent)}>

@@ -24,6 +24,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
+                    style={{ willChange: "transform, opacity" }}
                     className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-black text-primary tracking-tighter leading-[0.85] mb-8"
                 >
                     CONSTRUIMOS <br />
@@ -35,6 +36,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
+                    style={{ willChange: "transform, opacity" }}
                     className="max-w-2xl mx-auto text-lg md:text-xl text-primary/50 font-medium leading-relaxed mb-12"
                 >
                     GEN12 fusiona ingeniería de precisión con inteligencia artificial para crear ecosistemas digitales que impulsan el crecimiento exponencial.

@@ -26,7 +26,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                style={{ willChange: "transform" }}
+                style={{ willChange: "transform, opacity" }}
                 className="absolute -top-[15%] -left-[10%] w-[80%] h-[80%] bg-primary/3 rounded-full blur-[80px]"
             />
 
@@ -42,7 +42,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                style={{ willChange: "transform" }}
+                style={{ willChange: "transform, opacity" }}
                 className="absolute top-[30%] -right-[15%] w-[70%] h-[70%] bg-accent/4 rounded-full blur-[70px]"
             />
 
@@ -58,7 +58,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                style={{ willChange: "transform" }}
+                style={{ willChange: "transform, opacity" }}
                 className="absolute -bottom-[20%] left-[10%] w-[90%] h-[60%] bg-primary/2 rounded-full blur-[90px]"
             />
 

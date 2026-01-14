@@ -63,7 +63,7 @@ export function Products() {
 
     return (
         <section id="proyectos" className="py-20 md:py-32 px-6 bg-gray-50/30">
-            <div className={cn("max-w-7xl mx-auto transition-opacity duration-500", !mounted && "opacity-0")}>
+            <div className="max-w-7xl mx-auto">
                 <div className="max-w-2xl mb-20">
                     <motion.span
                         initial={{ opacity: 0, x: -20 }}
@@ -97,6 +97,7 @@ export function Products() {
                                 "group relative overflow-hidden rounded-[4rem] bg-white border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 flex flex-col min-h-[500px]",
                                 item.size
                             )}
+                            style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.5s ease-in-out", willChange: "transform, opacity" }}
                         >
                             {/* Visual Preview Header */}
                             <div className="h-64 overflow-hidden relative border-b border-gray-50">
@@ -104,6 +105,7 @@ export function Products() {
                                     src={item.image}
                                     alt={item.title}
                                     fill
+                                    priority={index === 0}
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                 />
