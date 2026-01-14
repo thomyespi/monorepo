@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ShoppingBag, Layout, Building2, LayoutPanelLeft, Cpu, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const productTypes = [
     {
@@ -92,10 +93,14 @@ export function Products() {
                         >
                             {/* Visual Preview Header */}
                             <div className="h-64 overflow-hidden relative border-b border-gray-50">
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                    style={{ backgroundImage: `url(${item.image})` }}
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                 />
+                                {/* Visual Overlay */}
                                 <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent opacity-40" />
                                 <div className="absolute top-6 left-6">
                                     <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/20">
