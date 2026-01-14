@@ -44,7 +44,7 @@ export function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="text-5xl md:text-7xl font-black text-primary tracking-tighter leading-tight"
+                            className="text-3xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter leading-[0.9] md:leading-tight"
                         >
                             SOLUCIONES QUE <br />
                             <span className="text-accent underline decoration-4 underline-offset-8">ESCALAN</span> TU NEGOCIO

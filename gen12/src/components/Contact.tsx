@@ -78,13 +78,13 @@ export function Contact() {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-10"
+                            className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10"
                         >
                             HABLEMOS DE <br />
                             <span className="text-accent italic">TU IDEA.</span>
                         </motion.h2>
 
-                        <p className="text-xl text-white/50 font-bold mb-16 max-w-md">
+                        <p className="text-lg md:text-xl text-white/50 font-bold mb-16 max-w-md">
                             Estamos listos para escalar tu negocio al siguiente nivel con tecnología de clase mundial.
                         </p>
 

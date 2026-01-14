@@ -17,8 +17,8 @@ export default function Home() {
       <WhatsAppButton />
 
       {/* Floating Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 md:py-8 transition-all duration-300">
+        <div className="max-w-7xl mx-auto flex items-center justify-between p-4 rounded-3xl bg-white/60 backdrop-blur-xl border border-white/20 shadow-lg shadow-primary/5">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}

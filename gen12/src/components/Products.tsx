@@ -6,12 +6,21 @@ import { cn } from "@/lib/utils";
 
 const productTypes = [
     {
+        id: "ecommerce-st",
+        title: "ST E-Shop Premium",
+        desc: "Plataforma de gestión de materiales eléctricos con buscador inteligente y ofertas relámpago.",
+        icon: ShoppingBag,
+        tech: "Next.js • Framer • Tailwind",
+        size: "md:col-span-2",
+        image: "/concepts/eshop_real.png"
+    },
+    {
         id: "ecommerce",
         title: "E-Commerce High-End",
         desc: "Tiendas escalables con checkouts ultra-rápidos y gestión de inventario inteligente.",
         icon: ShoppingBag,
         tech: "Vite • Stripe • Node",
-        size: "md:col-span-2",
+        size: "md:col-span-1",
         image: "/concepts/ecommerce.png"
     },
     {
@@ -30,7 +39,7 @@ const productTypes = [
         icon: Building2,
         tech: "React • CMS • SEO",
         size: "md:col-span-1",
-        image: "/concepts/landing.png"
+        image: "/concepts/corporate_new.png"
     },
     {
         id: "saas",
@@ -61,7 +70,7 @@ export function Products() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-5xl md:text-7xl font-black text-primary tracking-tighter leading-tight"
+                        className="text-4xl md:text-7xl font-black text-primary tracking-tighter leading-[0.9] md:leading-tight"
                     >
                         TRANSFORMAMOS IDEAS EN <br />
                         <span className="text-accent italic">PRODUCTOS REALES.</span>
