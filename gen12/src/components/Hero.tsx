@@ -52,7 +52,7 @@ export function Hero() {
                     className="flex flex-col sm:flex-row items-center justify-center gap-6"
                 >
                     <a
-                        href="https://wa.me/5491161591957?text=Hola%20GEN12!%20Quiero%20empezar%20un%20proyecto."
+                        href={`https://wa.me/5491161591957?text=${encodeURIComponent(t('whatsapp.hero'))}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group relative px-10 py-6 bg-primary text-white rounded-2xl font-black uppercase tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-primary/20"

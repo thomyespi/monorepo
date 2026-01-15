@@ -12,8 +12,8 @@ export function Contact() {
     const handleWhatsAppSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const phoneNumber = "5491161591957";
-        const greeting = language === 'es' ? 'Hola!' : 'Hi!';
-        const nameIntro = language === 'es' ? 'Soy' : "I'm";
+        const greeting = t('whatsapp.form.greeting');
+        const nameIntro = t('whatsapp.form.intro');
         const text = `${greeting} ${nameIntro} ${name}. ${message}`;
         const encodedText = encodeURIComponent(text);
         window.open(`https://wa.me/${phoneNumber}?text=${encodedText}`, "_blank");

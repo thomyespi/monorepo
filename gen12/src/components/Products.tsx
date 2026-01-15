@@ -155,7 +155,7 @@ export function Products() {
                             </p>
                         </div>
                         <a
-                            href="https://wa.me/5491161591957?text=Hola%20GEN12!%20Me%20interesa%20un%20proyecto%20con%20IA."
+                            href={`https://wa.me/5491161591957?text=${encodeURIComponent(t('whatsapp.ai'))}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-10 py-6 bg-white text-primary rounded-2xl font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-sm shrink-0"

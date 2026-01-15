@@ -129,5 +129,15 @@ export const es = {
                 }
             }
         }
+    },
+    whatsapp: {
+        default: "Hola GEN12! Me gustaría solicitar una consultoría.",
+        hero: "Hola GEN12! Quiero empezar un proyecto.",
+        ai: "Hola GEN12! Me interesa un proyecto con IA.",
+        servicesIntro: "Hola GEN12! Me interesa saber más sobre el servicio de ",
+        form: {
+            greeting: "Hola!",
+            intro: "Soy"
+        }
     }
 };

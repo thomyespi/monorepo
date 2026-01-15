@@ -73,7 +73,7 @@ export function Services() {
                                 {service.description}
                             </p>
                             <a
-                                href={`https://wa.me/5491161591957?text=${encodeURIComponent(`Hola GEN12! Me interesa saber más sobre el servicio de ${service.title}.`)}`}
+                                href={`https://wa.me/5491161591957?text=${encodeURIComponent(`${t('whatsapp.servicesIntro')}${service.title}.`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary/40 group-hover:text-accent transition-colors cursor-pointer"

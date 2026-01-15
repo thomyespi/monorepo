@@ -129,5 +129,15 @@ export const en = {
                 }
             }
         }
+    },
+    whatsapp: {
+        default: "Hi GEN12! I would like to request a consultancy.",
+        hero: "Hi GEN12! I want to start a project.",
+        ai: "Hi GEN12! I'm interested in an AI project.",
+        servicesIntro: "Hi GEN12! I'm interested in learning more about the ",
+        form: {
+            greeting: "Hi!",
+            intro: "I'm"
+        }
     }
 };
