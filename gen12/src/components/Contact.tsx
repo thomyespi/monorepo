@@ -1,10 +1,10 @@
-"use client";
-
+import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, MessageSquare, Instagram, Send, X, Linkedin } from "lucide-react";
 
 export function Contact() {
+    const { t, language } = useLanguage();
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [showPolicies, setShowPolicies] = useState(false);
@@ -12,7 +12,9 @@ export function Contact() {
     const handleWhatsAppSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const phoneNumber = "5491161591957";
-        const text = `Hola! Soy ${name}. ${message}`;
+        const greeting = language === 'es' ? 'Hola!' : 'Hi!';
+        const nameIntro = language === 'es' ? 'Soy' : "I'm";
+        const text = `${greeting} ${nameIntro} ${name}. ${message}`;
         const encodedText = encodeURIComponent(text);
         window.open(`https://wa.me/${phoneNumber}?text=${encodedText}`, "_blank");
     };
@@ -40,27 +42,27 @@ export function Contact() {
                                 <X className="w-6 h-6" />
                             </button>
 
-                            <h3 className="text-4xl font-black tracking-tighter mb-8">POLÍTICAS Y PRIVACIDAD</h3>
+                            <h3 className="text-4xl font-black tracking-tighter mb-8">{t('contact.policies.title')}</h3>
 
                             <div className="space-y-6 text-primary/60 font-medium overflow-y-auto max-h-[60vh] pr-4">
                                 <section>
-                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Protección de Datos</h4>
-                                    <p>En GEN12 Software, valoramos tu privacidad. Los datos capturados en este sitio se utilizan exclusivamente para establecer contacto directo con vos y coordinar tu proyecto.</p>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">{t('contact.policies.sections.data.title')}</h4>
+                                    <p>{t('contact.policies.sections.data.text')}</p>
                                 </section>
 
                                 <section>
-                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Uso de Información</h4>
-                                    <p>Tu información no es compartida, vendida ni cedida a terceros bajo ninguna circunstancia. No utilizamos tu contacto para spam publicitario.</p>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">{t('contact.policies.sections.usage.title')}</h4>
+                                    <p>{t('contact.policies.sections.usage.text')}</p>
                                 </section>
 
                                 <section>
-                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Comunicación Directa</h4>
-                                    <p>Toda la comunicación se realiza de forma directa y cifrada a través de los servidores oficiales de WhatsApp. No almacenamos tus mensajes en bases de datos intermedias, garantizando que tu idea permanezca entre vos y GEN12.</p>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">{t('contact.policies.sections.comm.title')}</h4>
+                                    <p>{t('contact.policies.sections.comm.text')}</p>
                                 </section>
 
                                 <section>
-                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">Conexión Segura</h4>
-                                    <p>Este sitio opera bajo protocolos HTTPS con certificados SSL de alta seguridad, asegurando que cualquier interacción entre tu navegador y nuestra plataforma esté totalmente cifrada.</p>
+                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-accent mb-2">{t('contact.policies.sections.safe.title')}</h4>
+                                    <p>{t('contact.policies.sections.safe.text')}</p>
                                 </section>
                             </div>
                         </motion.div>
@@ -80,12 +82,12 @@ export function Contact() {
                             viewport={{ once: true }}
                             className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-10"
                         >
-                            HABLEMOS DE <br />
-                            <span className="text-accent italic">TU IDEA.</span>
+                            {t('contact.title')} <br />
+                            <span className="text-accent italic">{t('contact.titleAccent')}</span>
                         </motion.h2>
 
                         <p className="text-lg md:text-xl text-white/50 font-bold mb-16 max-w-md">
-                            Estamos listos para escalar tu negocio al siguiente nivel con tecnología de clase mundial.
+                            {t('contact.subtitle')}
                         </p>
 
                         <div className="flex flex-col gap-8">
@@ -97,7 +99,7 @@ export function Contact() {
                                     <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Email</p>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">{t('contact.labels.email')}</p>
                                     <p className="text-xl font-black text-break group-hover:text-accent transition-colors">gen12software@gmail.com</p>
                                 </div>
                             </a>
@@ -111,7 +113,7 @@ export function Contact() {
                                     <Instagram className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Instagram</p>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">{t('contact.labels.instagram')}</p>
                                     <p className="text-xl font-black group-hover:text-accent transition-colors">@gen12.software</p>
                                 </div>
                             </a>
@@ -125,7 +127,7 @@ export function Contact() {
                                     <Linkedin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Linkedin</p>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">{t('contact.labels.linkedin')}</p>
                                     <p className="text-xl font-black group-hover:text-accent transition-colors">Gen12 Software</p>
                                 </div>
                             </a>
@@ -140,32 +142,32 @@ export function Contact() {
                     >
                         <form onSubmit={handleWhatsAppSubmit} className="space-y-8">
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Nombre</label>
+                                <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">{t('contact.form.name')}</label>
                                 <input
                                     type="text"
                                     required
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="w-full px-6 py-5 bg-gray-50 border-none rounded-2xl text-primary font-black placeholder:text-primary/20 outline-none focus:ring-4 focus:ring-accent/10 transition-all"
-                                    placeholder="Ingresá tu nombre"
+                                    placeholder={t('contact.form.namePlaceholder')}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">Proyecto</label>
+                                <label className="text-[10px] font-black uppercase tracking-widest text-primary/40 ml-2">{t('contact.form.project')}</label>
                                 <textarea
                                     rows={4}
                                     required
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                     className="w-full px-6 py-5 bg-gray-50 border-none rounded-2xl text-primary font-black placeholder:text-primary/20 outline-none focus:ring-4 focus:ring-accent/10 transition-all resize-none"
-                                    placeholder="Contanos un poco sobre lo que tenés en mente..."
+                                    placeholder={t('contact.form.projectPlaceholder')}
                                 />
                             </div>
                             <button
                                 type="submit"
                                 className="w-full py-6 bg-accent text-white rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-accent/20"
                             >
-                                Enviar Mensaje
+                                {t('contact.form.send')}
                                 <Send className="w-5 h-5" />
                             </button>
                         </form>
@@ -173,13 +175,13 @@ export function Contact() {
                 </div>
 
                 <div className="mt-32 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
-                    <p>© 2026 GEN12 SOFTWARE. TODOS LOS DERECHOS RESERVADOS.</p>
+                    <p>© 2026 GEN12 SOFTWARE. {t('contact.footer.rights')}</p>
                     <div className="flex gap-10">
                         <button
                             onClick={() => setShowPolicies(true)}
                             className="text-[10px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors cursor-pointer"
                         >
-                            Políticas
+                            {t('contact.footer.policies')}
                         </button>
                         <a
                             href="https://www.linkedin.com/company/gen12-software"

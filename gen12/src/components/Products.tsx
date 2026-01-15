@@ -1,60 +1,60 @@
-"use client";
-
+import { useLanguage } from "@/context/LanguageContext";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ShoppingBag, Layout, Building2, LayoutPanelLeft, Cpu, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import NextImage from "next/image";
 
-const productTypes = [
-    {
-        id: "ecommerce-st",
-        title: "ST E-Shop Premium",
-        desc: "Plataforma de gestión de materiales eléctricos con buscador inteligente y ofertas relámpago.",
-        icon: ShoppingBag,
-        tech: "Next.js • Framer • Tailwind",
-        size: "md:col-span-2",
-        image: "/concepts/eshop_real.png"
-    },
-    {
-        id: "ecommerce",
-        title: "E-Commerce High-End",
-        desc: "Tiendas escalables con checkouts ultra-rápidos y gestión de inventario inteligente.",
-        icon: ShoppingBag,
-        tech: "Vite • Stripe • Node",
-        size: "md:col-span-1",
-        image: "/concepts/ecommerce.png"
-    },
-    {
-        id: "landing",
-        title: "Landing Pages Pro",
-        desc: "Sitios de alta conversión diseñados específicamente para anuncios y campañas de marketing.",
-        icon: Layout,
-        tech: "Next.js • Framer • Tailwind",
-        size: "md:col-span-1",
-        image: "/concepts/landing.png"
-    },
-    {
-        id: "corporate",
-        title: "Sitios Corporativos",
-        desc: "Presencia digital premium que transmite autoridad y los valores de marcas establecidas.",
-        icon: Building2,
-        tech: "React • CMS • SEO",
-        size: "md:col-span-1",
-        image: "/concepts/corporate_new.png"
-    },
-    {
-        id: "saas",
-        title: "SaaS Dashboards",
-        desc: "Interfaces complejas de gestión de datos, métricas y administración de usuarios.",
-        icon: LayoutPanelLeft,
-        tech: "React Query • Auth.js • SQL",
-        size: "md:col-span-2",
-        image: "/concepts/dashboard.png"
-    }
-];
-
 export function Products() {
+    const { t } = useLanguage();
+
+    const productTypes = [
+        {
+            id: "ecommerce-st",
+            title: t('products.items.eshop.title'),
+            desc: t('products.items.eshop.desc'),
+            icon: ShoppingBag,
+            tech: "Next.js • Framer • Tailwind",
+            size: "md:col-span-2",
+            image: "/concepts/eshop_real.png"
+        },
+        {
+            id: "ecommerce",
+            title: t('products.items.ecommerce.title'),
+            desc: t('products.items.ecommerce.desc'),
+            icon: ShoppingBag,
+            tech: "Vite • Stripe • Node",
+            size: "md:col-span-1",
+            image: "/concepts/ecommerce.png"
+        },
+        {
+            id: "landing",
+            title: t('products.items.landing.title'),
+            desc: t('products.items.landing.desc'),
+            icon: Layout,
+            tech: "Next.js • Framer • Tailwind",
+            size: "md:col-span-1",
+            image: "/concepts/landing.png"
+        },
+        {
+            id: "corporate",
+            title: t('products.items.corporate.title'),
+            desc: t('products.items.corporate.desc'),
+            icon: Building2,
+            tech: "React • CMS • SEO",
+            size: "md:col-span-1",
+            image: "/concepts/corporate_new.png"
+        },
+        {
+            id: "saas",
+            title: t('products.items.saas.title'),
+            desc: t('products.items.saas.desc'),
+            icon: LayoutPanelLeft,
+            tech: "React Query • Auth.js • SQL",
+            size: "md:col-span-2",
+            image: "/concepts/dashboard.png"
+        }
+    ];
 
     return (
         <section id="proyectos" className="py-20 md:py-32 px-6 bg-gray-50/30">
@@ -66,7 +66,7 @@ export function Products() {
                         viewport={{ once: true }}
                         className="text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-4 block"
                     >
-                        Nuestra Versatilidad
+                        {t('products.badge')}
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -75,8 +75,8 @@ export function Products() {
                         transition={{ duration: 0.8 }}
                         className="text-4xl md:text-7xl font-black text-primary tracking-tighter leading-[0.9] md:leading-tight"
                     >
-                        TRANSFORMAMOS IDEAS EN <br />
-                        <span className="text-accent italic">PRODUCTOS REALES.</span>
+                        {t('products.title')} <br />
+                        <span className="text-accent italic">{t('products.titleAccent')}</span>
                     </motion.h2>
                 </div>
 
@@ -108,7 +108,7 @@ export function Products() {
                                 <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent opacity-40" />
                                 <div className="absolute top-6 left-6">
                                     <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/20">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-accent">Concepto</p>
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-accent">{t('products.concept')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@ export function Products() {
                                         {item.tech}
                                     </span>
                                     <span className="text-[9px] font-black uppercase tracking-[0.2em] text-accent/60 px-3 py-1 bg-accent/5 rounded-full">
-                                        Premium Concept
+                                        {t('products.premium')}
                                     </span>
                                 </div>
                             </div>
@@ -149,10 +149,9 @@ export function Products() {
                             <Cpu className="w-10 h-10" />
                         </div>
                         <div className="flex-1 text-center md:text-left">
-                            <h3 className="text-3xl font-black tracking-tighter mb-4">Agentes de IA Personalizados</h3>
+                            <h3 className="text-3xl font-black tracking-tighter mb-4">{t('products.ai.title')}</h3>
                             <p className="text-white/60 font-medium max-w-2xl leading-relaxed">
-                                Desarrollamos ecosistemas de inteligencia artificial que automatizan tareas complejas,
-                                desde chatbots expertos hasta motores de recomendación y análisis de datos.
+                                {t('products.ai.desc')}
                             </p>
                         </div>
                         <a
@@ -161,7 +160,7 @@ export function Products() {
                             rel="noopener noreferrer"
                             className="px-10 py-6 bg-white text-primary rounded-2xl font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-sm shrink-0"
                         >
-                            Consultar
+                            {t('products.ai.cta')}
                         </a>
                     </motion.div>
                 </div>

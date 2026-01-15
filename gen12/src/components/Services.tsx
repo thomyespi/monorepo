@@ -1,32 +1,32 @@
-"use client";
-
+import { useLanguage } from "@/context/LanguageContext";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code2, BrainCircuit, Globe2, Layers, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const services = [
-    {
-        title: "Desarrollo Full-Stack",
-        description: "Aplicaciones web y móviles de alto rendimiento construidas con el stack más moderno: Next.js, React y Node.js.",
-        icon: Code2,
-        accent: "bg-blue-500/10 text-blue-600",
-    },
-    {
-        title: "Inteligencia Artificial",
-        description: "Integración de modelos LLM y visión por computadora para automatizar procesos y generar valor en tiempo real.",
-        icon: BrainCircuit,
-        accent: "bg-purple-500/10 text-purple-600",
-    },
-    {
-        title: "UX/UI Experience",
-        description: "Diseños que no solo se ven increíbles, sino que están optimizados para la conversión y la retención de usuarios.",
-        icon: Layers,
-        accent: "bg-accent/10 text-accent",
-    },
-];
-
 export function Services() {
+    const { t } = useLanguage();
+
+    const services = [
+        {
+            title: t('services.items.fullstack.title'),
+            description: t('services.items.fullstack.desc'),
+            icon: Code2,
+            accent: "bg-blue-500/10 text-blue-600",
+        },
+        {
+            title: t('services.items.ai.title'),
+            description: t('services.items.ai.desc'),
+            icon: BrainCircuit,
+            accent: "bg-purple-500/10 text-purple-600",
+        },
+        {
+            title: t('services.items.uxui.title'),
+            description: t('services.items.uxui.desc'),
+            icon: Layers,
+            accent: "bg-accent/10 text-accent",
+        },
+    ];
 
     return (
         <section className="py-20 md:py-32 px-6 bg-white relative">
@@ -39,7 +39,7 @@ export function Services() {
                             viewport={{ once: true }}
                             className="text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-4 block"
                         >
-                            Nuestras Capacidades
+                            {t('services.badge')}
                         </motion.span>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
@@ -48,8 +48,8 @@ export function Services() {
                             transition={{ duration: 0.8 }}
                             className="text-3xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter leading-[0.9] md:leading-tight"
                         >
-                            SOLUCIONES QUE <br />
-                            <span className="text-accent underline decoration-4 underline-offset-8">ESCALAN</span> TU NEGOCIO
+                            {t('services.title')} <br />
+                            <span className="text-accent underline decoration-4 underline-offset-8">{t('services.titleAccent')}</span> {t('services.titleSuffix')}
                         </motion.h2>
                     </div>
                 </div>
@@ -78,7 +78,7 @@ export function Services() {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary/40 group-hover:text-accent transition-colors cursor-pointer"
                             >
-                                Saber Más
+                                {t('services.more')}
                                 <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </a>
                         </motion.div>

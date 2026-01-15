@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
@@ -8,9 +9,11 @@ import { Process } from "@/components/Process";
 import { Products } from "@/components/Products";
 import { Contact } from "@/components/Contact";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Languages } from "lucide-react";
 
 export default function Home() {
+  const { language, setLanguage, t } = useLanguage();
+
   return (
     <main className="min-h-screen relative selection:bg-accent selection:text-white">
       <AnimatedBackground />
@@ -32,27 +35,50 @@ export default function Home() {
             </span>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="hidden md:flex items-center gap-12"
-          >
-            {['Servicios', 'Método', 'Proyectos', 'Stack'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase() === 'stack' ? 'trabajo' : item.toLowerCase()}`}
-                className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-primary transition-colors"
-              >
-                {item}
-              </a>
-            ))}
-            <a
-              href="#contacto"
-              className="px-6 py-3 bg-primary text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-primary/10 hover:scale-105 transition-all cursor-pointer"
+          <div className="flex items-center gap-6">
+            {/* Language Switcher - Now visible on mobile */}
+            <button
+              onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+              className="flex items-center gap-2 group cursor-pointer bg-primary/5 hover:bg-primary/10 px-3 py-2 rounded-2xl transition-all"
             >
-              Contacto
-            </a>
-          </motion.div>
+              <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-sm shadow-sm bg-white">
+                {language === 'es' ? '🇪🇸' : '🇺🇸'}
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-primary/60 group-hover:text-primary">
+                {language === 'es' ? 'EN' : 'ES'}
+              </span>
+            </button>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="hidden md:flex items-center gap-12"
+            >
+              <div className="flex gap-8">
+                <a href="#servicios" className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-primary transition-colors">
+                  {t('navbar.services')}
+                </a>
+                <a href="#método" className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-primary transition-colors">
+                  {t('navbar.method')}
+                </a>
+                <a href="#proyectos" className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-primary transition-colors">
+                  {t('navbar.projects')}
+                </a>
+                <a href="#trabajo" className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-primary transition-colors">
+                  {t('navbar.stack')}
+                </a>
+              </div>
+
+              <div className="h-6 w-px bg-primary/10" />
+
+              <a
+                href="#contacto"
+                className="px-6 py-3 bg-primary text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-primary/10 hover:scale-105 transition-all cursor-pointer"
+              >
+                {t('navbar.contact')}
+              </a>
+            </motion.div>
+          </div>
         </div>
       </nav>
 

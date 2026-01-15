@@ -1,26 +1,29 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 
-const steps = [
-    {
-        num: "01",
-        title: "Descubrimiento",
-        text: "Analizamos tu negocio y definimos el roadmap técnico para maximizar el ROI."
-    },
-    {
-        num: "02",
-        title: "Desarrollo Ágil",
-        text: "Iteraciones cortas con demos constantes para que siempre tengas el control."
-    },
-    {
-        num: "03",
-        title: "Despliegue & Escala",
-        text: "Lanzamiento con soporte crítico y optimización continua de rendimiento."
-    }
-];
-
 export function Process() {
+    const { t } = useLanguage();
+
+    const steps = [
+        {
+            num: "01",
+            title: t('process.steps.discovery.title'),
+            text: t('process.steps.discovery.text')
+        },
+        {
+            num: "02",
+            title: t('process.steps.agile.title'),
+            text: t('process.steps.agile.text')
+        },
+        {
+            num: "03",
+            title: t('process.steps.deploy.title'),
+            text: t('process.steps.deploy.text')
+        }
+    ];
+
     return (
         <section className="py-20 md:py-32 px-6 relative overflow-hidden">
             {/* Background Text Decor */}
@@ -36,7 +39,7 @@ export function Process() {
                         viewport={{ once: true }}
                         className="text-5xl md:text-7xl font-black text-primary tracking-tighter"
                     >
-                        NUESTRO <span className="italic text-accent">MÉTODO</span>
+                        {t('process.title')} <span className="italic text-accent">{t('process.titleAccent')}</span>
                     </motion.h2>
                 </div>
 

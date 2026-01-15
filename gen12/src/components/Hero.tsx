@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 import { ArrowRight, ChevronRight, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
+    const { t } = useLanguage();
+
     return (
         <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 md:pt-40 md:pb-32 px-6">
             <motion.div
@@ -15,7 +18,7 @@ export function Hero() {
             >
                 <Zap className="w-4 h-4 text-accent fill-accent" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60">
-                    Siguiente Generación de Software
+                    {t('hero.badge')}
                 </span>
             </motion.div>
 
@@ -27,9 +30,9 @@ export function Hero() {
                     style={{ willChange: "transform, opacity" }}
                     className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-black text-primary tracking-tighter leading-[0.85] mb-8"
                 >
-                    CONSTRUIMOS <br />
-                    <span className="text-accent italic">EL FUTURO</span> <br />
-                    DIGITAL
+                    {t('hero.title')} <br />
+                    <span className="text-accent italic">{t('hero.titleAccent')}</span> <br />
+                    {t('hero.titleSuffix')}
                 </motion.h1>
 
                 <motion.p
@@ -39,7 +42,7 @@ export function Hero() {
                     style={{ willChange: "transform, opacity" }}
                     className="max-w-2xl mx-auto text-lg md:text-xl text-primary/50 font-medium leading-relaxed mb-12"
                 >
-                    GEN12 fusiona ingeniería de precisión con inteligencia artificial para crear ecosistemas digitales que impulsan el crecimiento exponencial.
+                    {t('hero.description')}
                 </motion.p>
 
                 <motion.div
@@ -55,7 +58,7 @@ export function Hero() {
                         className="group relative px-10 py-6 bg-primary text-white rounded-2xl font-black uppercase tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-primary/20"
                     >
                         <span className="relative z-10 flex items-center gap-3">
-                            Empezar un Proyecto
+                            {t('hero.ctaMain')}
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </span>
                         <div className="absolute inset-0 bg-linear-to-r from-accent to-accent/80 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -65,7 +68,7 @@ export function Hero() {
                         href="#servicios"
                         className="flex items-center gap-3 px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-primary hover:bg-primary/5 transition-all cursor-pointer"
                     >
-                        Nuestras Soluciones
+                        {t('hero.ctaSecondary')}
                         <ChevronRight className="w-5 h-5 opacity-50" />
                     </a>
                 </motion.div>
