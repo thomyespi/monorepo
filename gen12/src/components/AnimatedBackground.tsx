@@ -3,17 +3,11 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function AnimatedBackground({ className }: { className?: string }) {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
 
     return (
-        <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-primary", className)}>
-            <div className="absolute inset-0 bg-white" /> {/* White overlay over primary */}
+        <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-white", className)}>
+            {/* White Base Layer */}
+            <div className="absolute inset-0 bg-white" />
             {/* Soft Midnight Blue Blob */}
             <motion.div
                 animate={{

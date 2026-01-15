@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, MessageSquare, Instagram, Send, X } from "lucide-react";
+import { Mail, MessageSquare, Instagram, Send, X, Linkedin } from "lucide-react";
 
 export function Contact() {
     const [name, setName] = useState("");
@@ -115,6 +115,20 @@ export function Contact() {
                                     <p className="text-xl font-black group-hover:text-accent transition-colors">@gen12.software</p>
                                 </div>
                             </a>
+                            <a
+                                href="https://www.linkedin.com/company/gen12-software"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-6 group cursor-pointer"
+                            >
+                                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-accent transition-colors">
+                                    <Linkedin className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Linkedin</p>
+                                    <p className="text-xl font-black group-hover:text-accent transition-colors">Gen12 Software</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -163,10 +177,18 @@ export function Contact() {
                     <div className="flex gap-10">
                         <button
                             onClick={() => setShowPolicies(true)}
+                            className="text-[10px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors cursor-pointer"
+                        >
+                            Políticas
+                        </button>
+                        <a
+                            href="https://www.linkedin.com/company/gen12-software"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="hover:text-accent transition-colors cursor-pointer"
                         >
-                            Politicas
-                        </button>
+                            Linkedin
+                        </a>
                     </div>
                 </div>
             </div>

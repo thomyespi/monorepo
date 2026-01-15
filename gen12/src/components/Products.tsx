@@ -55,11 +55,6 @@ const productTypes = [
 ];
 
 export function Products() {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     return (
         <section id="proyectos" className="py-20 md:py-32 px-6 bg-gray-50/30">
@@ -97,7 +92,7 @@ export function Products() {
                                 "group relative overflow-hidden rounded-[4rem] bg-white border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 flex flex-col min-h-[500px]",
                                 item.size
                             )}
-                            style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.5s ease-in-out", willChange: "transform, opacity" }}
+                            style={{ willChange: "transform, opacity" }}
                         >
                             {/* Visual Preview Header */}
                             <div className="h-64 overflow-hidden relative border-b border-gray-50">

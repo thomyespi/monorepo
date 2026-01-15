@@ -27,11 +27,6 @@ const services = [
 ];
 
 export function Services() {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     return (
         <section className="py-20 md:py-32 px-6 bg-white relative">
@@ -67,7 +62,7 @@ export function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.5s ease-in-out", willChange: "transform, opacity" }}
+                            style={{ transition: "opacity 0.5s ease-in-out", willChange: "transform, opacity" }}
                             className="group p-8 rounded-3xl bg-gray-50 border border-transparent hover:border-accent/20 hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
                         >
                             <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-10 transition-transform group-hover:scale-110", service.accent)}>
