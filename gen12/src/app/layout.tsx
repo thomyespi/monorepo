@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     description: "Desarrollo de software premium e IA.",
     images: ["/og-image.png"],
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico", // Usually you'd want a PNG here, but .ico works in modern Safaris or as fallback
+  },
 };
 
 import { LanguageProvider } from "@/context/LanguageContext";
