@@ -1,70 +1,77 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function AnimatedBackground({ className }: { className?: string }) {
-
     return (
-        <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-white", className)}>
+        <div className={cn("fixed inset-0 -z-50 overflow-hidden bg-white", className)}>
             {/* White Base Layer */}
             <div className="absolute inset-0 bg-white" />
 
             {/* 
-                Optimized Blobs:
-                - Reduced blur radius for better WebKit performance (was 80-90px, now 60-80px)
-                - Added 'transform-gpu' to force hardware acceleration
-                - Added 'backface-hidden' to prevent flickering
+                CRITICAL IOS FIX: 
+                Replaced 'filter: blur()' with native CSS Radial Gradients.
+                This prevents WebKit from crashing/flashing white on mobile.
+                The visual effect is similar (soft diffuse light) but 0% GPU cost for filtering.
             */}
 
-            {/* Soft Midnight Blue Blob */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.1, 1],
-                    x: [0, 40, 0],
-                    y: [0, 20, 0],
-                }}
-                transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                }}
-                style={{ willChange: "transform" }}
-                className="absolute -top-[15%] -left-[10%] w-[80%] h-[80%] bg-primary/3 rounded-full blur-[60px] transform-gpu backface-hidden"
-            />
-
-            {/* Soft Bronze Blob */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.05, 1],
-                    x: [0, -30, 0],
-                    y: [0, 40, 0],
-                }}
-                transition={{
-                    duration: 35,
-                    repeat: Infinity,
-                    ease: "linear",
-                }}
-                style={{ willChange: "transform" }}
-                className="absolute top-[30%] -right-[15%] w-[70%] h-[70%] bg-accent/4 rounded-full blur-[60px] transform-gpu backface-hidden"
-            />
-
-            {/* Subtle Accent Blob */}
+            {/* Soft Midnight Blue Gradient - Top Left */}
             <motion.div
                 animate={{
                     scale: [1, 1.2, 1],
-                    x: [0, 20, 0],
-                    y: [0, -30, 0],
+                    opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                    duration: 15, // Slower for calmness and performance
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+                style={{
+                    // Radial gradient simulating a blurred circle
+                    background: 'radial-gradient(circle at center, rgba(26, 54, 93, 0.08) 0%, transparent 70%)',
+                    willChange: "transform, opacity"
+                }}
+                className="absolute -top-[20%] -left-[20%] w-[80vw] h-[80vw] rounded-full translate-z-0"
+            />
+
+            {/* Soft Bronze/Accent Gradient - Center Right */}
+            <motion.div
+                animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.4, 0.7, 0.4],
+                }}
+                transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 2
+                }}
+                style={{
+                    background: 'radial-gradient(circle at center, rgba(166, 124, 82, 0.06) 0%, transparent 70%)',
+                    willChange: "transform, opacity"
+                }}
+                className="absolute top-[20%] -right-[20%] w-[90vw] h-[90vw] rounded-full translate-z-0"
+            />
+
+            {/* Secondary Blue Gradient - Bottom Left */}
+            <motion.div
+                animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.3, 0.6, 0.3],
                 }}
                 transition={{
                     duration: 25,
                     repeat: Infinity,
-                    ease: "linear",
+                    ease: "easeInOut",
+                    delay: 5
                 }}
-                style={{ willChange: "transform" }}
-                className="absolute -bottom-[20%] left-[10%] w-[90%] h-[60%] bg-primary/2 rounded-full blur-[70px] transform-gpu backface-hidden"
+                style={{
+                    background: 'radial-gradient(circle at center, rgba(26, 54, 93, 0.05) 0%, transparent 70%)',
+                    willChange: "transform, opacity"
+                }}
+                className="absolute -bottom-[10%] -left-[10%] w-[70vw] h-[70vw] rounded-full translate-z-0"
             />
 
-            {/* Fine Grid Pattern */}
+            {/* Fine Grid Pattern - Kept as it is lightweight */}
             <div
                 className="absolute inset-0 opacity-[0.015] pointer-events-none"
                 style={{
@@ -73,8 +80,8 @@ export function AnimatedBackground({ className }: { className?: string }) {
                 }}
             />
 
-            {/* Subtle Gradient Overlay */}
-            <div className="absolute inset-0 bg-linear-to-b from-white via-transparent to-white" />
+            {/* Vignette/Overlay to ensure text readability */}
+            <div className="absolute inset-0 bg-linear-to-b from-white/80 via-transparent to-white/80 pointer-events-none" />
         </div>
     );
 }

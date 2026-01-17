@@ -15,7 +15,7 @@ export default function Home() {
   const { language, setLanguage, t } = useLanguage();
 
   return (
-    <main className="min-h-screen relative selection:bg-accent selection:text-white">
+    <main className="min-h-screen relative z-0 selection:bg-accent selection:text-white">
       <AnimatedBackground />
       <WhatsAppButton />
 
