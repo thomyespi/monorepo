@@ -8,6 +8,14 @@ export function AnimatedBackground({ className }: { className?: string }) {
         <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-white", className)}>
             {/* White Base Layer */}
             <div className="absolute inset-0 bg-white" />
+
+            {/* 
+                Optimized Blobs:
+                - Reduced blur radius for better WebKit performance (was 80-90px, now 60-80px)
+                - Added 'transform-gpu' to force hardware acceleration
+                - Added 'backface-hidden' to prevent flickering
+            */}
+
             {/* Soft Midnight Blue Blob */}
             <motion.div
                 animate={{
@@ -20,8 +28,8 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                style={{ willChange: "transform, opacity" }}
-                className="absolute -top-[15%] -left-[10%] w-[80%] h-[80%] bg-primary/3 rounded-full blur-[80px]"
+                style={{ willChange: "transform" }}
+                className="absolute -top-[15%] -left-[10%] w-[80%] h-[80%] bg-primary/3 rounded-full blur-[60px] transform-gpu backface-hidden"
             />
 
             {/* Soft Bronze Blob */}
@@ -36,8 +44,8 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                style={{ willChange: "transform, opacity" }}
-                className="absolute top-[30%] -right-[15%] w-[70%] h-[70%] bg-accent/4 rounded-full blur-[70px]"
+                style={{ willChange: "transform" }}
+                className="absolute top-[30%] -right-[15%] w-[70%] h-[70%] bg-accent/4 rounded-full blur-[60px] transform-gpu backface-hidden"
             />
 
             {/* Subtle Accent Blob */}
@@ -52,8 +60,8 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                style={{ willChange: "transform, opacity" }}
-                className="absolute -bottom-[20%] left-[10%] w-[90%] h-[60%] bg-primary/2 rounded-full blur-[90px]"
+                style={{ willChange: "transform" }}
+                className="absolute -bottom-[20%] left-[10%] w-[90%] h-[60%] bg-primary/2 rounded-full blur-[70px] transform-gpu backface-hidden"
             />
 
             {/* Fine Grid Pattern */}

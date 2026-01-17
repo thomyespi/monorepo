@@ -9,7 +9,7 @@ export function Hero() {
     const { t } = useLanguage();
 
     return (
-        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 md:pt-40 md:pb-32 px-6">
+        <section className="relative min-h-[90dvh] flex flex-col items-center justify-center pt-32 pb-20 md:pt-40 md:pb-32 px-6">
             <motion.div
                 initial={false}
                 animate={{ opacity: 1, scale: 1 }}
