@@ -39,6 +39,7 @@ const Contact = () => {
 
         if (isNombreValid && isEmailValid && isMensajeValid) {
             // Proceed with submission logic
+            // Proceed with submission logic
             console.log('Form submitted:', formData);
             alert('¡Solicitud enviada con éxito!');
             setFormData({ nombre: '', email: '', mensaje: '' });
