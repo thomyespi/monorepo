@@ -13,7 +13,7 @@ const Experience = () => {
     ];
 
     return (
-        <section id="nosotros" className="relative mt-24 md:mt-32 mb-24 md:mb-32 py-32 overflow-hidden mx-4 md:mx-8 rounded-[3rem] md:rounded-[5rem] shadow-2xl" style={{ backgroundColor: '#14362d', color: '#fffcf2' }}>
+        <section id="nosotros" className="relative mt-12 md:mt-32 mb-12 md:mb-32 py-16 md:py-32 overflow-hidden mx-4 md:mx-8 rounded-[3rem] md:rounded-[5rem] shadow-2xl" style={{ backgroundColor: '#14362d', color: '#fffcf2' }}>
 
 
             <div className="max-w-7xl mx-auto px-6 relative z-0">
@@ -45,7 +45,7 @@ const Experience = () => {
                             {stats.map((stat, index) => (
                                 <div key={index} className="border-l-2 pl-6" style={{ borderColor: '#e76f51' }}>
                                     <div className="text-4xl font-bold mb-1 text-white">
-                                        <AnimatedNumber value={stat.value} />
+                                        <AnimatedNumber value={stat.value} disableFormatting={stat.value === 1998} />
                                         {stat.suffix}
                                     </div>
                                     <div className="text-sm text-white/50 uppercase tracking-wider">{stat.label}</div>
@@ -62,7 +62,7 @@ const Experience = () => {
                         className="relative aspect-square md:aspect-video rounded-[3rem] overflow-hidden transition-all"
                     >
                         <img
-                            src="/experience-team.jpg"
+                            src="/experience-team.png"
                             alt="Catering Team"
                             className="object-cover w-full h-full"
                         />

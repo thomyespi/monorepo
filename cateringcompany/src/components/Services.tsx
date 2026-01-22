@@ -54,9 +54,9 @@ const stats = [
 
 const Services = () => {
     return (
-        <section id="servicios" className="py-24 bg-brand-cream overflow-hidden">
+        <section id="servicios" className="py-12 md:py-24 bg-brand-cream overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="mb-16 text-center max-w-3xl mx-auto">
+                <div className="mb-8 md:mb-16 text-center max-w-3xl mx-auto">
                     <h2 className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: '#e76f51' }}>Nuestra Empresa</h2>
                     <h3 className="text-4xl md:text-6xl font-bold mb-8 italic" style={{ color: '#14362d' }}>Excelencia gastronómica para los sectores más exigentes.</h3>
                     <p className="text-lg" style={{ color: '#5c6b66' }}>
@@ -64,7 +64,7 @@ const Services = () => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 mb-20">
+                <div className="grid md:grid-cols-3 gap-8 mb-10 md:mb-20">
                     {services.map((service, index) => (
                         <motion.div
                             key={index}

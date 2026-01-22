@@ -12,7 +12,7 @@ const Hero = () => {
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/industrial_catering_hero.png" // This will be generated/provided
+                    src="/industrial_catering_hero_v2.png" // This will be generated/provided
                     alt="Industrial Catering"
                     fill
                     className="object-cover"
@@ -67,10 +67,7 @@ const Hero = () => {
             </div>
 
             {/* Stats overlay or scroll indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/50 animate-bounce z-20">
-                <span className="text-xs uppercase tracking-widest mb-2">Deslizar</span>
-                <div className="w-px h-12 bg-linear-to-b from-white/50 to-transparent" />
-            </div>
+
         </section>
     );
 };
