@@ -11,7 +11,7 @@ interface AnimatedNumberProps {
 
 const AnimatedNumber = ({ value, duration = 2000, disableFormatting = false }: AnimatedNumberProps) => {
     const ref = useRef<HTMLSpanElement>(null);
-    const inView = useInView(ref, { once: true, margin: "-100px" });
+    const inView = useInView(ref, { once: true, margin: "0px" });
     const motionValue = useMotionValue(0);
     const springValue = useSpring(motionValue, {
         stiffness: 100,

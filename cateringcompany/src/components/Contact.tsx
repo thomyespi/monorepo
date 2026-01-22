@@ -217,7 +217,7 @@ const Contact = () => {
                                                     errors.email ? "border-brand-forest/30 bg-brand-forest/5" : "border-transparent focus:bg-white focus:border-[#e76f51]"
                                                 )}
                                                 style={{ color: '#14362d' }}
-                                                placeholder="email@empresa.com"
+                                                placeholder="Tu Email"
                                             />
                                             {errors.email && (
                                                 <p className="text-[10px] text-brand-forest font-bold uppercase tracking-widest ml-1 animate-in fade-in slide-in-from-top-1">

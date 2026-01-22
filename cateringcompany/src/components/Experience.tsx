@@ -48,7 +48,7 @@ const Experience = () => {
                                         <AnimatedNumber value={stat.value} disableFormatting={stat.value === 1998} />
                                         {stat.suffix}
                                     </div>
-                                    <div className="text-sm text-white/50 uppercase tracking-wider">{stat.label}</div>
+                                    <div className="text-sm text-white/50 uppercase tracking-wider whitespace-nowrap">{stat.label}</div>
                                 </div>
                             ))}
                         </div>
