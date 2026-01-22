@@ -9,7 +9,8 @@ const Contact = () => {
     const [formData, setFormData] = React.useState({
         nombre: '',
         email: '',
-        mensaje: ''
+        mensaje: '',
+        asunto_interno: ''
     });
     const [errors, setErrors] = React.useState({
         nombre: '',
@@ -19,6 +20,7 @@ const Contact = () => {
 
     const validateField = (name: string, value: string) => {
         let error = '';
+        if (name === 'asunto_interno') return true;
         if (!value.trim()) {
             error = 'Este campo es requerido';
         } else if (name === 'email') {
@@ -49,6 +51,7 @@ const Contact = () => {
             data.append('nombre', formData.nombre);
             data.append('email', formData.email);
             data.append('mensaje', formData.mensaje);
+            data.append('asunto_interno', formData.asunto_interno);
 
             // Import dynamically or use the imported action
             const { sendEmail } = await import('@/actions/sendEmail');
@@ -59,7 +62,7 @@ const Contact = () => {
 
             if (result.success) {
                 setIsSuccess(true);
-                setFormData({ nombre: '', email: '', mensaje: '' });
+                setFormData({ nombre: '', email: '', mensaje: '', asunto_interno: '' });
             } else {
                 setIsError(true);
             }
@@ -226,6 +229,15 @@ const Contact = () => {
                                             )}
                                         </div>
                                         <div className="space-y-2">
+                                            <input
+                                                type="text"
+                                                name="asunto_interno"
+                                                value={formData.asunto_interno}
+                                                onChange={(e) => setFormData({ ...formData, asunto_interno: e.target.value })}
+                                                style={{ display: 'none' }}
+                                                tabIndex={-1}
+                                                autoComplete="off"
+                                            />
                                             <label className="text-sm font-semibold ml-1" style={{ color: '#5c6b66' }}>Mensaje</label>
                                             <textarea
                                                 value={formData.mensaje}
