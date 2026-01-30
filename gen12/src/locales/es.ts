@@ -1,47 +1,78 @@
 export const es = {
     navbar: {
+        home: "Inicio",
+        stack: "Stack",
+        about: "Nosotros",
         services: "Servicios",
         method: "Método",
         projects: "Proyectos",
-        stack: "Stack",
+        faq: "FAQ",
         contact: "Contacto"
     },
+    about: {
+        badge: "Sobre Nosotros",
+        title: "Ingeniería Con",
+        titleAccent: "Propósito.",
+        description1: "En GEN12 no solo escribimos código; diseñamos el motor que impulsa el crecimiento de negocios ambiciosos. Somos un equipo de ingenieros obsesionados con la performance y la escalabilidad.",
+        description2: "Creemos en la tecnología como un multiplicador de resultados. Nuestra misión es cerrar la brecha entre las visiones de negocio y la ejecución técnica impecable.",
+        stats: {
+            projects: "Dedicación al Proyecto",
+            experience: "Soporte Continuo",
+            clientRating: "Satisfacción Cliente"
+        }
+    },
     hero: {
-        badge: "Siguiente Generación de Software",
-        title: "CONSTRUIMOS",
-        titleAccent: "EL FUTURO",
-        titleSuffix: "DIGITAL",
-        description: "GEN12 fusiona ingeniería de precisión con inteligencia artificial para crear ecosistemas digitales que impulsan el crecimiento exponencial.",
-        ctaMain: "Empezar un Proyecto",
-        ctaSecondary: "Nuestras Soluciones"
+        badge: "Ingeniería de Software & IA",
+        title: "Transformamos",
+        titleAccent: "Visiones en",
+        titleSuffix: "Código de Élite",
+        description: "En GEN12 construimos infraestructuras digitales de grado producción. Fusionamos ingeniería de precisión con inteligencia artificial para acelerar tu ventaja competitiva.",
+        ctaMain: "Diseñemos tu Proyecto",
+        ctaSecondary: "Ver Capacidades"
     },
     services: {
         badge: "Nuestras Capacidades",
-        title: "SOLUCIONES QUE",
-        titleAccent: "ESCALAN",
-        titleSuffix: "TU NEGOCIO",
+        title: "Soluciones Que",
+        titleAccent: "Escalan",
+        titleSuffix: "Tu Negocio",
         more: "Saber Más",
         items: {
             fullstack: {
                 title: "Desarrollo Full-Stack",
-                desc: "Aplicaciones web y móviles de alto rendimiento construidas con el stack más moderno: Next.js, React y Node.js."
+                desc: "Plataformas digitales que no fallan. Arquitecturas escalables diseñadas para soportar el crecimiento masivo de tu negocio sin deuda técnica.",
+                features: {
+                    f1: "Arquitectura Escalable",
+                    f2: "APIs de Alta Velocidad",
+                    f3: "Seguridad Bancaria"
+                }
             },
             ai: {
                 title: "Inteligencia Artificial",
-                desc: "Integración de modelos LLM y visión por computadora para automatizar procesos y generar valor en tiempo real."
+                desc: "Automatización inteligente que reduce costos. Implementamos agentes de IA que trabajan 24/7 para optimizar tus operaciones y ventas.",
+                features: {
+                    f1: "Agentes Autónomos",
+                    f2: "Análisis Predictivo",
+                    f3: "Chatbots Contextuales"
+                }
             },
             uxui: {
                 title: "UX/UI Experience",
-                desc: "Diseños que no solo se ven increíbles, sino que están optimizados para la conversión y la retención de usuarios."
+                desc: "Interfaces diseñadas para vender. Fusionamos estética premium con psicología de usuario para convertir visitantes en clientes leales.",
+                features: {
+                    f1: "Diseño Centrado en Usuario",
+                    f2: "Sistemas de Diseño",
+                    f3: "Micro-interacciones"
+                }
             }
-        }
+        },
+        cta: "Solicitar Presupuesto"
     },
     process: {
-        title: "NUESTRO",
-        titleAccent: "MÉTODO",
+        title: "Nuestro",
+        titleAccent: "Método",
         steps: {
             discovery: {
-                title: "Descubrimiento",
+                title: "Estrategia & Diagnóstico",
                 text: "Analizamos tu negocio y definimos el roadmap técnico para maximizar el ROI."
             },
             agile: {
@@ -55,49 +86,74 @@ export const es = {
         }
     },
     products: {
-        badge: "Nuestra Versatilidad",
-        title: "TRANSFORMAMOS IDEAS EN",
-        titleAccent: "PRODUCTOS REALES.",
+        badge: "Portafolio de Impacto",
+        title: "Creamos Activos Digitales De",
+        titleAccent: "Alto Rendimiento.",
         concept: "Concepto",
         premium: "Premium Concept",
         items: {
             eshop: {
-                title: "ST E-Shop Premium",
-                desc: "Plataforma de gestión de materiales eléctricos con buscador inteligente y ofertas relámpago."
+                title: "ST Logistics Core",
+                desc: "Plataforma integral de pagos y logística. Orchestrador de transacciones masivas con dashboard de control en tiempo real."
             },
             ecommerce: {
-                title: "E-Commerce High-End",
+                title: "DTC Commerce Engine",
                 desc: "Tiendas escalables con checkouts ultra-rápidos y gestión de inventario inteligente."
             },
             landing: {
-                title: "Landing Pages Pro",
-                desc: "Sitios de alta conversión diseñados específicamente para anuncios y campañas de marketing."
+                title: "Conversion Systems",
+                desc: "Máquinas de conversión. Optimizadas para reducir tu costo por lead en campañas de Google y Meta Ads."
             },
             corporate: {
-                title: "Sitios Corporativos",
+                title: "Brand Identity Hub",
                 desc: "Presencia digital premium que transmite autoridad y los valores de marcas establecidas."
             },
             saas: {
-                title: "SaaS Dashboards",
+                title: "Analytics Command Center",
                 desc: "Interfaces complejas de gestión de datos, métricas y administración de usuarios."
             }
         },
         ai: {
             title: "Agentes de IA Personalizados",
-            desc: "Desarrollamos ecosistemas de inteligencia artificial que automatizan tareas complejas, desde chatbots expertos hasta motores de recomendación y análisis de datos.",
+            desc: "Fusionamos potencia algorítmica con diseño intuitivo para crear agentes que no solo responden, sino que resuelven. Automatización inteligente de siguiente nivel para empresas que buscan liderar.",
             cta: "Consultar"
         }
     },
+    faq: {
+        badge: "Preguntas Frecuentes",
+        title: "Resolvemos Tus",
+        titleAccent: "Dudas",
+        items: [
+            {
+                q: "¿Qué tiempo toma desarrollar un proyecto?",
+                a: "Depende de la complejidad. Una Landing Pro puede estar lista en 5 días, mientras que un SaaS o E-Commerce robusto suele tomar entre 2 y 4 semanas."
+            },
+            {
+                q: "¿Cómo integran la Inteligencia Artificial?",
+                a: "Desarrollamos agentes personalizados que se conectan con tus datos actuales para automatizar atención al cliente, análisis de métricas o generación de contenido."
+            },
+            {
+                q: "¿Cuentan con soporte post-lanzamiento?",
+                a: "Sí, todos nuestros proyectos incluyen un periodo de soporte crítico y optimización para asegurar que todo funcione perfecto bajo carga real."
+            },
+            {
+                q: "¿Puedo escalar mi proyecto más adelante?",
+                a: "Absolutamente. Construimos con Next.js y arquitecturas modulares, lo que permite agregar funcionalidades sin necesidad de reconstruir desde cero."
+            }
+        ]
+    },
     contact: {
-        title: "HABLEMOS DE",
-        titleAccent: "TU IDEA.",
-        subtitle: "Estamos listos para escalar tu negocio al siguiente nivel con tecnología de clase mundial.",
+        badge: "Contacto",
+        title: "Hablemos De",
+        titleAccent: "Tu Idea.",
+        desc: "Tu visión merece una ejecución impecable. Agenda una consultoría técnica inicial y evaluemos la viabilidad de tu proyecto hoy mismo.",
         form: {
             name: "Nombre",
             project: "Proyecto",
             namePlaceholder: "Ingresá tu nombre",
             projectPlaceholder: "Contanos un poco sobre lo que tenés en mente...",
-            send: "Enviar Mensaje"
+            send: "Enviar Mensaje",
+            sending: "Enviando..."
         },
         labels: {
             email: "Email",
@@ -105,11 +161,11 @@ export const es = {
             linkedin: "LinkedIn"
         },
         footer: {
-            rights: "TODOS LOS DERECHOS RESERVADOS.",
+            rights: "Todos los derechos reservados.",
             policies: "Políticas"
         },
         policies: {
-            title: "POLÍTICAS Y PRIVACIDAD",
+            title: "Políticas y privacidad",
             sections: {
                 data: {
                     title: "Protección de Datos",
@@ -127,6 +183,26 @@ export const es = {
                     title: "Conexión Segura",
                     text: "Este sitio opera bajo protocolos HTTPS con certificados SSL de alta seguridad, asegurando que cualquier interacción entre tu navegador y nuestra plataforma esté totalmente cifrada."
                 }
+            }
+        }
+    },
+    partners: {
+        title: "Ecosistema Tecnológico",
+        categories: {
+            frontend: {
+                title: "Frontend Velocity",
+                desc: "Interfaces reactivas de alto rendimiento.",
+                techs: ["React", "Next.js", "Tailwind", "Framer Motion", "TypeScript"]
+            },
+            infra: {
+                title: "Backend & Cloud",
+                desc: "Arquitectura serverless escalable y segura.",
+                techs: ["Node.js", "PostgreSQL", "AWS", "Supabase", "Vercel"]
+            },
+            ai: {
+                title: "Artificial Intelligence",
+                desc: "Modelos cognitivos integrados al negocio.",
+                techs: ["OpenAI API", "Python", "LangChain", "Vector DBs"]
             }
         }
     },

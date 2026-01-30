@@ -1,47 +1,78 @@
 export const en = {
     navbar: {
+        home: "Home",
+        stack: "Stack",
+        about: "About",
         services: "Services",
         method: "Method",
         projects: "Projects",
-        stack: "Stack",
+        faq: "FAQ",
         contact: "Contact"
     },
+    about: {
+        badge: "About Us",
+        title: "Engineering With",
+        titleAccent: "Purpose.",
+        description1: "At GEN12, we don't just write code; we design the engine that drives the growth of ambitious businesses. We are a team of engineers obsessed with performance and scalability.",
+        description2: "We believe in technology as a results multiplier. Our mission is to bridge the gap between business visions and flawless technical execution.",
+        stats: {
+            projects: "Project Dedication",
+            experience: "Continuous Support",
+            clientRating: "Client Satisfaction"
+        }
+    },
     hero: {
-        badge: "Next Generation Software",
-        title: "BUILDING",
-        titleAccent: "THE DIGITAL",
-        titleSuffix: "FUTURE",
-        description: "GEN12 merges precision engineering with artificial intelligence to create digital ecosystems that drive exponential growth.",
-        ctaMain: "Start a Project",
-        ctaSecondary: "Our Solutions"
+        badge: "Software Engineering & AI",
+        title: "Transforming",
+        titleAccent: "Visions Into",
+        titleSuffix: "Elite Code",
+        description: "At GEN12, we build production-grade digital infrastructures. We merge precision engineering with artificial intelligence to accelerate your competitive advantage.",
+        ctaMain: "Design your Project",
+        ctaSecondary: "View Capabilities"
     },
     services: {
         badge: "Our Capabilities",
-        title: "SOLUTIONS THAT",
-        titleAccent: "SCALE",
-        titleSuffix: "YOUR BUSINESS",
+        title: "Solutions That",
+        titleAccent: "Scale",
+        titleSuffix: "Your Business",
         more: "Learn More",
         items: {
             fullstack: {
                 title: "Full-Stack Development",
-                desc: "High-performance web and mobile applications built with the most modern stack: Next.js, React, and Node.js."
+                desc: "Digital platforms that don't fail. Scalable architectures designed to support massive business growth with zero technical debt.",
+                features: {
+                    f1: "Scalable Architecture",
+                    f2: "High-Speed APIs",
+                    f3: "Bank-Grade Security"
+                }
             },
             ai: {
                 title: "Artificial Intelligence",
-                desc: "Integration of LLM and computer vision models to automate processes and generate real-time value."
+                desc: "Intelligent automation that cuts costs. We implement AI agents working 24/7 to optimize your operations and sales.",
+                features: {
+                    f1: "Autonomous Agents",
+                    f2: "Predictive Analytics",
+                    f3: "Contextual Chatbots"
+                }
             },
             uxui: {
                 title: "UX/UI Experience",
-                desc: "Designs that not only look incredible but are optimized for conversion and user retention."
+                desc: "Interfaces designed to sell. We fuse premium aesthetics with user psychology to convert visitors into loyal customers.",
+                features: {
+                    f1: "User-Centric Design",
+                    f2: "Design Systems",
+                    f3: "Micro-interactions"
+                }
             }
-        }
+        },
+        cta: "Request Quote"
     },
     process: {
-        title: "OUR",
-        titleAccent: "METHOD",
+        title: "Our",
+        titleAccent: "Method",
         steps: {
             discovery: {
-                title: "Discovery",
+                title: "Strategy & Diagnostics",
                 text: "We analyze your business and define the technical roadmap to maximize ROI."
             },
             agile: {
@@ -55,49 +86,74 @@ export const en = {
         }
     },
     products: {
-        badge: "Our Versatility",
-        title: "TRANSFORMING IDEAS INTO",
-        titleAccent: "REAL PRODUCTS.",
+        badge: "Impact Portfolio",
+        title: "We Build High-Performance",
+        titleAccent: "Digital Assets.",
         concept: "Concept",
         premium: "Premium Concept",
         items: {
             eshop: {
-                title: "ST E-Shop Premium",
-                desc: "Electrical material management platform with intelligent search and lightning deals."
+                title: "ST Logistics Core",
+                desc: "Comprehensive payment and logistics platform. Massive transaction orchestrator with real-time control dashboard."
             },
             ecommerce: {
-                title: "High-End E-Commerce",
+                title: "DTC Commerce Engine",
                 desc: "Scalable stores with ultra-fast checkouts and intelligent inventory management."
             },
             landing: {
-                title: "Pro Landing Pages",
-                desc: "High-conversion sites specifically designed for ads and marketing campaigns."
+                title: "Conversion Systems",
+                desc: "Conversion machines. Optimized to reduce your cost per lead in Google and Meta Ads campaigns."
             },
             corporate: {
-                title: "Corporate Sites",
+                title: "Brand Identity Hub",
                 desc: "Premium digital presence that conveys authority and values of established brands."
             },
             saas: {
-                title: "SaaS Dashboards",
+                title: "Analytics Command Center",
                 desc: "Complex data management interfaces, metrics, and user administration."
             }
         },
         ai: {
             title: "Custom AI Agents",
-            desc: "We develop artificial intelligence ecosystems that automate complex tasks, from expert chatbots to recommendation engines and data analysis.",
+            desc: "We merge algorithmic power with intuitive design to create agents that don't just respond, they solve. Next-level intelligent automation for companies looking to lead.",
             cta: "Inquire"
         }
     },
+    faq: {
+        badge: "Frequently Asked Questions",
+        title: "Solving Your",
+        titleAccent: "Doubts",
+        items: [
+            {
+                q: "How long does it take to develop a project?",
+                a: "It depends on complexity. A Pro Landing can be ready in 5 days, while a robust SaaS or E-Commerce usually takes between 2 and 4 weeks."
+            },
+            {
+                q: "How do you integrate Artificial Intelligence?",
+                a: "We develop custom agents that connect with your current data to automate customer service, metric analysis, or content generation."
+            },
+            {
+                q: "Do you provide post-launch support?",
+                a: "Yes, all our projects include a period of critical support and optimization to ensure everything works perfectly under real load."
+            },
+            {
+                q: "Can I scale my project later on?",
+                a: "Absolutely. We build with Next.js and modular architectures, allowing you to add features without needing to rebuild from scratch."
+            }
+        ]
+    },
     contact: {
-        title: "TALK ABOUT",
-        titleAccent: "YOUR IDEA.",
-        subtitle: "We are ready to scale your business to the next level with world-class technology.",
+        badge: "Contact",
+        title: "Talk About",
+        titleAccent: "Your Idea.",
+        desc: "Your vision deserves flawless execution. Schedule an initial technical consultancy and let's evaluate your project's viability today.",
         form: {
             name: "Name",
             project: "Project",
             namePlaceholder: "Enter your name",
             projectPlaceholder: "Tell us a bit about what you have in mind...",
-            send: "Send Message"
+            send: "Send message",
+            sending: "Sending..."
         },
         labels: {
             email: "Email",
@@ -105,11 +161,11 @@ export const en = {
             linkedin: "LinkedIn"
         },
         footer: {
-            rights: "ALL RIGHTS RESERVED.",
+            rights: "All rights reserved.",
             policies: "Policies"
         },
         policies: {
-            title: "POLICIES AND PRIVACY",
+            title: "Policies And Privacy",
             sections: {
                 data: {
                     title: "Data Protection",
@@ -127,6 +183,26 @@ export const en = {
                     title: "Secure Connection",
                     text: "This site operates under HTTPS protocols with high-security SSL certificates, ensuring any interaction between your browser and our platform is fully encrypted."
                 }
+            }
+        }
+    },
+    partners: {
+        title: "Technology Ecosystem",
+        categories: {
+            frontend: {
+                title: "Frontend Velocity",
+                desc: "High-performance reactive interfaces.",
+                techs: ["React", "Next.js", "Tailwind", "Framer Motion", "TypeScript"]
+            },
+            infra: {
+                title: "Backend & Cloud",
+                desc: "Scalable and secure serverless architecture.",
+                techs: ["Node.js", "PostgreSQL", "AWS", "Supabase", "Vercel"]
+            },
+            ai: {
+                title: "Artificial Intelligence",
+                desc: "Cognitive models integrated into business logic.",
+                techs: ["OpenAI API", "Python", "LangChain", "Vector DBs"]
             }
         }
     },

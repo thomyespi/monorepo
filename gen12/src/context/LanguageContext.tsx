@@ -5,12 +5,12 @@ import { es } from '../locales/es';
 import { en } from '../locales/en';
 
 type Language = 'es' | 'en';
-type Translations = typeof es;
 
 interface LanguageContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
-    t: (path: string) => any;
+    t: (path: string) => string;
+    tData: <T>(path: string) => T;
 }
 
 const translations = { es, en };
@@ -20,8 +20,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const [language, setLanguageState] = useState<Language>('es');
 
-    // Load preference from localStorage on mount
     useEffect(() => {
+        if (typeof window === 'undefined') return;
         const savedLang = localStorage.getItem('language') as Language;
         if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
             setLanguageState(savedLang);
@@ -31,27 +31,35 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const setLanguage = (lang: Language) => {
         setLanguageState(lang);
         localStorage.setItem('language', lang);
-        // Update html lang attribute
         document.documentElement.lang = lang;
     };
 
-    const t = (path: string) => {
+    const getTranslation = (path: string): unknown => {
         const keys = path.split('.');
-        let current: any = translations[language];
+        let current: unknown = translations[language];
 
         for (const key of keys) {
-            if (current[key] === undefined) {
+            if (current === null || typeof current !== 'object' || !(key in current)) {
                 console.warn(`Translation key not found: ${path}`);
                 return path;
             }
-            current = current[key];
+            current = (current as Record<string, unknown>)[key];
         }
 
         return current;
     };
 
+    const t = (path: string): string => {
+        const result = getTranslation(path);
+        return typeof result === 'string' ? result : path;
+    };
+
+    const tData = <T extends unknown>(path: string): T => {
+        return getTranslation(path) as T;
+    };
+
     return (
-        <LanguageContext.Provider value={{ language, setLanguage, t }}>
+        <LanguageContext.Provider value={{ language, setLanguage, t, tData }}>
             {children}
         </LanguageContext.Provider>
     );

@@ -5,15 +5,21 @@ import { useLanguage } from "@/context/LanguageContext";
 import { ArrowRight, ChevronRight, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import { useIsMobile } from "@/hooks/useIsMobile";
+
 export function Hero() {
     const { t } = useLanguage();
+    const isMobile = useIsMobile();
+
+    // Skip animations if on mobile or if we haven't detected yet (safety)
+    const skipAnimations = isMobile === true;
 
     return (
-        <section className="relative min-h-[90dvh] flex flex-col items-center justify-center pt-32 pb-20 md:pt-40 md:pb-32 px-6">
+        <section className="relative min-h-[85dvh] flex flex-col items-center justify-center pt-24 pb-16 md:pt-28 md:pb-20 px-6">
             <motion.div
-                initial={false}
+                initial={skipAnimations ? false : { opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-10"
             >
                 <Zap className="w-4 h-4 text-accent fill-accent" />
@@ -24,11 +30,10 @@ export function Hero() {
 
             <div className="max-w-5xl mx-auto text-center">
                 <motion.h1
-                    initial={false}
+                    initial={skipAnimations ? false : { opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    style={{ willChange: "transform, opacity" }}
-                    className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-black text-primary tracking-tighter leading-[0.85] mb-8"
+                    transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-4xl sm:text-8xl lg:text-9xl font-black text-primary tracking-tighter leading-[0.8] mb-8"
                 >
                     {t('hero.title')} <br />
                     <span className="text-accent italic">{t('hero.titleAccent')}</span> <br />
@@ -36,26 +41,28 @@ export function Hero() {
                 </motion.h1>
 
                 <motion.p
-                    initial={false}
+                    initial={skipAnimations ? false : { opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    style={{ willChange: "transform, opacity" }}
-                    className="max-w-2xl mx-auto text-lg md:text-xl text-primary/50 font-medium leading-relaxed mb-12"
+                    transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-4xl mx-auto text-base md:text-3xl text-primary/50 font-medium leading-relaxed mb-10"
                 >
                     {t('hero.description')}
                 </motion.p>
 
                 <motion.div
-                    initial={false}
+                    initial={skipAnimations ? false : { opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
+                    transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="flex flex-col sm:flex-row items-center justify-center gap-6"
                 >
                     <a
-                        href={`https://wa.me/5491161591957?text=${encodeURIComponent(t('whatsapp.hero'))}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative px-10 py-6 bg-primary text-white rounded-2xl font-black uppercase tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-primary/20"
+                        href="#contacto"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const el = document.getElementById('contacto');
+                            if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+                        }}
+                        className="group relative px-10 py-6 bg-primary text-white rounded-2xl font-black tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-primary/20"
                     >
                         <span className="relative z-10 flex items-center gap-3">
                             {t('hero.ctaMain')}
@@ -66,7 +73,12 @@ export function Hero() {
 
                     <a
                         href="#servicios"
-                        className="flex items-center gap-3 px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-primary hover:bg-primary/5 transition-all cursor-pointer"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const el = document.getElementById('servicios');
+                            if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+                        }}
+                        className="flex items-center gap-3 px-10 py-6 rounded-2xl font-black tracking-widest text-primary hover:bg-primary/5 transition-all cursor-pointer"
                     >
                         {t('hero.ctaSecondary')}
                         <ChevronRight className="w-5 h-5 opacity-50" />
@@ -74,20 +86,6 @@ export function Hero() {
                 </motion.div>
             </div>
 
-            {/* Visual Element: Floating Number */}
-            <motion.div
-                animate={{
-                    y: [0, -20, 0],
-                }}
-                transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                }}
-                className="absolute top-1/4 right-[10%] opacity-[0.03] select-none pointer-events-none hidden lg:block"
-            >
-                <span className="text-[20rem] font-black leading-none text-primary">12</span>
-            </motion.div>
         </section>
     );
 }

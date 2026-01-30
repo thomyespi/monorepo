@@ -2,15 +2,16 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1a365d;
-  --primary: #1a365d;
+  --foreground: #0a192f;
+  --primary: #0a192f;
   --primary-foreground: #ffffff;
   --secondary: #f8fafc;
-  --secondary-foreground: #1a365d;
-  --accent: #a67c52;
+  --secondary-foreground: #0a192f;
+  --accent: #d4af37;
   --accent-foreground: #ffffff;
   --muted: #f1f5f9;
   --radius: 1.5rem;
+  --accent-gradient: linear-gradient(135deg, #d4af37 0%, #f1d27b 50%, #b8860b 100%);
 }
 
 @theme inline {

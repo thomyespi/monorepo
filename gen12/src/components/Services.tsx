@@ -1,11 +1,16 @@
+"use client";
+
 import { useLanguage } from "@/context/LanguageContext";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Code2, BrainCircuit, Globe2, Layers, ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Code2, BrainCircuit, Layers } from "lucide-react";
+import { ServiceCard } from "./ServiceCard";
+
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export function Services() {
     const { t } = useLanguage();
+    const isMobile = useIsMobile();
+    const skipAnimations = isMobile === true;
 
     const services = [
         {
@@ -13,39 +18,57 @@ export function Services() {
             description: t('services.items.fullstack.desc'),
             icon: Code2,
             accent: "bg-blue-500/10 text-blue-600",
+            features: [
+                t('services.items.fullstack.features.f1'),
+                t('services.items.fullstack.features.f2'),
+                t('services.items.fullstack.features.f3'),
+            ]
         },
         {
             title: t('services.items.ai.title'),
             description: t('services.items.ai.desc'),
             icon: BrainCircuit,
             accent: "bg-purple-500/10 text-purple-600",
+            features: [
+                t('services.items.ai.features.f1'),
+                t('services.items.ai.features.f2'),
+                t('services.items.ai.features.f3'),
+            ]
         },
         {
             title: t('services.items.uxui.title'),
             description: t('services.items.uxui.desc'),
             icon: Layers,
             accent: "bg-accent/10 text-accent",
+            features: [
+                t('services.items.uxui.features.f1'),
+                t('services.items.uxui.features.f2'),
+                t('services.items.uxui.features.f3'),
+            ]
         },
     ];
 
+    if (!services || services.length === 0) return null;
+
     return (
-        <section className="py-20 md:py-32 px-6 bg-white relative">
+        <section id="servicios" className="py-12 md:py-20 px-6 bg-white relative">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16">
                     <div className="max-w-2xl">
                         <motion.span
-                            initial={{ opacity: 0, x: -20 }}
+                            initial={skipAnimations ? false : { opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
+                            transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             className="text-[10px] font-black uppercase tracking-[0.3em] text-accent mb-4 block"
                         >
                             {t('services.badge')}
                         </motion.span>
                         <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={skipAnimations ? false : { opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                             className="text-3xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter leading-[0.9] md:leading-tight"
                         >
                             {t('services.title')} <br />
@@ -56,32 +79,16 @@ export function Services() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
-                        <motion.div
+                        <ServiceCard
                             key={service.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            style={{ transition: "opacity 0.5s ease-in-out", willChange: "transform, opacity" }}
-                            className="group p-8 rounded-3xl bg-gray-50 border border-transparent hover:border-accent/20 hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
-                        >
-                            <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-10 transition-transform group-hover:scale-110", service.accent)}>
-                                <service.icon className="w-8 h-8" />
-                            </div>
-                            <h3 className="text-2xl font-black text-primary mb-4">{service.title}</h3>
-                            <p className="text-primary/50 font-medium leading-relaxed mb-8">
-                                {service.description}
-                            </p>
-                            <a
-                                href={`https://wa.me/5491161591957?text=${encodeURIComponent(`${t('whatsapp.servicesIntro')}${service.title}.`)}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary/40 group-hover:text-accent transition-colors cursor-pointer"
-                            >
-                                {t('services.more')}
-                                <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                            </a>
-                        </motion.div>
+                            title={service.title}
+                            description={service.description}
+                            Icon={service.icon}
+                            accent={service.accent}
+                            features={service.features}
+                            ctaText={t('services.cta')}
+                            index={index}
+                        />
                     ))}
                 </div>
             </div>

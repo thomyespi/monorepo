@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gen12-software.com"), // Placeholder for production URL
   title: "GEN12 Software | Innovación en Desarrollo",
   description: "Desarrollo de software premium, IA y soluciones tecnológicas escalables.",
   openGraph: {

@@ -30,7 +30,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     background: 'radial-gradient(circle at center, rgba(26, 54, 93, 0.08) 0%, transparent 70%)',
                     willChange: "transform, opacity"
                 }}
-                className="absolute -top-[20%] -left-[20%] w-[80vw] h-[80vw] rounded-full translate-z-0"
+                className="absolute -top-[20%] -left-[20%] w-[80vw] h-[80vw] rounded-full translate-z-0 hidden md:block"
             />
 
             {/* Soft Bronze/Accent Gradient - Center Right */}
@@ -49,7 +49,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     background: 'radial-gradient(circle at center, rgba(166, 124, 82, 0.06) 0%, transparent 70%)',
                     willChange: "transform, opacity"
                 }}
-                className="absolute top-[20%] -right-[20%] w-[90vw] h-[90vw] rounded-full translate-z-0"
+                className="absolute top-[20%] -right-[20%] w-[90vw] h-[90vw] rounded-full translate-z-0 hidden md:block"
             />
 
             {/* Secondary Blue Gradient - Bottom Left */}
@@ -68,7 +68,7 @@ export function AnimatedBackground({ className }: { className?: string }) {
                     background: 'radial-gradient(circle at center, rgba(26, 54, 93, 0.05) 0%, transparent 70%)',
                     willChange: "transform, opacity"
                 }}
-                className="absolute -bottom-[10%] -left-[10%] w-[70vw] h-[70vw] rounded-full translate-z-0"
+                className="absolute -bottom-[10%] -left-[10%] w-[70vw] h-[70vw] rounded-full translate-z-0 hidden md:block"
             />
 
             {/* Fine Grid Pattern - Kept as it is lightweight */}
