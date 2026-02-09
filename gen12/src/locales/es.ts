@@ -40,31 +40,31 @@ export const es = {
             fullstack: {
                 title: "Desarrollo Full-Stack",
                 desc: "Plataformas digitales que no fallan. Arquitecturas escalables diseñadas para soportar el crecimiento masivo de tu negocio sin deuda técnica.",
-                features: {
-                    f1: "Arquitectura Escalable",
-                    f2: "APIs de Alta Velocidad",
-                    f3: "Seguridad Bancaria"
-                },
+                features: [
+                    "Arquitectura Escalable",
+                    "APIs de Alta Velocidad",
+                    "Seguridad Bancaria"
+                ],
                 cta: "Escalar mi Plataforma"
             },
             ai: {
                 title: "Inteligencia Artificial",
                 desc: "Automatización inteligente que reduce costos. Implementamos agentes de IA que trabajan 24/7 para optimizar tus operaciones y ventas.",
-                features: {
-                    f1: "Agentes Autónomos",
-                    f2: "Análisis Predictivo",
-                    f3: "Chatbots Contextuales"
-                },
+                features: [
+                    "Agentes Autónomos",
+                    "Análisis Predictivo",
+                    "Chatbots Contextuales"
+                ],
                 cta: "Automatizar mis Procesos"
             },
             uxui: {
                 title: "UX/UI Experience",
                 desc: "Interfaces diseñadas para vender. Fusionamos estética premium con psicología de usuario para convertir visitantes en clientes leales.",
-                features: {
-                    f1: "Diseño Centrado en Usuario",
-                    f2: "Sistemas de Diseño",
-                    f3: "Micro-interacciones"
-                },
+                features: [
+                    "Diseño Centrado en Usuario",
+                    "Sistemas de Diseño",
+                    "Micro-interacciones"
+                ],
                 cta: "Cautivar a mis Clientes"
             }
         },
@@ -90,36 +90,41 @@ export const es = {
     },
     products: {
         badge: "Casos de Éxito",
-        title: "Creamos Activos Digitales De",
-        titleAccent: "Alto Rendimiento.",
+        title: "Desarrollamos Activos",
+        titleAccent: "Digitales de Elite.",
         concept: "Concepto",
         premium: "Premium Concept",
         items: {
             eshop: {
-                title: "ST Logistics Core",
+                title: "Núcleo Logístico",
                 desc: "Plataforma integral de pagos y logística. Orchestrador de transacciones masivas con dashboard de control en tiempo real.",
+                features: ["Hub de Transacciones Masivas", "Dashboard en Tiempo Real", "Pasarela de Pagos Unificada"],
                 cta: "Ver Sistema Logístico"
             },
             ecommerce: {
-                title: "DTC Commerce Engine",
+                title: "Motor de Comercio",
                 desc: "Tiendas escalables con checkouts ultra-rápidos y gestión de inventario inteligente.",
+                features: ["Checkouts Ultra-Rápidos", "Inventario Inteligente", "Foco en Conversión"],
                 cta: "Ver Motor E-Commerce"
             },
             landing: {
-                title: "Conversion Systems",
+                title: "Sistemas de Conversión",
                 desc: "Máquinas de conversión. Optimizadas para reducir tu costo por lead en campañas de Google y Meta Ads.",
+                features: ["UI de Alto Impacto", "Listas para Campañas ADS", "Optimizado para Leads"],
                 cta: "Ver Landing Pro"
             },
             corporate: {
-                title: "Brand Identity Hub",
+                title: "Centro de Identidad",
                 desc: "Presencia digital premium que transmite autoridad y los valores de marcas establecidas.",
+                features: ["Visuales Premium", "Impulso de Autoridad", "Mensaje Estratégico"],
                 cta: "Ver Identidad de Marca"
             },
             saas: {
-                title: "Analytics Command Center",
+                title: "Centro de Control",
                 desc: "Interfaces complejas de gestión de datos, métricas y administración de usuarios.",
+                features: ["Gestión de Datos", "Métricas Avanzadas", "Administración de Usuarios"],
                 cta: "Ver Dashboard Analítico"
-            }
+            },
         },
         ai: {
             title: "Agentes de IA Personalizados",

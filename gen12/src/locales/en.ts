@@ -40,31 +40,31 @@ export const en = {
             fullstack: {
                 title: "Full-Stack Development",
                 desc: "Digital platforms that don't fail. Scalable architectures designed to support massive business growth with zero technical debt.",
-                features: {
-                    f1: "Scalable Architecture",
-                    f2: "High-Speed APIs",
-                    f3: "Bank-Grade Security"
-                },
+                features: [
+                    "Scalable Architecture",
+                    "High-Speed APIs",
+                    "Bank-Grade Security"
+                ],
                 cta: "Scale my Platform"
             },
             ai: {
                 title: "Artificial Intelligence",
                 desc: "Intelligent automation that cuts costs. We implement AI agents working 24/7 to optimize your operations and sales.",
-                features: {
-                    f1: "Autonomous Agents",
-                    f2: "Predictive Analytics",
-                    f3: "Contextual Chatbots"
-                },
+                features: [
+                    "Autonomous Agents",
+                    "Predictive Analytics",
+                    "Contextual Chatbots"
+                ],
                 cta: "Automate my Processes"
             },
             uxui: {
                 title: "UX/UI Experience",
                 desc: "Interfaces designed to sell. We fuse premium aesthetics with user psychology to convert visitors into loyal customers.",
-                features: {
-                    f1: "User-Centric Design",
-                    f2: "Design Systems",
-                    f3: "Micro-interactions"
-                },
+                features: [
+                    "User-Centric Design",
+                    "Design Systems",
+                    "Micro-interactions"
+                ],
                 cta: "Captivate my Clients"
             }
         },
@@ -90,36 +90,41 @@ export const en = {
     },
     products: {
         badge: "Success Stories",
-        title: "We Build High-Performance",
+        title: "We Build Elite",
         titleAccent: "Digital Assets.",
         concept: "Concept",
         premium: "Premium Concept",
         items: {
             eshop: {
-                title: "ST Logistics Core",
+                title: "Logistics Core",
                 desc: "Comprehensive payment and logistics platform. Massive transaction orchestrator with real-time control dashboard.",
+                features: ["Massive Transaction Hub", "Real-Time Dashboard", "Unified Payment Gateway"],
                 cta: "View Logistics System"
             },
             ecommerce: {
-                title: "DTC Commerce Engine",
+                title: "Commerce Engine",
                 desc: "Scalable stores with ultra-fast checkouts and intelligent inventory management.",
+                features: ["Lightning Checkouts", "Smart Inventory", "Conversion Focused"],
                 cta: "View E-Commerce Engine"
             },
             landing: {
                 title: "Conversion Systems",
                 desc: "Conversion machines. Optimized to reduce your cost per lead in Google and Meta Ads campaigns.",
+                features: ["High-Impact UI", "Ad-Campaign Ready", "Lead-Gen Optimized"],
                 cta: "View Pro Landing"
             },
             corporate: {
                 title: "Brand Identity Hub",
                 desc: "Premium digital presence that conveys authority and values of established brands.",
+                features: ["Premium Visuals", "Authority Driven", "Strategic Messaging"],
                 cta: "View Brand Identity"
             },
             saas: {
                 title: "Analytics Command Center",
                 desc: "Complex data management interfaces, metrics, and user administration.",
+                features: ["Data Management", "Advanced Metrics", "User Administration"],
                 cta: "View Analytics Dashboard"
-            }
+            },
         },
         ai: {
             title: "Custom AI Agents",

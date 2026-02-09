@@ -8,7 +8,7 @@ import { ServiceCard } from "./ServiceCard";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 export function Services() {
-    const { t } = useLanguage();
+    const { t, tData } = useLanguage();
     const isMobile = useIsMobile();
     const skipAnimations = isMobile === true;
 
@@ -18,11 +18,7 @@ export function Services() {
             description: t('services.items.fullstack.desc'),
             icon: Code2,
             accent: "bg-blue-500/10 text-blue-600",
-            features: [
-                t('services.items.fullstack.features.f1'),
-                t('services.items.fullstack.features.f2'),
-                t('services.items.fullstack.features.f3'),
-            ],
+            features: tData<string[]>('services.items.fullstack.features') || [],
             cta: t('services.items.fullstack.cta')
         },
         {
@@ -30,11 +26,7 @@ export function Services() {
             description: t('services.items.ai.desc'),
             icon: BrainCircuit,
             accent: "bg-purple-500/10 text-purple-600",
-            features: [
-                t('services.items.ai.features.f1'),
-                t('services.items.ai.features.f2'),
-                t('services.items.ai.features.f3'),
-            ],
+            features: tData<string[]>('services.items.ai.features') || [],
             cta: t('services.items.ai.cta')
         },
         {
@@ -42,11 +34,7 @@ export function Services() {
             description: t('services.items.uxui.desc'),
             icon: Layers,
             accent: "bg-accent/10 text-accent",
-            features: [
-                t('services.items.uxui.features.f1'),
-                t('services.items.uxui.features.f2'),
-                t('services.items.uxui.features.f3'),
-            ],
+            features: tData<string[]>('services.items.uxui.features') || [],
             cta: t('services.items.uxui.cta')
         },
     ];
