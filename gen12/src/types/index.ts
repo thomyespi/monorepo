@@ -12,6 +12,7 @@ export interface ProductItem {
     icon: LucideIcon;
     tech: string;
     image: string;
+    cta: string;
     size?: string;
 }
 

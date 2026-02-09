@@ -15,12 +15,12 @@ export function Hero() {
     const skipAnimations = isMobile === true;
 
     return (
-        <section className="relative min-h-[85dvh] flex flex-col items-center justify-center pt-24 pb-16 md:pt-28 md:pb-20 px-6">
+        <section className="relative min-h-[85dvh] flex flex-col items-center justify-center pt-24 pb-16 md:pt-20 md:pb-16 px-6">
             <motion.div
                 initial={skipAnimations ? false : { opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-10"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6"
             >
                 <Zap className="w-4 h-4 text-accent fill-accent" />
                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60">
@@ -33,7 +33,7 @@ export function Hero() {
                     initial={skipAnimations ? false : { opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-4xl sm:text-8xl lg:text-9xl font-black text-primary tracking-tighter leading-[0.8] mb-8"
+                    className="text-3xl sm:text-7xl lg:text-8xl font-black text-primary tracking-tight leading-none mb-6"
                 >
                     {t('hero.title')} <br />
                     <span className="text-accent italic">{t('hero.titleAccent')}</span> <br />
@@ -44,7 +44,7 @@ export function Hero() {
                     initial={skipAnimations ? false : { opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-4xl mx-auto text-base md:text-3xl text-primary/50 font-medium leading-relaxed mb-10"
+                    className="max-w-4xl mx-auto text-base md:text-2xl text-primary/50 font-medium leading-relaxed mb-8"
                 >
                     {t('hero.description')}
                 </motion.p>

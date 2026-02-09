@@ -32,8 +32,12 @@ export function About() {
                         transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                         className="col-span-2 bg-primary p-8 md:p-12 rounded-[2.5rem] text-white relative overflow-hidden group"
                     >
-                        <div className="absolute top-6 right-6 md:top-8 md:right-8 group-hover:scale-110 transition-transform duration-700 opacity-20 md:opacity-100">
-                            <img src="/logos/gen12-icon.png" alt="GEN12 Logo" className="w-16 h-16 md:w-32 md:h-32 object-contain mix-blend-lighten contrast-125" />
+                        <div className="absolute top-6 right-6 md:top-8 md:right-8 group-hover:scale-110 transition-transform duration-700 opacity-20 md:opacity-100 will-change-[opacity,transform] rounded-full overflow-hidden">
+                            <img
+                                src="/logos/gen12-icon.png"
+                                alt="GEN12 Logo"
+                                className="w-16 h-16 md:w-32 md:h-32 object-cover mix-blend-screen filter-[contrast(2)_brightness(1.1)] scale-110 hardware-accelerated"
+                            />
                         </div>
                         <h3 className="text-4xl md:text-6xl font-black mb-4">GEN12</h3>
                         <p className="text-white/60 text-lg font-medium leading-relaxed max-w-sm">

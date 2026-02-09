@@ -5,9 +5,9 @@ export const en = {
         about: "About",
         services: "Services",
         method: "Method",
-        projects: "Projects",
+        projects: "Clients",
         faq: "FAQ",
-        contact: "Contact"
+        contact: "Let's Talk"
     },
     about: {
         badge: "About Us",
@@ -27,15 +27,15 @@ export const en = {
         titleAccent: "Visions Into",
         titleSuffix: "Elite Code",
         description: "At GEN12, we build production-grade digital infrastructures. We merge precision engineering with artificial intelligence to accelerate your competitive advantage.",
-        ctaMain: "Design your Project",
-        ctaSecondary: "View Capabilities"
+        ctaMain: "Materialize my Vision",
+        ctaSecondary: "Explore Solutions"
     },
     services: {
         badge: "Our Capabilities",
         title: "Solutions That",
         titleAccent: "Scale",
         titleSuffix: "Your Business",
-        more: "Learn More",
+        more: "Discover More",
         items: {
             fullstack: {
                 title: "Full-Stack Development",
@@ -44,7 +44,8 @@ export const en = {
                     f1: "Scalable Architecture",
                     f2: "High-Speed APIs",
                     f3: "Bank-Grade Security"
-                }
+                },
+                cta: "Scale my Platform"
             },
             ai: {
                 title: "Artificial Intelligence",
@@ -53,7 +54,8 @@ export const en = {
                     f1: "Autonomous Agents",
                     f2: "Predictive Analytics",
                     f3: "Contextual Chatbots"
-                }
+                },
+                cta: "Automate my Processes"
             },
             uxui: {
                 title: "UX/UI Experience",
@@ -62,10 +64,11 @@ export const en = {
                     f1: "User-Centric Design",
                     f2: "Design Systems",
                     f3: "Micro-interactions"
-                }
+                },
+                cta: "Captivate my Clients"
             }
         },
-        cta: "Request Quote"
+        cta: "Boost my Business"
     },
     process: {
         title: "Our",
@@ -86,7 +89,7 @@ export const en = {
         }
     },
     products: {
-        badge: "Impact Portfolio",
+        badge: "Success Stories",
         title: "We Build High-Performance",
         titleAccent: "Digital Assets.",
         concept: "Concept",
@@ -94,29 +97,34 @@ export const en = {
         items: {
             eshop: {
                 title: "ST Logistics Core",
-                desc: "Comprehensive payment and logistics platform. Massive transaction orchestrator with real-time control dashboard."
+                desc: "Comprehensive payment and logistics platform. Massive transaction orchestrator with real-time control dashboard.",
+                cta: "View Logistics System"
             },
             ecommerce: {
                 title: "DTC Commerce Engine",
-                desc: "Scalable stores with ultra-fast checkouts and intelligent inventory management."
+                desc: "Scalable stores with ultra-fast checkouts and intelligent inventory management.",
+                cta: "View E-Commerce Engine"
             },
             landing: {
                 title: "Conversion Systems",
-                desc: "Conversion machines. Optimized to reduce your cost per lead in Google and Meta Ads campaigns."
+                desc: "Conversion machines. Optimized to reduce your cost per lead in Google and Meta Ads campaigns.",
+                cta: "View Pro Landing"
             },
             corporate: {
                 title: "Brand Identity Hub",
-                desc: "Premium digital presence that conveys authority and values of established brands."
+                desc: "Premium digital presence that conveys authority and values of established brands.",
+                cta: "View Brand Identity"
             },
             saas: {
                 title: "Analytics Command Center",
-                desc: "Complex data management interfaces, metrics, and user administration."
+                desc: "Complex data management interfaces, metrics, and user administration.",
+                cta: "View Analytics Dashboard"
             }
         },
         ai: {
             title: "Custom AI Agents",
             desc: "We merge algorithmic power with intuitive design to create agents that don't just respond, they solve. Next-level intelligent automation for companies looking to lead.",
-            cta: "Inquire"
+            cta: "Elevate my Project"
         }
     },
     faq: {
@@ -152,7 +160,7 @@ export const en = {
             project: "Project",
             namePlaceholder: "Enter your name",
             projectPlaceholder: "Tell us a bit about what you have in mind...",
-            send: "Send message",
+            send: "I want to start my project",
             sending: "Sending..."
         },
         labels: {
@@ -185,6 +193,32 @@ export const en = {
                 }
             }
         }
+    },
+    clients: {
+        badge: "Our Clients",
+        title: "Some of Our",
+        titleAccent: "Clients",
+        view: "Visit Site",
+        items: [
+            {
+                name: "IL Catering Company",
+                url: "https://ilcateringcompany.com/",
+                logo: "/clients/il-catering.png",
+                testimonial: "Absolute geniuses. They were explaining everything, guiding me, and making sure I understood every step along the way. Great vibes, thanks for everything!"
+            },
+            {
+                name: "Coscia Asesores",
+                url: "https://www.cosciaasesores.com/",
+                logo: "/clients/coscia.png",
+                testimonial: "The website design exceeded my expectations; they understood exactly what I was looking for. Highly professional and very approachable."
+            },
+            {
+                name: "Make It Studio",
+                url: "https://makeitstudioagency.com/",
+                logo: "/clients/makeit.png",
+                testimonial: "Absolute legends. They managed to bring all our creative ideas to life and built a lightning-fast platform. Their response level and technical quality are truly out of this world."
+            }
+        ]
     },
     partners: {
         title: "Technology Ecosystem",

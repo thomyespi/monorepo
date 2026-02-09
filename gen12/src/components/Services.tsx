@@ -22,7 +22,8 @@ export function Services() {
                 t('services.items.fullstack.features.f1'),
                 t('services.items.fullstack.features.f2'),
                 t('services.items.fullstack.features.f3'),
-            ]
+            ],
+            cta: t('services.items.fullstack.cta')
         },
         {
             title: t('services.items.ai.title'),
@@ -33,7 +34,8 @@ export function Services() {
                 t('services.items.ai.features.f1'),
                 t('services.items.ai.features.f2'),
                 t('services.items.ai.features.f3'),
-            ]
+            ],
+            cta: t('services.items.ai.cta')
         },
         {
             title: t('services.items.uxui.title'),
@@ -44,7 +46,8 @@ export function Services() {
                 t('services.items.uxui.features.f1'),
                 t('services.items.uxui.features.f2'),
                 t('services.items.uxui.features.f3'),
-            ]
+            ],
+            cta: t('services.items.uxui.cta')
         },
     ];
 
@@ -69,7 +72,7 @@ export function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-3xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter leading-[0.9] md:leading-tight"
+                            className="text-3xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter leading-none md:leading-tight"
                         >
                             {t('services.title')} <br />
                             <span className="text-accent underline decoration-4 underline-offset-8">{t('services.titleAccent')}</span> {t('services.titleSuffix')}
@@ -86,7 +89,7 @@ export function Services() {
                             Icon={service.icon}
                             accent={service.accent}
                             features={service.features}
-                            ctaText={t('services.cta')}
+                            ctaText={service.cta}
                             index={index}
                         />
                     ))}

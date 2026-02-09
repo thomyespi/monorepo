@@ -18,6 +18,7 @@ export function Products() {
             id: "ecommerce-st",
             title: t('products.items.eshop.title'),
             desc: t('products.items.eshop.desc'),
+            cta: t('products.items.eshop.cta'),
             icon: ShoppingBag,
             tech: "Next.js • Framer • Tailwind",
             image: "/concepts/st_logistics_v2.png"
@@ -26,6 +27,7 @@ export function Products() {
             id: "ecommerce",
             title: t('products.items.ecommerce.title'),
             desc: t('products.items.ecommerce.desc'),
+            cta: t('products.items.ecommerce.cta'),
             icon: ShoppingBag,
             tech: "Vite • Stripe • Node",
             image: "/concepts/ecommerce.png"
@@ -34,6 +36,7 @@ export function Products() {
             id: "landing",
             title: t('products.items.landing.title'),
             desc: t('products.items.landing.desc'),
+            cta: t('products.items.landing.cta'),
             icon: Layout,
             tech: "Next.js • Framer • Tailwind",
             image: "/concepts/landing.png"
@@ -42,6 +45,7 @@ export function Products() {
             id: "corporate",
             title: t('products.items.corporate.title'),
             desc: t('products.items.corporate.desc'),
+            cta: t('products.items.corporate.cta'),
             icon: Building2,
             tech: "React • CMS • SEO",
             image: "/concepts/corporate_new.png"
@@ -50,6 +54,7 @@ export function Products() {
             id: "saas",
             title: t('products.items.saas.title'),
             desc: t('products.items.saas.desc'),
+            cta: t('products.items.saas.cta'),
             icon: LayoutPanelLeft,
             tech: "React Query • Auth.js • SQL",
             image: "/concepts/dashboard.png"
@@ -58,14 +63,14 @@ export function Products() {
 
     if (!productTypes || productTypes.length === 0) {
         return (
-            <section id="proyectos" className="py-20 md:py-32 px-6 bg-gray-50/30 text-center">
+            <section className="py-20 md:py-32 px-6 bg-white text-center">
                 <p className="text-primary/40 font-black uppercase tracking-widest italic">Actualmente no hay proyectos destacados.</p>
             </section>
         );
     }
 
     return (
-        <section id="proyectos" className="py-12 md:py-20 px-6 bg-gray-50/30">
+        <section className="py-12 md:py-20 px-6 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="max-w-2xl mb-16">
                     <motion.span

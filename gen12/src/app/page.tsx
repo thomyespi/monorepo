@@ -9,6 +9,7 @@ import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Process } from "@/components/Process";
 import { Products } from "@/components/Products";
+import { Clients } from "@/components/Clients";
 import { Partners } from "@/components/Partners";
 import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
@@ -42,7 +43,7 @@ export default function Home() {
       rootMargin: "-45% 0px -45% 0px" // Only trigger when section is in the middle 10% of screen
     });
 
-    const sections = ['nosotros', 'metodo', 'servicios', 'proyectos', 'trabajo', 'faq', 'contacto'];
+    const sections = ['nosotros', 'servicios', 'clientes', 'faq', 'contacto'];
     sections.forEach(id => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -177,16 +178,6 @@ export default function Home() {
                   {t('navbar.about')}
                 </a>
                 <a
-                  href="#metodo"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('metodo'); }}
-                  className={cn(
-                    "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'metodo' ? "text-primary" : "text-primary/40 hover:text-primary"
-                  )}
-                >
-                  {t('navbar.method')}
-                </a>
-                <a
                   href="#servicios"
                   onClick={(e) => { e.preventDefault(); scrollToSection('servicios'); }}
                   className={cn(
@@ -197,24 +188,14 @@ export default function Home() {
                   {t('navbar.services')}
                 </a>
                 <a
-                  href="#proyectos"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('proyectos'); }}
+                  href="#clientes"
+                  onClick={(e) => { e.preventDefault(); scrollToSection('clientes'); }}
                   className={cn(
                     "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'proyectos' ? "text-primary" : "text-primary/40 hover:text-primary"
+                    activeSection === 'clientes' ? "text-primary" : "text-primary/40 hover:text-primary"
                   )}
                 >
                   {t('navbar.projects')}
-                </a>
-                <a
-                  href="#trabajo"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('trabajo'); }}
-                  className={cn(
-                    "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'trabajo' ? "text-primary" : "text-primary/40 hover:text-primary"
-                  )}
-                >
-                  {t('navbar.stack')}
                 </a>
                 <a
                   href="#faq"
@@ -257,10 +238,8 @@ export default function Home() {
                 {[
                   { id: 'home', label: t('navbar.home') },
                   { id: 'nosotros', label: t('navbar.about') },
-                  { id: 'metodo', label: t('navbar.method') },
                   { id: 'servicios', label: t('navbar.services') },
-                  { id: 'proyectos', label: t('navbar.projects') },
-                  { id: 'trabajo', label: t('navbar.stack') },
+                  { id: 'clientes', label: t('navbar.projects') },
                   { id: 'faq', label: t('navbar.faq') }
                 ].map((link) => (
                   <button
@@ -306,6 +285,7 @@ export default function Home() {
       <Process />
       <Services />
       <Products />
+      <Clients />
       <Partners />
       <FAQ />
 

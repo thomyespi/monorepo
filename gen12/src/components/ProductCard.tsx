@@ -68,7 +68,7 @@ export function ProductCard({ item, index }: ProductCardProps) {
                         }}
                         className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-accent group-hover:text-white transition-colors cursor-pointer"
                     >
-                        View Project
+                        {item.cta}
                         <ArrowUpRight className="w-4 h-4 transition-transform md:group-hover:translate-x-1 md:group-hover:-translate-y-1" />
                     </div>
                 </div>

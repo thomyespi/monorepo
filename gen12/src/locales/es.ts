@@ -5,9 +5,9 @@ export const es = {
         about: "Nosotros",
         services: "Servicios",
         method: "Método",
-        projects: "Proyectos",
+        projects: "Clientes",
         faq: "FAQ",
-        contact: "Contacto"
+        contact: "Hablemos"
     },
     about: {
         badge: "Sobre Nosotros",
@@ -27,15 +27,15 @@ export const es = {
         titleAccent: "Visiones en",
         titleSuffix: "Código de Élite",
         description: "En GEN12 construimos infraestructuras digitales de grado producción. Fusionamos ingeniería de precisión con inteligencia artificial para acelerar tu ventaja competitiva.",
-        ctaMain: "Diseñemos tu Proyecto",
-        ctaSecondary: "Ver Capacidades"
+        ctaMain: "Materializar mi Visión",
+        ctaSecondary: "Explorar Soluciones"
     },
     services: {
         badge: "Nuestras Capacidades",
         title: "Soluciones Que",
         titleAccent: "Escalan",
         titleSuffix: "Tu Negocio",
-        more: "Saber Más",
+        more: "Descubrir Más",
         items: {
             fullstack: {
                 title: "Desarrollo Full-Stack",
@@ -44,7 +44,8 @@ export const es = {
                     f1: "Arquitectura Escalable",
                     f2: "APIs de Alta Velocidad",
                     f3: "Seguridad Bancaria"
-                }
+                },
+                cta: "Escalar mi Plataforma"
             },
             ai: {
                 title: "Inteligencia Artificial",
@@ -53,7 +54,8 @@ export const es = {
                     f1: "Agentes Autónomos",
                     f2: "Análisis Predictivo",
                     f3: "Chatbots Contextuales"
-                }
+                },
+                cta: "Automatizar mis Procesos"
             },
             uxui: {
                 title: "UX/UI Experience",
@@ -62,10 +64,11 @@ export const es = {
                     f1: "Diseño Centrado en Usuario",
                     f2: "Sistemas de Diseño",
                     f3: "Micro-interacciones"
-                }
+                },
+                cta: "Cautivar a mis Clientes"
             }
         },
-        cta: "Solicitar Presupuesto"
+        cta: "Impulsar mi Negocio"
     },
     process: {
         title: "Nuestro",
@@ -86,7 +89,7 @@ export const es = {
         }
     },
     products: {
-        badge: "Portafolio de Impacto",
+        badge: "Casos de Éxito",
         title: "Creamos Activos Digitales De",
         titleAccent: "Alto Rendimiento.",
         concept: "Concepto",
@@ -94,29 +97,34 @@ export const es = {
         items: {
             eshop: {
                 title: "ST Logistics Core",
-                desc: "Plataforma integral de pagos y logística. Orchestrador de transacciones masivas con dashboard de control en tiempo real."
+                desc: "Plataforma integral de pagos y logística. Orchestrador de transacciones masivas con dashboard de control en tiempo real.",
+                cta: "Ver Sistema Logístico"
             },
             ecommerce: {
                 title: "DTC Commerce Engine",
-                desc: "Tiendas escalables con checkouts ultra-rápidos y gestión de inventario inteligente."
+                desc: "Tiendas escalables con checkouts ultra-rápidos y gestión de inventario inteligente.",
+                cta: "Ver Motor E-Commerce"
             },
             landing: {
                 title: "Conversion Systems",
-                desc: "Máquinas de conversión. Optimizadas para reducir tu costo por lead en campañas de Google y Meta Ads."
+                desc: "Máquinas de conversión. Optimizadas para reducir tu costo por lead en campañas de Google y Meta Ads.",
+                cta: "Ver Landing Pro"
             },
             corporate: {
                 title: "Brand Identity Hub",
-                desc: "Presencia digital premium que transmite autoridad y los valores de marcas establecidas."
+                desc: "Presencia digital premium que transmite autoridad y los valores de marcas establecidas.",
+                cta: "Ver Identidad de Marca"
             },
             saas: {
                 title: "Analytics Command Center",
-                desc: "Interfaces complejas de gestión de datos, métricas y administración de usuarios."
+                desc: "Interfaces complejas de gestión de datos, métricas y administración de usuarios.",
+                cta: "Ver Dashboard Analítico"
             }
         },
         ai: {
             title: "Agentes de IA Personalizados",
             desc: "Fusionamos potencia algorítmica con diseño intuitivo para crear agentes que no solo responden, sino que resuelven. Automatización inteligente de siguiente nivel para empresas que buscan liderar.",
-            cta: "Consultar"
+            cta: "Elevar mi Proyecto"
         }
     },
     faq: {
@@ -152,7 +160,7 @@ export const es = {
             project: "Proyecto",
             namePlaceholder: "Ingresá tu nombre",
             projectPlaceholder: "Contanos un poco sobre lo que tenés en mente...",
-            send: "Enviar Mensaje",
+            send: "Quiero empezar mi proyecto",
             sending: "Enviando..."
         },
         labels: {
@@ -185,6 +193,32 @@ export const es = {
                 }
             }
         }
+    },
+    clients: {
+        badge: "Nuestros Clientes",
+        title: "Algunos de Nuestros",
+        titleAccent: "Clientes",
+        view: "Visitar Sitio",
+        items: [
+            {
+                name: "IL Catering Company",
+                url: "https://ilcateringcompany.com/",
+                logo: "/clients/il-catering.png",
+                testimonial: "Unos genios los pibes, la verdad. Fueron explicándome, guiándome y haciendo que entienda en cada paso que daba. Muy buena onda, ¡gracias por todo!"
+            },
+            {
+                name: "Coscia Asesores",
+                url: "https://www.cosciaasesores.com/",
+                logo: "/clients/coscia.png",
+                testimonial: "El diseño de la página superó mis expectativas y entendieron exactamente lo que buscaba para mi negocio. Demostraron un manejo súper profesional y muy cálido."
+            },
+            {
+                name: "Make It Studio",
+                url: "https://makeitstudioagency.com/",
+                logo: "/clients/makeit.png",
+                testimonial: "Unos cracks totales. Lograron bajar a tierra todas nuestras ideas creativas y armaron una plataforma que vuela. El nivel de respuesta y la calidad técnica que tienen es de otro planeta."
+            }
+        ]
     },
     partners: {
         title: "Ecosistema Tecnológico",
