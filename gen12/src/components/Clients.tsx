@@ -14,7 +14,7 @@ export function Clients() {
     const clients = tData<any[]>('clients.items') || [];
 
     return (
-        <section id="clientes" className="py-20 md:py-32 px-6 bg-gray-50/50 relative overflow-hidden">
+        <section id="clientes" className="py-20 md:py-32 px-6 bg-gray-50 relative overflow-hidden">
             {/* Decorative background elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
                 <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent/10 blur-[120px] rounded-full" />

@@ -15,7 +15,7 @@ export function Hero() {
     const skipAnimations = isMobile === true;
 
     return (
-        <section className="relative min-h-[85dvh] flex flex-col items-center justify-center pt-24 pb-16 md:pt-20 md:pb-16 px-6">
+        <section className="relative min-h-[85dvh] flex flex-col items-center justify-center pt-20 pb-16 md:pt-28 md:pb-24 px-6">
             <motion.div
                 initial={skipAnimations ? false : { opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}

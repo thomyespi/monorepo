@@ -143,13 +143,26 @@ export default function Home() {
               </span>
             </button>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex md:hidden items-center justify-center w-10 h-10 rounded-xl bg-primary/5 text-primary"
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile Menu Controls */}
+            <div className="flex md:hidden items-center gap-3">
+              <a
+                href="#contacto"
+                onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}
+                className={cn(
+                  "bg-primary text-white px-4 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20 transition-all duration-500 whitespace-nowrap",
+                  isScrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+                )}
+              >
+                {t('navbar.contact')}
+              </a>
+
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/5 text-primary"
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
