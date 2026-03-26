@@ -33,7 +33,7 @@ export function Process() {
     ];
 
     return (
-        <section id="metodo" className="py-12 md:py-20 px-6 relative overflow-hidden bg-white">
+        <section id="metodo" className="py-24 md:py-32 px-6 relative overflow-hidden bg-white">
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16 md:mb-20">
                     <motion.h2

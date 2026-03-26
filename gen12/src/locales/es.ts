@@ -22,13 +22,13 @@ export const es = {
         }
     },
     hero: {
-        badge: "Ingeniería de Software & IA",
-        title: "Transformamos",
-        titleAccent: "Visiones en",
-        titleSuffix: "Código de Élite",
-        description: "En GEN12 construimos infraestructuras digitales de grado producción. Fusionamos ingeniería de precisión con inteligencia artificial para acelerar tu ventaja competitiva.",
-        ctaMain: "Materializar mi Visión",
-        ctaSecondary: "Explorar Soluciones"
+        badge: "Desarrollo Web & Inteligencia Artificial",
+        title: "Convertimos tu idea",
+        titleAccent: "en un producto digital",
+        titleSuffix: "que funciona de verdad.",
+        description: "Somos un equipo de desarrolladores que construye webs, apps y soluciones con IA — rápido, limpio y a medida.",
+        ctaMain: "Hablemos de tu proyecto",
+        ctaSecondary: "Ver nuestros trabajos"
     },
     services: {
         badge: "Nuestras Capacidades",
@@ -90,46 +90,46 @@ export const es = {
     },
     products: {
         badge: "Casos de Éxito",
-        title: "Desarrollamos Activos",
-        titleAccent: "Digitales de Elite.",
+        title: "Proyectos que",
+        titleAccent: "hablan por sí solos.",
         concept: "Concepto",
         premium: "Premium Concept",
         items: {
             eshop: {
-                title: "Núcleo Logístico",
-                desc: "Plataforma integral de pagos y logística. Orchestrador de transacciones masivas con dashboard de control en tiempo real.",
-                features: ["Hub de Transacciones Masivas", "Dashboard en Tiempo Real", "Pasarela de Pagos Unificada"],
-                cta: "Ver Sistema Logístico"
+                title: "Tienda con Pagos y Envíos",
+                desc: "Todo lo que necesitás para vender online: pagos, envíos y control de pedidos en un solo lugar.",
+                features: ["Pagos integrados", "Control de pedidos", "Gestión de envíos"],
+                cta: "Ver proyecto"
             },
             ecommerce: {
-                title: "Motor de Comercio",
-                desc: "Tiendas escalables con checkouts ultra-rápidos y gestión de inventario inteligente.",
-                features: ["Checkouts Ultra-Rápidos", "Inventario Inteligente", "Foco en Conversión"],
-                cta: "Ver Motor E-Commerce"
+                title: "E-Commerce a Medida",
+                desc: "Tu tienda online, diseñada para vender. Rápida, fácil de usar y con inventario automático.",
+                features: ["Carrito de compras", "Inventario automático", "Checkout rápido"],
+                cta: "Ver proyecto"
             },
             landing: {
-                title: "Sistemas de Conversión",
-                desc: "Máquinas de conversión. Optimizadas para reducir tu costo por lead en campañas de Google y Meta Ads.",
-                features: ["UI de Alto Impacto", "Listas para Campañas ADS", "Optimizado para Leads"],
-                cta: "Ver Landing Pro"
+                title: "Landing Page que Convierte",
+                desc: "Páginas pensadas para que los visitantes se conviertan en clientes. Ideal para campañas de publicidad.",
+                features: ["Diseño que impacta", "Lista para Google y Meta Ads", "Más consultas, menos costo"],
+                cta: "Ver proyecto"
             },
             corporate: {
-                title: "Centro de Identidad",
-                desc: "Presencia digital premium que transmite autoridad y los valores de marcas establecidas.",
-                features: ["Visuales Premium", "Impulso de Autoridad", "Mensaje Estratégico"],
-                cta: "Ver Identidad de Marca"
+                title: "Sitio Web Corporativo",
+                desc: "La presencia online que tu empresa merece. Diseño profesional que genera confianza desde el primer clic.",
+                features: ["Diseño profesional", "Tu marca al frente", "Mensaje claro y directo"],
+                cta: "Ver proyecto"
             },
             saas: {
-                title: "Centro de Control",
-                desc: "Interfaces complejas de gestión de datos, métricas y administración de usuarios.",
-                features: ["Gestión de Datos", "Métricas Avanzadas", "Administración de Usuarios"],
-                cta: "Ver Dashboard Analítico"
+                title: "Panel de Control y Apps",
+                desc: "Herramientas web para gestionar tu negocio: datos, métricas y usuarios desde un panel central.",
+                features: ["Panel de control", "Reportes en tiempo real", "Gestión de usuarios"],
+                cta: "Ver proyecto"
             },
         },
         ai: {
-            title: "Agentes de IA Personalizados",
-            desc: "Fusionamos potencia algorítmica con diseño intuitivo para crear agentes que no solo responden, sino que resuelven. Automatización inteligente de siguiente nivel para empresas que buscan liderar.",
-            cta: "Elevar mi Proyecto"
+            title: "Soluciones con Inteligencia Artificial",
+            desc: "Automatizá tareas repetitivas, atendé clientes las 24hs y tomá mejores decisiones con herramientas de IA hechas a medida para tu negocio.",
+            cta: "Quiero saber más"
         }
     },
     faq: {

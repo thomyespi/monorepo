@@ -19,7 +19,7 @@ export function FAQ() {
     if (!items || items.length === 0) return null;
 
     return (
-        <section id="faq" className="py-12 md:py-20 px-6 bg-white relative z-10">
+        <section id="faq" className="py-24 md:py-40 px-6 bg-white relative z-10">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
                     <motion.span

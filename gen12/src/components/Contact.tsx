@@ -30,10 +30,16 @@ export function Contact() {
 
     return (
         <section id="contacto" className="py-16 md:py-32 px-6 bg-primary relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute top-0 left-0 w-full h-full">
-                <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-accent/10 blur-[150px] rounded-full" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent/5 blur-[120px] rounded-full" />
+            {/* Background Elements - optimized for performance */}
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <div 
+                    className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full translate-z-0" 
+                    style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)' }}
+                />
+                <div 
+                    className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full translate-z-0" 
+                    style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)' }}
+                />
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">

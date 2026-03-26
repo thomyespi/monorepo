@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
@@ -15,14 +15,17 @@ import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
 import { About } from "@/components/About";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { Languages, Menu, X } from "lucide-react";
-import { AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { SCROLL_OFFSET } from "@/lib/constants";
 
 export default function Home() {
   const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,9 +79,8 @@ export default function Home() {
       }
 
       if (element) {
-        const offset = 80; // Adjusted for the floating navbar
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - offset;
+        const offsetPosition = elementPosition - SCROLL_OFFSET;
 
         window.scrollTo({
           top: offsetPosition,
@@ -90,6 +92,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen relative z-0 selection:bg-accent selection:text-white">
+      {/* Scroll progress bar */}
+      <motion.div
+        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-[2px] bg-accent origin-left z-60 pointer-events-none"
+      />
+
       <AnimatedBackground />
       <WhatsAppButton />
 
@@ -133,6 +141,7 @@ export default function Home() {
             {/* Language Switcher - Now visible on mobile */}
             <button
               onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
+              aria-label={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
               className="hidden sm:flex items-center gap-2 group cursor-pointer bg-primary/5 hover:bg-primary/10 px-3 py-2 rounded-2xl transition-all"
             >
               <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-sm shadow-sm bg-white">
@@ -158,6 +167,8 @@ export default function Home() {
 
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                aria-expanded={isMenuOpen}
                 className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/5 text-primary"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

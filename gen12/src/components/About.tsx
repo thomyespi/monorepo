@@ -1,10 +1,38 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { ShieldCheck, Target, Users, Zap } from "lucide-react";
-
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useRef, useState, useEffect } from "react";
+
+function AnimatedValue({ value }: { value: string }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+    const [display, setDisplay] = useState("0");
+
+    useEffect(() => {
+        const match = value.match(/^(\d+)(.*)$/);
+        if (!match || !isInView) {
+            setDisplay(value);
+            return;
+        }
+        const target = parseInt(match[1]);
+        const suffix = match[2];
+        let frame = 0;
+        const totalFrames = 50;
+        const timer = setInterval(() => {
+            frame++;
+            const progress = frame / totalFrames;
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            setDisplay(`${Math.round(eased * target)}${suffix}`);
+            if (frame >= totalFrames) clearInterval(timer);
+        }, 1200 / totalFrames);
+        return () => clearInterval(timer);
+    }, [isInView, value]);
+
+    return <span ref={ref}>{display}</span>;
+}
 
 export function About() {
     const { t } = useLanguage();
@@ -18,7 +46,7 @@ export function About() {
     ];
 
     return (
-        <section id="nosotros" className="py-12 md:py-20 px-6 relative overflow-hidden bg-white">
+        <section id="nosotros" className="py-12 md:py-24 px-6 relative overflow-hidden bg-gray-50/50">
             {/* Abstract Background Element */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-accent/5 blur-[120px] rounded-full -ml-48" />
 
@@ -56,7 +84,9 @@ export function About() {
                         >
                             <stat.icon className="w-8 h-8 text-accent mb-6" />
                             <div>
-                                <div className="text-3xl font-black text-primary mb-1">{stat.value}</div>
+                                <div className="text-3xl font-black text-primary mb-1">
+                                    {skipAnimations ? stat.value : <AnimatedValue value={stat.value} />}
+                                </div>
                                 <div className="text-[10px] font-black uppercase tracking-wider text-primary/40 leading-tight">
                                     {stat.label}
                                 </div>

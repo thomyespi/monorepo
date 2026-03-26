@@ -20,3 +20,10 @@ export interface ContactFormData {
     name: string;
     message: string;
 }
+
+export interface ClientItem {
+    name: string;
+    url: string;
+    logo: string;
+    testimonial: string;
+}

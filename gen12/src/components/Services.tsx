@@ -42,7 +42,7 @@ export function Services() {
     if (!services || services.length === 0) return null;
 
     return (
-        <section id="servicios" className="py-12 md:py-20 px-6 bg-white relative">
+        <section id="servicios" className="py-20 md:py-32 px-6 bg-gray-50/50 relative">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-16">
                     <div className="max-w-2xl">

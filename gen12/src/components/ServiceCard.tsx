@@ -16,6 +16,7 @@ interface ServiceCardProps {
 }
 
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { SCROLL_OFFSET } from "@/lib/constants";
 
 export function ServiceCard({ title, description, Icon, accent, features, ctaText, index }: ServiceCardProps) {
     const { t } = useLanguage();
@@ -26,11 +27,10 @@ export function ServiceCard({ title, description, Icon, accent, features, ctaTex
         e.preventDefault();
         const element = document.getElementById(id.replace('#', ''));
         if (element) {
-            const offset = 80;
             const bodyRect = document.body.getBoundingClientRect().top;
             const elementRect = element.getBoundingClientRect().top;
             const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
+            const offsetPosition = elementPosition - SCROLL_OFFSET;
 
             window.scrollTo({
                 top: offsetPosition,

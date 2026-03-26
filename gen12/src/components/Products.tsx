@@ -70,9 +70,13 @@ export function Products() {
     }
 
     return (
-        <section className="py-12 md:py-24 px-6 bg-white relative overflow-hidden">
+        <section className="py-20 md:py-40 px-6 bg-primary relative overflow-hidden">
+            {/* Dark mode background accents */}
+            <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-accent/10 blur-[150px] rounded-full -mr-[25%] -mt-[10%]" />
+            <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-accent/5 blur-[120px] rounded-full -ml-[20%] -mb-[10%]" />
+
             <div className="max-w-7xl mx-auto relative z-10">
-                <div className="max-w-4xl mb-20">
+                <div className="max-w-4xl mb-24 text-center md:text-left">
                     <motion.span
                         initial={skipAnimations ? false : { opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -87,14 +91,14 @@ export function Products() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-4xl md:text-7xl font-black text-primary tracking-tighter leading-[0.85] md:mb-4"
+                        className="text-4xl md:text-8xl font-black text-white tracking-tighter leading-[0.95] md:mb-4"
                     >
                         {t('products.title')} <br />
-                        <span className="text-accent italic">{t('products.titleAccent')}</span>
+                        <span className="text-accent italic font-serif font-normal">{t('products.titleAccent')}</span>
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-6 gap-10">
                     {/* Clean Column Layout */}
                     {productTypes.map((item, index) => (
                         <ProductCard
@@ -104,24 +108,24 @@ export function Products() {
                         />
                     ))}
 
-                    {/* Final AI Card (Full width, updated style) */}
+                    {/* Final AI Card (Full width, updated style for dark) */}
                     <motion.div
                         initial={skipAnimations ? false : { opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="md:col-span-6 p-10 md:p-20 rounded-[3rem] bg-gray-50 border border-gray-100 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 relative overflow-hidden group"
+                        className="md:col-span-6 p-10 md:p-24 rounded-[3.5rem] bg-white/5 border border-white/10 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 relative overflow-hidden group hover:bg-white/8 hover:border-accent/30 translate-z-0"
                     >
-                        <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-primary/5 to-transparent flex items-center justify-center opacity-50">
-                            <Cpu className="w-64 h-64 text-primary/5 group-hover:scale-110 transition-transform duration-1000" />
+                        <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-accent/10 to-transparent flex items-center justify-center opacity-50">
+                            <Cpu className="w-80 h-80 text-white/5 group-hover:scale-110 transition-transform duration-1000" />
                         </div>
 
-                        <div className="relative z-10 w-24 h-24 rounded-4xl bg-primary flex items-center justify-center shrink-0 shadow-2xl shadow-primary/20 group-hover:rotate-12 transition-transform duration-500">
-                            <Cpu className="w-12 h-12 text-accent" />
+                        <div className="relative z-10 w-24 h-24 rounded-4xl bg-accent flex items-center justify-center shrink-0 shadow-2xl shadow-accent/20 group-hover:rotate-12 transition-transform duration-500">
+                            <Cpu className="w-12 h-12 text-primary" />
                         </div>
                         <div className="relative z-10 flex-1 text-center lg:text-left">
-                            <h3 className="text-3xl md:text-5xl font-black tracking-tighter text-primary mb-6">{t('products.ai.title')}</h3>
-                            <p className="text-primary/50 text-base md:text-lg font-medium max-w-3xl leading-relaxed">
+                            <h3 className="text-3xl md:text-5xl font-black tracking-tighter text-white mb-6 underline decoration-accent/30 underline-offset-8">{t('products.ai.title')}</h3>
+                            <p className="text-white/60 text-base md:text-xl font-medium max-w-3xl leading-relaxed">
                                 {t('products.ai.desc')}
                             </p>
                         </div>
@@ -129,7 +133,7 @@ export function Products() {
                             href={`https://wa.me/5491161591957?text=${encodeURIComponent(t('whatsapp.ai'))}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative z-10 px-12 py-8 bg-primary text-white rounded-2xl font-black uppercase tracking-widest hover:bg-accent hover:shadow-2xl hover:shadow-accent/30 hover:scale-105 active:scale-95 transition-all text-xs shrink-0 shadow-xl"
+                            className="relative z-10 px-12 py-8 bg-accent text-primary rounded-2xl font-black uppercase tracking-widest hover:bg-white hover:shadow-2xl hover:shadow-white/20 hover:scale-105 active:scale-95 transition-all text-sm shrink-0 shadow-xl"
                         >
                             {t('products.ai.cta')}
                         </a>

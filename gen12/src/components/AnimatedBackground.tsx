@@ -17,71 +17,51 @@ export function AnimatedBackground({ className }: { className?: string }) {
             {/* Soft Midnight Blue Gradient - Top Left */}
             <motion.div
                 animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5],
+                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.5, 0.3],
                 }}
                 transition={{
-                    duration: 15, // Slower for calmness and performance
+                    duration: 25, // Much slower
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
                 style={{
-                    // Radial gradient simulating a blurred circle
                     background: 'radial-gradient(circle at center, rgba(26, 54, 93, 0.08) 0%, transparent 70%)',
                     willChange: "transform, opacity"
                 }}
-                className="absolute -top-[20%] -left-[20%] w-[80vw] h-[80vw] rounded-full translate-z-0 hidden md:block"
+                className="absolute -top-[20%] -left-[20%] w-screen h-screen rounded-full translate-z-0 hidden md:block pointer-events-none"
             />
 
             {/* Soft Bronze/Accent Gradient - Center Right */}
             <motion.div
                 animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.4, 0.7, 0.4],
+                    scale: [1, 1.05, 1],
+                    opacity: [0.2, 0.4, 0.2],
                 }}
                 transition={{
-                    duration: 20,
+                    duration: 35, // Much slower
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: 2
                 }}
                 style={{
-                    background: 'radial-gradient(circle at center, rgba(166, 124, 82, 0.06) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle at center, rgba(166, 124, 82, 0.05) 0%, transparent 70%)',
                     willChange: "transform, opacity"
                 }}
-                className="absolute top-[20%] -right-[20%] w-[90vw] h-[90vw] rounded-full translate-z-0 hidden md:block"
+                className="absolute top-[20%] -right-[30%] w-screen h-screen rounded-full translate-z-0 hidden md:block pointer-events-none"
             />
 
-            {/* Secondary Blue Gradient - Bottom Left */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                    duration: 25,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 5
-                }}
-                style={{
-                    background: 'radial-gradient(circle at center, rgba(26, 54, 93, 0.05) 0%, transparent 70%)',
-                    willChange: "transform, opacity"
-                }}
-                className="absolute -bottom-[10%] -left-[10%] w-[70vw] h-[70vw] rounded-full translate-z-0 hidden md:block"
-            />
-
-            {/* Fine Grid Pattern - Kept as it is lightweight */}
+            {/* Fine Grid Pattern - Non-animated, very low cost */}
             <div
-                className="absolute inset-0 opacity-[0.015] pointer-events-none"
+                className="absolute inset-0 opacity-[0.01] pointer-events-none"
                 style={{
                     backgroundImage: `radial-gradient(circle at 1.5px 1.5px, var(--primary) 1px, transparent 0)`,
-                    backgroundSize: '40px 40px'
+                    backgroundSize: '80px 80px' // Larger grid = fewer elements to calculate
                 }}
             />
 
-            {/* Vignette/Overlay to ensure text readability */}
-            <div className="absolute inset-0 bg-linear-to-b from-white/80 via-transparent to-white/80 pointer-events-none" />
+            {/* Vignette/Overlay - Non-animated */}
+            <div className="absolute inset-0 bg-linear-to-b from-white/70 via-transparent to-white/70 pointer-events-none" />
         </div>
     );
 }

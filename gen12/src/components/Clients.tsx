@@ -4,6 +4,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
 import { ExternalLink, Quote } from "lucide-react";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { ClientItem } from "@/types";
 
 export function Clients() {
     const { t, tData } = useLanguage();
@@ -11,14 +12,20 @@ export function Clients() {
     const skipAnimations = isMobile === true;
 
     // Use tData for arrays/objects as 't' only returns strings
-    const clients = tData<any[]>('clients.items') || [];
+    const clients = tData<ClientItem[]>('clients.items') || [];
 
     return (
-        <section id="clientes" className="py-20 md:py-32 px-6 bg-gray-50 relative overflow-hidden">
-            {/* Decorative background elements */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
-                <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent/10 blur-[120px] rounded-full" />
-                <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full" />
+        <section id="clientes" className="py-24 md:py-40 px-6 bg-white relative overflow-hidden">
+            {/* Decorative background elements - optimized with radial gradients instead of heavy blur filters */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-40">
+                <div 
+                    className="absolute -top-[10%] -left-[10%] w-[40vw] h-[40vw] rounded-full translate-z-0"
+                    style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)' }}
+                />
+                <div 
+                    className="absolute -bottom-[10%] -right-[10%] w-[40vw] h-[40vw] rounded-full translate-z-0"
+                    style={{ background: 'radial-gradient(circle, rgba(10, 25, 47, 0.08) 0%, transparent 70%)' }}
+                />
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
@@ -37,10 +44,10 @@ export function Clients() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={skipAnimations ? { duration: 0 } : { duration: 0.8, delay: 0.1, ease: "easeOut" }}
-                        className="text-3xl sm:text-5xl md:text-6xl font-black text-primary tracking-tighter leading-none"
+                        className="text-4xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter leading-[0.95]"
                     >
                         {t('clients.title')} <br />
-                        <span className="text-accent">{t('clients.titleAccent')}</span>
+                        <span className="text-accent italic font-serif font-normal">{t('clients.titleAccent')}</span>
                     </motion.h2>
                 </div>
 
@@ -64,7 +71,15 @@ export function Clients() {
                                                 alt={client.name}
                                                 className="w-full h-full object-cover transition-all duration-500"
                                                 onError={(e) => {
-                                                    (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(client.name)}&background=f3f4f6&color=0a192f&bold=true&length=1`;
+                                                    const target = e.target as HTMLImageElement;
+                                                    target.style.display = 'none';
+                                                    const parent = target.parentElement;
+                                                    if (parent && !parent.querySelector('.fallback-initial')) {
+                                                        const span = document.createElement('span');
+                                                        span.className = 'fallback-initial text-2xl font-black text-primary/50';
+                                                        span.textContent = client.name.charAt(0).toUpperCase();
+                                                        parent.appendChild(span);
+                                                    }
                                                 }}
                                             />
                                         </div>
@@ -81,7 +96,7 @@ export function Clients() {
                                 {/* Testimonial */}
                                 <div className="relative mb-8 grow">
                                     <Quote className="absolute -top-4 -left-2 w-8 h-8 text-accent/10" />
-                                    <p className="relative z-10 text-primary/60 font-medium leading-relaxed italic md:text-lg">
+                                    <p className="relative z-10 text-primary/70 font-medium leading-relaxed font-serif italic text-lg md:text-xl">
                                         "{client.testimonial}"
                                     </p>
                                 </div>

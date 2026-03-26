@@ -3,9 +3,8 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { ArrowRight, ChevronRight, Zap } from "lucide-react";
-import { cn } from "@/lib/utils";
-
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { SCROLL_OFFSET } from "@/lib/constants";
 
 export function Hero() {
     const { t } = useLanguage();
@@ -33,7 +32,7 @@ export function Hero() {
                     initial={skipAnimations ? false : { opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-3xl sm:text-7xl lg:text-8xl font-black text-primary tracking-tight leading-none mb-6"
+                    className="text-3xl sm:text-5xl lg:text-6xl font-black text-primary tracking-tight leading-none mb-6"
                 >
                     {t('hero.title')} <br />
                     <span className="text-accent italic">{t('hero.titleAccent')}</span> <br />
@@ -60,7 +59,7 @@ export function Hero() {
                         onClick={(e) => {
                             e.preventDefault();
                             const el = document.getElementById('contacto');
-                            if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+                            if (el) window.scrollTo({ top: el.offsetTop - SCROLL_OFFSET, behavior: 'smooth' });
                         }}
                         className="group relative px-10 py-6 bg-primary text-white rounded-2xl font-black tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-primary/20"
                     >
@@ -72,11 +71,11 @@ export function Hero() {
                     </a>
 
                     <a
-                        href="#servicios"
+                        href="#clientes"
                         onClick={(e) => {
                             e.preventDefault();
-                            const el = document.getElementById('servicios');
-                            if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+                            const el = document.getElementById('clientes');
+                            if (el) window.scrollTo({ top: el.offsetTop - SCROLL_OFFSET, behavior: 'smooth' });
                         }}
                         className="flex items-center gap-3 px-10 py-6 rounded-2xl font-black tracking-widest text-primary hover:bg-primary/5 transition-all cursor-pointer"
                     >
@@ -85,6 +84,7 @@ export function Hero() {
                     </a>
                 </motion.div>
             </div>
+
 
         </section>
     );

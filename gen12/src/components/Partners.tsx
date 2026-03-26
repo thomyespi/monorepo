@@ -19,10 +19,16 @@ export function Partners() {
     ];
 
     return (
-        <section id="trabajo" className="py-12 md:py-20 bg-white relative overflow-hidden">
-            {/* Background Decorations */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+        <section id="trabajo" className="py-20 md:py-32 bg-gray-50/50 relative overflow-hidden">
+            {/* Background Decorations - optimized for performance */}
+            <div 
+                className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none translate-z-0" 
+                style={{ background: 'radial-gradient(circle, rgba(10, 25, 47, 0.08) 0%, transparent 70%)' }}
+            />
+            <div 
+                className="absolute bottom-0 left-0 w-[40vw] h-[40vw] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none translate-z-0" 
+                style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)' }}
+            />
 
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-12">

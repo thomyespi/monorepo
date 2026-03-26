@@ -48,10 +48,9 @@ export function useContactForm() {
             setPhone("");
             setService("");
             setMessage("");
-        } catch (err: any) {
+        } catch (err: unknown) {
             setError(t('contact.form.error'));
-            // Usamos warn para evitar que el overlay de desarrollo de Next.js aparezca en pantalla
-            console.warn("Contact form error:", err);
+            console.error("Contact form error:", err);
         } finally {
             setIsLoading(false);
         }

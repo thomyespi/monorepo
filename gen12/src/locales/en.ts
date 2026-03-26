@@ -22,13 +22,13 @@ export const en = {
         }
     },
     hero: {
-        badge: "Software Engineering & AI",
-        title: "Transforming",
-        titleAccent: "Visions Into",
-        titleSuffix: "Elite Code",
-        description: "At GEN12, we build production-grade digital infrastructures. We merge precision engineering with artificial intelligence to accelerate your competitive advantage.",
-        ctaMain: "Materialize my Vision",
-        ctaSecondary: "Explore Solutions"
+        badge: "Web Development & Artificial Intelligence",
+        title: "We turn your idea",
+        titleAccent: "into a digital product",
+        titleSuffix: "that actually works.",
+        description: "We're a team of developers who build websites, apps and AI solutions — fast, clean and tailored to you.",
+        ctaMain: "Let's talk about your project",
+        ctaSecondary: "See our work"
     },
     services: {
         badge: "Our Capabilities",
@@ -90,46 +90,46 @@ export const en = {
     },
     products: {
         badge: "Success Stories",
-        title: "We Build Elite",
-        titleAccent: "Digital Assets.",
+        title: "Projects that",
+        titleAccent: "speak for themselves.",
         concept: "Concept",
         premium: "Premium Concept",
         items: {
             eshop: {
-                title: "Logistics Core",
-                desc: "Comprehensive payment and logistics platform. Massive transaction orchestrator with real-time control dashboard.",
-                features: ["Massive Transaction Hub", "Real-Time Dashboard", "Unified Payment Gateway"],
-                cta: "View Logistics System"
+                title: "Online Store with Payments & Shipping",
+                desc: "Everything you need to sell online: payments, shipping and order management in one place.",
+                features: ["Integrated payments", "Order management", "Shipping control"],
+                cta: "View project"
             },
             ecommerce: {
-                title: "Commerce Engine",
-                desc: "Scalable stores with ultra-fast checkouts and intelligent inventory management.",
-                features: ["Lightning Checkouts", "Smart Inventory", "Conversion Focused"],
-                cta: "View E-Commerce Engine"
+                title: "Custom E-Commerce",
+                desc: "Your online store, built to sell. Fast, easy to use and with automatic inventory.",
+                features: ["Shopping cart", "Automatic inventory", "Fast checkout"],
+                cta: "View project"
             },
             landing: {
-                title: "Conversion Systems",
-                desc: "Conversion machines. Optimized to reduce your cost per lead in Google and Meta Ads campaigns.",
-                features: ["High-Impact UI", "Ad-Campaign Ready", "Lead-Gen Optimized"],
-                cta: "View Pro Landing"
+                title: "Landing Page that Converts",
+                desc: "Pages designed to turn visitors into customers. Perfect for Google and Meta Ads campaigns.",
+                features: ["High-impact design", "Ready for Google & Meta Ads", "More leads, lower cost"],
+                cta: "View project"
             },
             corporate: {
-                title: "Brand Identity Hub",
-                desc: "Premium digital presence that conveys authority and values of established brands.",
-                features: ["Premium Visuals", "Authority Driven", "Strategic Messaging"],
-                cta: "View Brand Identity"
+                title: "Corporate Website",
+                desc: "The online presence your business deserves. Professional design that builds trust from the first click.",
+                features: ["Professional design", "Your brand front and center", "Clear, direct message"],
+                cta: "View project"
             },
             saas: {
-                title: "Analytics Command Center",
-                desc: "Complex data management interfaces, metrics, and user administration.",
-                features: ["Data Management", "Advanced Metrics", "User Administration"],
-                cta: "View Analytics Dashboard"
+                title: "Dashboard & Web Apps",
+                desc: "Web tools to manage your business: data, metrics and users from a central panel.",
+                features: ["Control panel", "Real-time reports", "User management"],
+                cta: "View project"
             },
         },
         ai: {
-            title: "Custom AI Agents",
-            desc: "We merge algorithmic power with intuitive design to create agents that don't just respond, they solve. Next-level intelligent automation for companies looking to lead.",
-            cta: "Elevate my Project"
+            title: "Artificial Intelligence Solutions",
+            desc: "Automate repetitive tasks, serve customers 24/7 and make better decisions with custom AI tools built for your business.",
+            cta: "I want to know more"
         }
     },
     faq: {
