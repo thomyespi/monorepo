@@ -126,11 +126,11 @@ export default function Home() {
             : "max-w-5xl px-6 md:px-10 bg-transparent border-transparent"
         )}>
 
-          {/* Left: Icon */}
+          {/* Left: Icon + Name */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center group cursor-pointer shrink-0"
+            className="flex items-center gap-3 group cursor-pointer shrink-0"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <div className={cn(
@@ -139,22 +139,16 @@ export default function Home() {
             )}>
               <img src="/logos/gen12-icon.png" alt="G" className="w-full h-full object-cover" />
             </div>
+            <span className={cn(
+              "hidden md:block font-black tracking-tighter uppercase italic text-foreground transition-all duration-500 whitespace-nowrap",
+              isScrolled ? "text-sm" : "text-base"
+            )}>
+              GEN<span className="text-accent">12</span>SOFTWARE
+            </span>
           </motion.div>
 
-          {/* Center: Name + Nav — absolutely centered on the full navbar width */}
+          {/* Center: Nav links only — absolutely centered */}
           <div className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className={cn(
-                "font-black tracking-tighter uppercase italic text-foreground transition-all duration-500 whitespace-nowrap",
-                isScrolled ? "text-sm" : "text-base"
-              )}
-            >
-              GEN<span className="text-accent">12</span>SOFTWARE
-            </button>
-
-            <div className="h-4 w-px bg-white/15" />
-
             <nav className="flex items-center gap-6">
               {[
                 { id: 'home', label: t('navbar.home') },
