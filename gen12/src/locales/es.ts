@@ -18,7 +18,7 @@ export const es = {
         stats: {
             projects: "Dedicación al Proyecto",
             experience: "Soporte Continuo",
-            clientRating: "Satisfacción Cliente"
+            clientRating: "Proyectos Entregados"
         }
     },
     hero: {
@@ -99,31 +99,31 @@ export const es = {
                 title: "Tienda con Pagos y Envíos",
                 desc: "Todo lo que necesitás para vender online: pagos, envíos y control de pedidos en un solo lugar.",
                 features: ["Pagos integrados", "Control de pedidos", "Gestión de envíos"],
-                cta: "Ver proyecto"
+                cta: "Quiero vender online"
             },
             ecommerce: {
                 title: "E-Commerce a Medida",
                 desc: "Tu tienda online, diseñada para vender. Rápida, fácil de usar y con inventario automático.",
                 features: ["Carrito de compras", "Inventario automático", "Checkout rápido"],
-                cta: "Ver proyecto"
+                cta: "Construir mi tienda"
             },
             landing: {
                 title: "Landing Page que Convierte",
                 desc: "Páginas pensadas para que los visitantes se conviertan en clientes. Ideal para campañas de publicidad.",
                 features: ["Diseño que impacta", "Lista para Google y Meta Ads", "Más consultas, menos costo"],
-                cta: "Ver proyecto"
+                cta: "Conseguir más clientes"
             },
             corporate: {
                 title: "Sitio Web Corporativo",
                 desc: "La presencia online que tu empresa merece. Diseño profesional que genera confianza desde el primer clic.",
                 features: ["Diseño profesional", "Tu marca al frente", "Mensaje claro y directo"],
-                cta: "Ver proyecto"
+                cta: "Profesionalizar mi marca"
             },
             saas: {
                 title: "Panel de Control y Apps",
                 desc: "Herramientas web para gestionar tu negocio: datos, métricas y usuarios desde un panel central.",
                 features: ["Panel de control", "Reportes en tiempo real", "Gestión de usuarios"],
-                cta: "Ver proyecto"
+                cta: "Digitalizar mi negocio"
             },
         },
         ai: {
@@ -223,8 +223,8 @@ export const es = {
     },
     clients: {
         badge: "Nuestros Clientes",
-        title: "Algunos de Nuestros",
-        titleAccent: "Clientes",
+        title: "Lo que dicen",
+        titleAccent: "nuestros clientes.",
         view: "Visitar Sitio",
         items: [
             {

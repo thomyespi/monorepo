@@ -1,16 +1,14 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "framer-motion";
 import { Layout, Server, BrainCircuit } from "lucide-react";
 import { cn } from "@/lib/utils";
-
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { M } from "./ui/M";
 
 export function Partners() {
     const { t, tData } = useLanguage();
-    const isMobile = useIsMobile();
-    const skipAnimations = isMobile === true;
+    const isMobile = useIsMobile() === true;
 
     const categories = [
         { id: 'frontend', icon: Layout, color: "text-blue-400" },
@@ -19,28 +17,36 @@ export function Partners() {
     ];
 
     return (
-        <section id="trabajo" className="py-20 md:py-32 bg-gray-50/50 relative overflow-hidden">
-            {/* Background Decorations - optimized for performance */}
-            <div 
-                className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none translate-z-0" 
+        <section id="trabajo" className="py-10 md:py-16 bg-[#0a1625]/40 relative overflow-hidden">
+            <div
+                className="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none translate-z-0"
                 style={{ background: 'radial-gradient(circle, rgba(10, 25, 47, 0.08) 0%, transparent 70%)' }}
             />
-            <div 
-                className="absolute bottom-0 left-0 w-[40vw] h-[40vw] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none translate-z-0" 
+            <div
+                className="absolute bottom-0 left-0 w-[40vw] h-[40vw] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none translate-z-0"
                 style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)' }}
             />
 
             <div className="max-w-7xl mx-auto px-6">
-                <div className="text-center mb-12">
-                    <motion.span
-                        initial={skipAnimations ? false : { opacity: 0, y: 10 }}
+                <div className="text-center mb-10">
+                    <M tag="span" mobile={isMobile}
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 0.5 }}
+                        transition={{ duration: 0.35 }}
                         className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-4 block"
                     >
                         {t('partners.title')}
-                    </motion.span>
+                    </M>
+                    <M tag="h2" mobile={isMobile}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.35, delay: 0.05 }}
+                        className="text-4xl md:text-6xl font-black text-foreground tracking-tighter leading-none"
+                    >
+                        Nuestras <span className="text-accent italic">Herramientas</span>
+                    </M>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -51,28 +57,27 @@ export function Partners() {
                         const Icon = cat.icon;
 
                         return (
-                            <motion.div
-                                key={cat.id}
-                                initial={skipAnimations ? false : { opacity: 0, y: 20 }}
+                            <M key={cat.id} mobile={isMobile}
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={skipAnimations ? { duration: 0 } : { duration: 0.5, delay: index * 0.1 }}
-                                className="group p-8 rounded-4xl bg-white border border-gray-100 shadow-xl shadow-gray-100/50 md:hover:shadow-2xl md:hover:shadow-primary/5 transition-all duration-500 md:hover:-translate-y-2 relative overflow-hidden"
+                                transition={{ duration: 0.35, delay: index * 0.05 }}
+                                className="group p-8 rounded-4xl bg-white/5 border border-white/8 shadow-xl shadow-black/20 md:hover:shadow-2xl md:hover:shadow-black/30 transition-all duration-500 md:hover:-translate-y-2 relative overflow-hidden"
                             >
-                                <div className="absolute inset-0 bg-linear-to-br from-white via-white to-gray-50/50 opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="absolute inset-0 bg-linear-to-br from-white/8 via-white/5 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
 
                                 <div className="relative z-10">
                                     <div className={cn(
-                                        "w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 md:group-hover:scale-110 bg-gray-50",
+                                        "w-12 h-12 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 md:group-hover:scale-110 bg-white/8",
                                         cat.color.replace('text-', 'bg-').replace('400', '50/50')
                                     )}>
                                         <Icon className={cn("w-6 h-6", cat.color)} />
                                     </div>
 
-                                    <h3 className="text-2xl font-black text-primary mb-3 tracking-tight">
+                                    <h3 className="text-2xl font-black text-foreground mb-3 tracking-tight">
                                         {title}
                                     </h3>
-                                    <p className="text-primary/50 font-medium mb-8 leading-relaxed h-12">
+                                    <p className="text-foreground/50 font-medium mb-8 leading-relaxed h-12">
                                         {desc}
                                     </p>
 
@@ -80,14 +85,14 @@ export function Partners() {
                                         {techs.map((tech, i) => (
                                             <span
                                                 key={i}
-                                                className="px-3 py-1.5 rounded-lg bg-gray-50 border border-gray-100 text-xs font-bold text-primary/70 group-hover:bg-white group-hover:border-primary/10 group-hover:shadow-sm transition-all duration-300"
+                                                className="px-3 py-1.5 rounded-lg bg-white/8 border border-white/10 text-xs font-bold text-foreground/70 group-hover:bg-white/12 group-hover:border-white/15 group-hover:shadow-sm transition-all duration-300"
                                             >
                                                 {tech}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
-                            </motion.div>
+                            </M>
                         );
                     })}
                 </div>

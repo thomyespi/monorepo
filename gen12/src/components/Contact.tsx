@@ -1,19 +1,17 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import NextImage from "next/image";
 import { Send, CheckCircle2, XCircle, Loader2, Mail, Instagram, Linkedin } from "lucide-react";
 import { useContactForm } from "@/hooks/useContactForm";
-
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { M } from "./ui/M";
 
 export function Contact() {
     const { t } = useLanguage();
     const [showPolicies, setShowPolicies] = useState(false);
-    const isMobile = useIsMobile();
-    const skipAnimations = isMobile === true;
+    const isMobile = useIsMobile() === true;
 
     const {
         name, setName,
@@ -29,15 +27,14 @@ export function Contact() {
     } = useContactForm();
 
     return (
-        <section id="contacto" className="py-16 md:py-32 px-6 bg-primary relative overflow-hidden">
-            {/* Background Elements - optimized for performance */}
+        <section id="contacto" className="py-10 md:py-16 px-6 bg-primary relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <div 
-                    className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full translate-z-0" 
+                <div
+                    className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full translate-z-0"
                     style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)' }}
                 />
-                <div 
-                    className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full translate-z-0" 
+                <div
+                    className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full translate-z-0"
                     style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)' }}
                 />
             </div>
@@ -45,25 +42,25 @@ export function Contact() {
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
                     <div className="lg:col-span-5">
-                        <motion.span
-                            initial={skipAnimations ? false : { opacity: 0, x: -30 }}
+                        <M tag="span" mobile={isMobile}
+                            initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                             className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-6 block"
                         >
                             {t('contact.badge')}
-                        </motion.span>
-                        <motion.h2
-                            initial={skipAnimations ? false : { opacity: 0, y: 30 }}
+                        </M>
+                        <M tag="h2" mobile={isMobile}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.35, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
                             className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.85] mb-8"
                         >
                             {t('contact.title')} <br />
                             <span className="text-accent italic">{t('contact.titleAccent')}</span>
-                        </motion.h2>
+                        </M>
                         <p className="text-white/40 text-base md:text-xl font-medium max-w-xl leading-relaxed mb-12">
                             {t('contact.desc')}
                         </p>
@@ -113,17 +110,16 @@ export function Contact() {
                         </div>
                     </div>
 
-                    <motion.div
-                        initial={skipAnimations ? false : { opacity: 0, y: 30 }}
+                    <M mobile={isMobile}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className="lg:col-span-7 bg-white/10 backdrop-blur-2xl p-10 md:p-14 rounded-[3.5rem] border border-white/10 shadow-2xl relative overflow-hidden group"
                     >
-                        {/* Interactive Background Glow */}
                         <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/5 blur-[100px] rounded-full group-hover:bg-accent/20 transition-colors duration-700" />
 
                         <form onSubmit={handleSubmit} noValidate className="space-y-6 relative z-10">
-                            {/* WhatsApp Quick CTA */}
                             <div className="mb-10 p-2">
                                 <h4 className="text-xl font-bold text-white mb-2 tracking-tight">
                                     {t('contact.form.whatsappTitle')}
@@ -155,70 +151,41 @@ export function Contact() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">
-                                        {t('contact.form.name')}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        disabled={isLoading}
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !name ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'
-                                            }`}
-                                        placeholder={t('contact.form.namePlaceholder')}
-                                    />
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.name')}</label>
+                                    <input type="text" disabled={isLoading} value={name} onChange={(e) => setName(e.target.value)}
+                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !name ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
+                                        placeholder={t('contact.form.namePlaceholder')} />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">
-                                        {t('contact.form.email')}
-                                    </label>
-                                    <input
-                                        type="email"
-                                        disabled={isLoading}
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !email ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'
-                                            }`}
-                                        placeholder={t('contact.form.emailPlaceholder')}
-                                    />
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.email')}</label>
+                                    <input type="email" disabled={isLoading} value={email} onChange={(e) => setEmail(e.target.value)}
+                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !email ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
+                                        placeholder={t('contact.form.emailPlaceholder')} />
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">
-                                        {t('contact.form.phone')}
-                                    </label>
-                                    <input
-                                        type="tel"
-                                        disabled={isLoading}
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !phone ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'
-                                            }`}
-                                        placeholder={t('contact.form.phonePlaceholder')}
-                                    />
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.phone')}</label>
+                                    <input type="tel" disabled={isLoading} value={phone} onChange={(e) => setPhone(e.target.value)}
+                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !phone ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
+                                        placeholder={t('contact.form.phonePlaceholder')} />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">
-                                        {t('contact.form.service')}
-                                    </label>
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.service')}</label>
                                     <div className="relative">
-                                        <select
-                                            disabled={isLoading}
-                                            value={service}
-                                            onChange={(e) => setService(e.target.value)}
-                                            className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 appearance-none cursor-pointer ${attemptedSubmit && !service ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'
-                                                }`}
-                                        >
+                                        <select disabled={isLoading} value={service} onChange={(e) => setService(e.target.value)}
+                                            className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 appearance-none cursor-pointer ${attemptedSubmit && !service ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}>
                                             <option value="" disabled>{t('contact.form.selectService')}</option>
-                                            <option value="fullstack" className="bg-primary">{t('contact.form.services.fullstack')}</option>
-                                            <option value="ai" className="bg-primary">{t('contact.form.services.ai')}</option>
-                                            <option value="uxui" className="bg-primary">{t('contact.form.services.uxui')}</option>
-                                            <option value="ecommerce" className="bg-primary">{t('contact.form.services.ecommerce')}</option>
-                                            <option value="landing" className="bg-primary">{t('contact.form.services.landing')}</option>
-                                            <option value="saas" className="bg-primary">{t('contact.form.services.saas')}</option>
-                                            <option value="other" className="bg-primary">{t('contact.form.services.other')}</option>
+                                            <option value="eshop" className="bg-primary">Tienda con Pagos y Envíos</option>
+                                            <option value="ecommerce" className="bg-primary">E-Commerce a Medida</option>
+                                            <option value="landing" className="bg-primary">Landing Page que Convierte</option>
+                                            <option value="corporate" className="bg-primary">Sitio Web Corporativo</option>
+                                            <option value="saas" className="bg-primary">Panel de Control y Apps</option>
+                                            <option value="fullstack" className="bg-primary">Desarrollo Full-Stack</option>
+                                            <option value="ai" className="bg-primary">Inteligencia Artificial</option>
+                                            <option value="uxui" className="bg-primary">UX/UI Experience</option>
+                                            <option value="other" className="bg-primary">Otro</option>
                                         </select>
                                         <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-white/20">
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,57 +197,39 @@ export function Contact() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">
-                                    {t('contact.form.message')}
-                                </label>
-                                <textarea
-                                    rows={4}
-                                    disabled={isLoading}
-                                    value={message}
-                                    onChange={(e) => setMessage(e.target.value)}
-                                    className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all resize-none text-base disabled:opacity-50 ${attemptedSubmit && !message ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'
-                                        }`}
-                                    placeholder={t('contact.form.messagePlaceholder')}
-                                />
+                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.message')}</label>
+                                <textarea rows={4} disabled={isLoading} value={message} onChange={(e) => setMessage(e.target.value)}
+                                    className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all resize-none text-base disabled:opacity-50 ${attemptedSubmit && !message ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
+                                    placeholder={t('contact.form.messagePlaceholder')} />
                             </div>
 
                             <div className="flex justify-start">
-                                <span className="text-[9px] font-bold text-white/20 tracking-widest uppercase">
-                                    NOTA: Todos los campos son obligatorios
-                                </span>
+                                <span className="text-[9px] font-bold text-white/20 tracking-widest uppercase">NOTA: Todos los campos son obligatorios</span>
                             </div>
 
-                            <button
-                                type="submit"
-                                disabled={isLoading}
-                                className="w-full py-6 bg-accent text-white rounded-3xl font-black tracking-[0.3em] flex items-center justify-center gap-4 hover:scale-[1.02] active:scale-95 transition-all shadow-2xl shadow-accent/40 group/btn overflow-hidden relative disabled:opacity-70 disabled:scale-100"
-                            >
-                                <span className="relative z-10 flex items-center gap-3 text-xs">
+                            <button type="submit" disabled={isLoading}
+                                className="w-full py-7 bg-accent text-white rounded-3xl font-black tracking-normal text-lg flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-2xl shadow-accent/40 group/btn overflow-hidden relative disabled:opacity-70 disabled:scale-100">
+                                <span className="relative z-10 flex items-center gap-3">
                                     {isLoading ? (
-                                        <>
-                                            {t('contact.form.sending')}
-                                            <Loader2 className="w-4 h-4 animate-spin" />
-                                        </>
+                                        <>{t('contact.form.sending')}<Loader2 className="w-4 h-4 animate-spin" /></>
                                     ) : (
-                                        <>
-                                            {t('contact.form.send')}
-                                            <Send className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                                        </>
+                                        <>{t('contact.form.send')}<Send className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" /></>
                                     )}
                                 </span>
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
                             </button>
 
+                            {/* Error/success messages — AnimatePresence is fine here (UI feedback, not scroll) */}
                             <AnimatePresence>
                                 {error && (
                                     <motion.div
                                         initial={{ opacity: 0, height: 0, marginTop: 0 }}
                                         animate={{ opacity: 1, height: "auto", marginTop: 16 }}
                                         exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                                        transition={{ duration: 0.25 }}
                                         className="bg-red-500/20 border border-red-500/50 p-4 rounded-2xl flex items-center gap-3 text-red-200 text-sm font-bold overflow-hidden"
                                     >
-                                        <XCircle className="w-5 h-5 shrink-0" />
-                                        {error}
+                                        <XCircle className="w-5 h-5 shrink-0" />{error}
                                     </motion.div>
                                 )}
                                 {success && (
@@ -288,62 +237,52 @@ export function Contact() {
                                         initial={{ opacity: 0, height: 0, marginTop: 0 }}
                                         animate={{ opacity: 1, height: "auto", marginTop: 16 }}
                                         exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                                        transition={{ duration: 0.25 }}
                                         className="bg-green-500/20 border border-green-500/50 p-4 rounded-2xl flex items-center gap-3 text-green-200 text-sm font-bold overflow-hidden"
                                     >
-                                        <CheckCircle2 className="w-5 h-5 shrink-0" />
-                                        {t('contact.form.success')}
+                                        <CheckCircle2 className="w-5 h-5 shrink-0" />{t('contact.form.success')}
                                     </motion.div>
                                 )}
                             </AnimatePresence>
                         </form>
-                    </motion.div>
+                    </M>
                 </div>
 
-                {/* Footer Section */}
-                <div className="mt-32 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
+                <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
                     <p>© 2026 GEN12 SOFTWARE. {t('contact.footer.rights')}</p>
                     <div className="flex gap-10">
-                        <button
-                            onClick={() => setShowPolicies(true)}
-                            className="text-[10px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors cursor-pointer"
-                        >
+                        <button onClick={() => setShowPolicies(true)} className="text-[10px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors cursor-pointer">
                             {t('contact.footer.policies')}
                         </button>
-                        <a
-                            href="https://www.linkedin.com/company/gen12-software"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-accent transition-colors cursor-pointer"
-                        >
+                        <a href="https://www.linkedin.com/company/gen12-software" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors cursor-pointer">
                             Linkedin
                         </a>
                     </div>
                 </div>
             </div>
 
-            {/* Policies Modal (Minimalist) */}
+            {/* Policies Modal — AnimatePresence correcto: es una interacción UI, no scroll */}
             <AnimatePresence>
                 {showPolicies && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
                         className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-primary/95 backdrop-blur-xl"
                     >
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
+                            initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="bg-white p-10 md:p-16 rounded-[4rem] max-w-2xl w-full max-h-[80vh] overflow-y-auto relative"
+                            exit={{ scale: 0.95, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="bg-[#0a1929] border border-white/10 p-10 md:p-16 rounded-[4rem] max-w-2xl w-full max-h-[80vh] overflow-y-auto relative"
                         >
-                            <button
-                                onClick={() => setShowPolicies(false)}
-                                className="absolute top-8 right-8 w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all"
-                            >
+                            <button onClick={() => setShowPolicies(false)} className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-foreground hover:bg-accent hover:text-white transition-all">
                                 <CheckCircle2 className="w-6 h-6" />
                             </button>
-                            <h3 className="text-3xl font-black text-primary mb-10 tracking-tighter">Políticas de Privacidad</h3>
-                            <div className="space-y-6 text-primary/60 font-medium leading-relaxed">
+                            <h3 className="text-3xl font-black text-foreground mb-10 tracking-tighter">Políticas de Privacidad</h3>
+                            <div className="space-y-6 text-foreground/60 font-medium leading-relaxed">
                                 <p>En GEN12 SOFTWARE, la privacidad de su información es nuestra prioridad técnica.</p>
                                 <p>Los datos suministrados a través de este formulario son utilizados exclusivamente para la gestión de su consulta y el diseño preliminar de su propuesta tecnológica.</p>
                                 <p>No compartimos información con terceros ni utilizamos algoritmos de rastreo invasivos. Su proyecto es tratado bajo estrictos acuerdos de confidencialidad desde el primer contacto.</p>

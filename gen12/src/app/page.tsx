@@ -4,22 +4,25 @@ import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
+import dynamic from "next/dynamic";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Hero } from "@/components/Hero";
-import { Services } from "@/components/Services";
-import { Process } from "@/components/Process";
-import { Products } from "@/components/Products";
-import { Clients } from "@/components/Clients";
-import { Partners } from "@/components/Partners";
-import { FAQ } from "@/components/FAQ";
-import { Contact } from "@/components/Contact";
-import { About } from "@/components/About";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+
+// Lazy-load below-fold sections — JS se descarga solo cuando el navegador los necesita
+const About    = dynamic(() => import("@/components/About").then(m => ({ default: m.About })), { ssr: false });
+const Services = dynamic(() => import("@/components/Services").then(m => ({ default: m.Services })), { ssr: false });
+const Process  = dynamic(() => import("@/components/Process").then(m => ({ default: m.Process })), { ssr: false });
+const Products = dynamic(() => import("@/components/Products").then(m => ({ default: m.Products })), { ssr: false });
+const Clients  = dynamic(() => import("@/components/Clients").then(m => ({ default: m.Clients })), { ssr: false });
+const Partners = dynamic(() => import("@/components/Partners").then(m => ({ default: m.Partners })), { ssr: false });
+const FAQ      = dynamic(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })), { ssr: false });
+const Contact  = dynamic(() => import("@/components/Contact").then(m => ({ default: m.Contact })), { ssr: false });
 import { Menu, X } from "lucide-react";
 import { SCROLL_OFFSET } from "@/lib/constants";
 
 export default function Home() {
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,9 +35,9 @@ export default function Home() {
       setIsScrolled(window.scrollY > 20);
       if (window.scrollY < 100) setActiveSection('home');
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Active Section Detection
+    // Active section detection — rootMargin más generoso para secciones cortas
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -43,14 +46,24 @@ export default function Home() {
       });
     }, {
       threshold: 0,
-      rootMargin: "-45% 0px -45% 0px" // Only trigger when section is in the middle 10% of screen
+      rootMargin: "-25% 0px -65% 0px"
     });
 
-    const sections = ['nosotros', 'servicios', 'clientes', 'faq', 'contacto'];
-    sections.forEach(id => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
+    const sectionIds = ['nosotros', 'servicios', 'clientes', 'faq', 'contacto'];
+
+    // Retry hasta que los dynamic imports rendericen los elementos
+    let retries = 0;
+    const attach = () => {
+      const found = sectionIds.filter(id => {
+        const el = document.getElementById(id);
+        if (el) { observer.observe(el); return true; }
+        return false;
+      });
+      if (found.length < sectionIds.length && retries++ < 10) {
+        setTimeout(attach, 300);
+      }
+    };
+    attach();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -107,145 +120,99 @@ export default function Home() {
         isScrolled ? "py-2 md:py-4 px-6" : "py-6 md:py-10 px-0"
       )}>
         <div className={cn(
-          "mx-auto flex items-center justify-between transition-all duration-1000 ease-in-out",
+          "mx-auto relative flex items-center justify-between transition-all duration-1000 ease-in-out",
           isScrolled
-            ? "max-w-6xl p-2 md:p-3 px-6 md:px-10 rounded-2xl bg-white/60 backdrop-blur-xl border border-white/20 shadow-lg shadow-primary/5"
-            : "max-w-full px-12 md:px-24 bg-transparent border-transparent"
+            ? "max-w-5xl p-2 md:p-3 px-6 md:px-10 rounded-2xl bg-[#070e18]/85 backdrop-blur-xl border border-white/8 shadow-lg shadow-black/30"
+            : "max-w-5xl px-6 md:px-10 bg-transparent border-transparent"
         )}>
+
+          {/* Left: Icon */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-4 group cursor-pointer"
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center group cursor-pointer shrink-0"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <div className={cn(
-              "bg-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-primary/20 transition-all duration-500 overflow-hidden ring-2 ring-white/10",
-              isScrolled ? "w-9 h-9 rotate-0" : "w-12 h-12 rotate-12 group-hover:rotate-0"
+              "bg-primary rounded-2xl flex items-center justify-center shadow-2xl shadow-black/30 transition-all duration-500 overflow-hidden ring-2 ring-white/10",
+              isScrolled ? "w-8 h-8 rotate-0" : "w-10 h-10 rotate-12 group-hover:rotate-0"
             )}>
-              <img
-                src="/logos/gen12-icon.png"
-                alt="G"
-                className="w-full h-full object-cover"
-              />
+              <img src="/logos/gen12-icon.png" alt="G" className="w-full h-full object-cover" />
             </div>
-            <span className={cn(
-              "font-black tracking-tighter uppercase italic text-primary transition-all duration-500",
-              isScrolled ? "text-lg" : "text-2xl"
-            )}>
-              GEN<span className="text-accent">12</span>
-            </span>
           </motion.div>
 
-          <div className="flex items-center gap-6">
-            {/* Language Switcher - Now visible on mobile */}
+          {/* Center: Name + Nav — absolutely centered on the full navbar width */}
+          <div className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
             <button
-              onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-              aria-label={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-              className="hidden sm:flex items-center gap-2 group cursor-pointer bg-primary/5 hover:bg-primary/10 px-3 py-2 rounded-2xl transition-all"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className={cn(
+                "font-black tracking-tighter uppercase italic text-foreground transition-all duration-500 whitespace-nowrap",
+                isScrolled ? "text-sm" : "text-base"
+              )}
             >
-              <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-sm shadow-sm bg-white">
-                {language === 'es' ? '🇪🇸' : '🇺🇸'}
-              </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary/60 group-hover:text-primary">
-                {language === 'es' ? 'EN' : 'ES'}
-              </span>
+              GEN<span className="text-accent">12</span>SOFTWARE
             </button>
 
-            {/* Mobile Menu Controls */}
+            <div className="h-4 w-px bg-white/15" />
+
+            <nav className="flex items-center gap-6">
+              {[
+                { id: 'home', label: t('navbar.home') },
+                { id: 'nosotros', label: t('navbar.about') },
+                { id: 'servicios', label: t('navbar.services') },
+                { id: 'clientes', label: t('navbar.projects') },
+                { id: 'faq', label: t('navbar.faq') },
+              ].map((link) => (
+                <a
+                  key={link.id}
+                  href={link.id === 'home' ? '#' : `#${link.id}`}
+                  onClick={(e) => { e.preventDefault(); scrollToSection(link.id); }}
+                  className={cn(
+                    "text-[10px] font-black tracking-[0.3em] transition-colors whitespace-nowrap",
+                    activeSection === link.id ? "text-foreground" : "text-foreground/40 hover:text-foreground"
+                  )}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* Right: CTA + Mobile controls */}
+          <div className="flex items-center justify-end gap-3 shrink-0">
+            {/* Mobile controls */}
             <div className="flex md:hidden items-center gap-3">
               <a
                 href="#contacto"
                 onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}
                 className={cn(
-                  "bg-primary text-white px-4 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20 transition-all duration-500 whitespace-nowrap",
+                  "bg-foreground text-background px-4 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-black/20 transition-all duration-500 whitespace-nowrap",
                   isScrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
                 )}
               >
                 {t('navbar.contact')}
               </a>
-
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
                 aria-expanded={isMenuOpen}
-                className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/5 text-primary"
+                className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/8 text-foreground"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="hidden md:flex items-center gap-12"
+            {/* Desktop CTA */}
+            <a
+              href="#contacto"
+              onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}
+              className={cn(
+                "hidden md:inline-flex bg-foreground text-background rounded-xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-black/20 hover:scale-105 transition-all cursor-pointer",
+                isScrolled ? "px-5 py-2.5" : "px-6 py-3"
+              )}
             >
-              <div className="flex gap-8">
-                <a
-                  href="#"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
-                  className={cn(
-                    "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'home' ? "text-primary" : "text-primary/40 hover:text-primary"
-                  )}
-                >
-                  {t('navbar.home')}
-                </a>
-                <a
-                  href="#nosotros"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('nosotros'); }}
-                  className={cn(
-                    "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'nosotros' ? "text-primary" : "text-primary/40 hover:text-primary"
-                  )}
-                >
-                  {t('navbar.about')}
-                </a>
-                <a
-                  href="#servicios"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('servicios'); }}
-                  className={cn(
-                    "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'servicios' ? "text-primary" : "text-primary/40 hover:text-primary"
-                  )}
-                >
-                  {t('navbar.services')}
-                </a>
-                <a
-                  href="#clientes"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('clientes'); }}
-                  className={cn(
-                    "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'clientes' ? "text-primary" : "text-primary/40 hover:text-primary"
-                  )}
-                >
-                  {t('navbar.projects')}
-                </a>
-                <a
-                  href="#faq"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('faq'); }}
-                  className={cn(
-                    "text-[10px] font-black tracking-[0.3em] transition-colors",
-                    activeSection === 'faq' ? "text-primary" : "text-primary/40 hover:text-primary"
-                  )}
-                >
-                  {t('navbar.faq')}
-                </a>
-              </div>
-
-              <div className="h-6 w-px bg-primary/10" />
-
-              <a
-                href="#contacto"
-                onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}
-                className={cn(
-                  "bg-primary text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-primary/10 hover:scale-105 transition-all cursor-pointer",
-                  isScrolled ? "px-5 py-2.5" : "px-6 py-3"
-                )}
-              >
-                {t('navbar.contact')}
-              </a>
-            </motion.div>
+              {t('navbar.contact')}
+            </a>
           </div>
         </div>
 
@@ -256,7 +223,7 @@ export default function Home() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white/95 backdrop-blur-2xl border-b border-gray-100 overflow-hidden"
+              className="md:hidden bg-[#070e18]/98 backdrop-blur-2xl border-b border-white/8 overflow-hidden"
             >
               <div className="flex flex-col p-6 gap-4">
                 {[
@@ -271,29 +238,19 @@ export default function Home() {
                     onClick={() => scrollToSection(link.id)}
                     className={cn(
                       "text-left text-xs font-black tracking-widest uppercase py-3 border-b border-gray-50 transition-colors",
-                      activeSection === link.id ? "text-accent" : "text-primary/60"
+                      activeSection === link.id ? "text-accent" : "text-foreground/60"
                     )}
                   >
                     {link.label}
                   </button>
                 ))}
 
-                <div className="h-px bg-gray-100 my-2" />
+                <div className="h-px bg-white/8 my-2" />
 
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-                    className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-xl"
-                  >
-                    <span>{language === 'es' ? '🇪🇸' : '🇺🇸'}</span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-primary">
-                      {language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-                    </span>
-                  </button>
-
+                <div className="flex items-center justify-end">
                   <button
                     onClick={() => scrollToSection('contacto')}
-                    className="bg-primary text-white px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20"
+                    className="bg-foreground text-background px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-black/20"
                   >
                     {t('navbar.contact')}
                   </button>

@@ -1,17 +1,15 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "framer-motion";
 import { ShoppingBag, Layout, Building2, LayoutPanelLeft, Cpu } from "lucide-react";
 import { ProductCard } from "./ProductCard";
 import { ProductItem } from "@/types";
-
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { M } from "./ui/M";
 
 export function Products() {
-    const { t, tData } = useLanguage();
-    const isMobile = useIsMobile();
-    const skipAnimations = isMobile === true;
+    const { t } = useLanguage();
+    const isMobile = useIsMobile() === true;
 
     const productTypes: ProductItem[] = [
         {
@@ -63,57 +61,51 @@ export function Products() {
 
     if (!productTypes || productTypes.length === 0) {
         return (
-            <section className="py-20 md:py-32 px-6 bg-white text-center">
-                <p className="text-primary/40 font-black uppercase tracking-widest italic">Actualmente no hay proyectos destacados.</p>
+            <section className="py-20 md:py-32 px-6 text-center">
+                <p className="text-foreground/40 font-black uppercase tracking-widest italic">Actualmente no hay proyectos destacados.</p>
             </section>
         );
     }
 
     return (
-        <section className="py-20 md:py-40 px-6 bg-primary relative overflow-hidden">
-            {/* Dark mode background accents */}
+        <section className="py-10 md:py-20 px-6 bg-primary relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-accent/10 blur-[150px] rounded-full -mr-[25%] -mt-[10%]" />
             <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-accent/5 blur-[120px] rounded-full -ml-[20%] -mb-[10%]" />
 
             <div className="max-w-7xl mx-auto relative z-10">
-                <div className="max-w-4xl mb-24 text-center md:text-left">
-                    <motion.span
-                        initial={skipAnimations ? false : { opacity: 0, x: -30 }}
+                <div className="max-w-4xl mb-12 text-center md:text-left">
+                    <M tag="span" mobile={isMobile}
+                        initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-6 block"
                     >
                         {t('products.badge')}
-                    </motion.span>
-                    <motion.h2
-                        initial={skipAnimations ? false : { opacity: 0, y: 30 }}
+                    </M>
+                    <M tag="h2" mobile={isMobile}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.35, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
                         className="text-4xl md:text-8xl font-black text-white tracking-tighter leading-[0.95] md:mb-4"
                     >
                         {t('products.title')} <br />
-                        <span className="text-accent italic font-serif font-normal">{t('products.titleAccent')}</span>
-                    </motion.h2>
+                        <span className="text-accent italic">{t('products.titleAccent')}</span>
+                    </M>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-6 gap-10">
-                    {/* Clean Column Layout */}
                     {productTypes.map((item, index) => (
-                        <ProductCard
-                            key={item.id}
-                            item={item}
-                            index={index}
-                        />
+                        <ProductCard key={item.id} item={item} index={index} />
                     ))}
 
-                    {/* Final AI Card (Full width, updated style for dark) */}
-                    <motion.div
-                        initial={skipAnimations ? false : { opacity: 0, y: 40 }}
+                    {/* AI Card */}
+                    <M mobile={isMobile}
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className="md:col-span-6 p-10 md:p-24 rounded-[3.5rem] bg-white/5 border border-white/10 flex flex-col lg:flex-row items-center gap-16 transition-all duration-700 relative overflow-hidden group hover:bg-white/8 hover:border-accent/30 translate-z-0"
                     >
                         <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-accent/10 to-transparent flex items-center justify-center opacity-50">
@@ -137,7 +129,7 @@ export function Products() {
                         >
                             {t('products.ai.cta')}
                         </a>
-                    </motion.div>
+                    </M>
                 </div>
             </div>
         </section>

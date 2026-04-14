@@ -1,11 +1,10 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { ProductItem } from "@/types";
-import Image from "next/image";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { M } from "./ui/M";
 
 interface ProductCardProps {
     item: ProductItem;
@@ -13,20 +12,17 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ item, index }: ProductCardProps) {
-    const { t, tData } = useLanguage();
-    const isMobile = useIsMobile();
-    const skipAnimations = isMobile === true;
+    const { tData } = useLanguage();
+    const isMobile = useIsMobile() === true;
 
-    // Get feature list from translated data instead of splitting hardcoded string
-    // 'products.items.[id].features' returns the list of features for that product
     const features = tData<string[]>(`products.items.${item.id.split('-')[0]}.features`) || [];
 
     return (
-        <motion.div
-            initial={skipAnimations ? false : { opacity: 0, y: 30 }}
+        <M mobile={isMobile}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={skipAnimations ? { duration: 0 } : { duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.35, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-2 bg-white/3 rounded-[2.5rem] border border-white/10 flex flex-col h-full relative overflow-hidden group hover:shadow-2xl hover:shadow-accent/10 transition-all duration-700 hover:-translate-y-2 hover:bg-white/8 translate-z-0"
         >
             {/* Background Index Number */}
@@ -51,7 +47,6 @@ export function ProductCard({ item, index }: ProductCardProps) {
                     {item.desc}
                 </p>
 
-                {/* Features List (localized) */}
                 <ul className="space-y-3 mb-10">
                     {features.map((feature, fIdx) => (
                         <li key={fIdx} className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-white/70 transition-colors">
@@ -61,7 +56,6 @@ export function ProductCard({ item, index }: ProductCardProps) {
                     ))}
                 </ul>
 
-                {/* CTA Button (updated for dark background) */}
                 <button
                     onClick={() => {
                         const el = document.getElementById('contacto');
@@ -74,8 +68,7 @@ export function ProductCard({ item, index }: ProductCardProps) {
                 </button>
             </div>
 
-            {/* Subtle bottom accent line */}
             <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-accent transition-all duration-700 group-hover:w-full" />
-        </motion.div>
+        </M>
     );
 }

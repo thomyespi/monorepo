@@ -1,67 +1,36 @@
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function AnimatedBackground({ className }: { className?: string }) {
     return (
-        <div className={cn("fixed inset-0 -z-50 overflow-hidden bg-white", className)}>
-            {/* White Base Layer */}
-            <div className="absolute inset-0 bg-white" />
+        <div className={cn("fixed inset-0 -z-50 overflow-hidden bg-[#070e18]", className)}>
+            {/* Dark Base Layer */}
+            <div className="absolute inset-0 bg-[#070e18]" />
 
-            {/* 
-                CRITICAL IOS FIX: 
-                Replaced 'filter: blur()' with native CSS Radial Gradients.
-                This prevents WebKit from crashing/flashing white on mobile.
-                The visual effect is similar (soft diffuse light) but 0% GPU cost for filtering.
-            */}
-
-            {/* Soft Midnight Blue Gradient - Top Left */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                    duration: 25, // Much slower
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-                style={{
-                    background: 'radial-gradient(circle at center, rgba(26, 54, 93, 0.08) 0%, transparent 70%)',
-                    willChange: "transform, opacity"
-                }}
-                className="absolute -top-[20%] -left-[20%] w-screen h-screen rounded-full translate-z-0 hidden md:block pointer-events-none"
-            />
-
-            {/* Soft Bronze/Accent Gradient - Center Right */}
-            <motion.div
-                animate={{
-                    scale: [1, 1.05, 1],
-                    opacity: [0.2, 0.4, 0.2],
-                }}
-                transition={{
-                    duration: 35, // Much slower
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 2
-                }}
-                style={{
-                    background: 'radial-gradient(circle at center, rgba(166, 124, 82, 0.05) 0%, transparent 70%)',
-                    willChange: "transform, opacity"
-                }}
-                className="absolute top-[20%] -right-[30%] w-screen h-screen rounded-full translate-z-0 hidden md:block pointer-events-none"
-            />
-
-            {/* Fine Grid Pattern - Non-animated, very low cost */}
+            {/* Static Radial Gradients — zero JS cost, GPU-composited */}
             <div
-                className="absolute inset-0 opacity-[0.01] pointer-events-none"
+                className="absolute -top-[20%] -left-[20%] w-screen h-screen rounded-full pointer-events-none bg-orb-blue"
                 style={{
-                    backgroundImage: `radial-gradient(circle at 1.5px 1.5px, var(--primary) 1px, transparent 0)`,
-                    backgroundSize: '80px 80px' // Larger grid = fewer elements to calculate
+                    background: 'radial-gradient(circle at center, rgba(30, 80, 180, 0.14) 0%, transparent 65%)',
+                }}
+            />
+            <div
+                className="absolute top-[20%] -right-[30%] w-screen h-screen rounded-full pointer-events-none"
+                style={{
+                    background: 'radial-gradient(circle at center, rgba(212, 175, 55, 0.07) 0%, transparent 65%)',
                 }}
             />
 
-            {/* Vignette/Overlay - Non-animated */}
-            <div className="absolute inset-0 bg-linear-to-b from-white/70 via-transparent to-white/70 pointer-events-none" />
+            {/* Fine Grid Pattern */}
+            <div
+                className="absolute inset-0 opacity-[0.025] pointer-events-none"
+                style={{
+                    backgroundImage: `radial-gradient(circle at 1.5px 1.5px, rgba(220,232,245,0.8) 1px, transparent 0)`,
+                    backgroundSize: '80px 80px',
+                }}
+            />
+
+            {/* Vignette */}
+            <div className="absolute inset-0 bg-linear-to-b from-[#070e18]/90 via-transparent to-[#070e18]/90 pointer-events-none" />
         </div>
     );
 }

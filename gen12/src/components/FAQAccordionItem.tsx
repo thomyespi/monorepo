@@ -13,12 +13,12 @@ interface FAQAccordionItemProps {
 
 export function FAQAccordionItem({ item, isOpen, onToggle }: FAQAccordionItemProps) {
     return (
-        <motion.div
+        <div
             className={cn(
                 "group rounded-4xl border transition-all duration-700 ease-in-out",
                 isOpen
-                    ? "bg-primary border-primary shadow-2xl shadow-primary/20"
-                    : "bg-white border-gray-100 hover:border-primary/20"
+                    ? "bg-primary border-primary shadow-2xl shadow-black/40"
+                    : "bg-white/5 border-white/8 hover:border-accent/20"
             )}
         >
             <button
@@ -27,13 +27,13 @@ export function FAQAccordionItem({ item, isOpen, onToggle }: FAQAccordionItemPro
             >
                 <span className={cn(
                     "text-xl md:text-2xl font-black tracking-tight transition-colors",
-                    isOpen ? "text-white" : "text-primary"
+                    isOpen ? "text-white" : "text-foreground"
                 )}>
                     {item.q}
                 </span>
                 <div className={cn(
                     "w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all",
-                    isOpen ? "bg-accent text-white" : "bg-primary/5 text-primary"
+                    isOpen ? "bg-accent text-white" : "bg-white/8 text-foreground"
                 )}>
                     {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                 </div>
@@ -57,6 +57,6 @@ export function FAQAccordionItem({ item, isOpen, onToggle }: FAQAccordionItemPro
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.div>
+        </div>
     );
 }

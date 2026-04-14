@@ -1,10 +1,11 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { ShieldCheck, Target, Users, Zap } from "lucide-react";
+import { Target, Zap, Users } from "lucide-react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useRef, useState, useEffect } from "react";
+import { M } from "./ui/M";
 
 function AnimatedValue({ value }: { value: string }) {
     const ref = useRef(null);
@@ -24,7 +25,7 @@ function AnimatedValue({ value }: { value: string }) {
         const timer = setInterval(() => {
             frame++;
             const progress = frame / totalFrames;
-            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
             setDisplay(`${Math.round(eased * target)}${suffix}`);
             if (frame >= totalFrames) clearInterval(timer);
         }, 1200 / totalFrames);
@@ -36,115 +37,77 @@ function AnimatedValue({ value }: { value: string }) {
 
 export function About() {
     const { t } = useLanguage();
-    const isMobile = useIsMobile();
-    const skipAnimations = isMobile === true;
+    const isMobile = useIsMobile() === true;
 
     const stats = [
         { label: t('about.stats.projects'), value: "100%", icon: Target },
         { label: t('about.stats.experience'), value: "24/7", icon: Zap },
-        { label: t('about.stats.clientRating'), value: "99%", icon: Users },
+        { label: t('about.stats.clientRating'), value: "20+", icon: Users },
     ];
 
     return (
-        <section id="nosotros" className="py-12 md:py-24 px-6 relative overflow-hidden bg-gray-50/50">
-            {/* Abstract Background Element */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-accent/5 blur-[120px] rounded-full -ml-48" />
+        <section id="nosotros" className="py-8 md:py-14 px-6 relative overflow-hidden bg-[#0a1625]/40">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
 
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 md:gap-24 items-center">
-                {/* Left Side: Visual/Stats */}
-                <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4 md:gap-6 order-2 lg:order-1">
-                    <motion.div
-                        initial={skipAnimations ? false : { opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="col-span-2 bg-primary p-8 md:p-12 rounded-[2.5rem] text-white relative overflow-hidden group"
-                    >
-                        <div className="absolute top-6 right-6 md:top-8 md:right-8 group-hover:scale-110 transition-transform duration-700 opacity-20 md:opacity-100 will-change-[opacity,transform] rounded-full overflow-hidden">
-                            <img
-                                src="/logos/gen12-icon.png"
-                                alt="GEN12 Logo"
-                                className="w-16 h-16 md:w-32 md:h-32 object-cover mix-blend-screen filter-[contrast(2)_brightness(1.1)] scale-110 hardware-accelerated"
-                            />
-                        </div>
-                        <h3 className="text-4xl md:text-6xl font-black mb-4">GEN12</h3>
-                        <p className="text-white/60 text-lg font-medium leading-relaxed max-w-sm">
-                            {t('about.description1')}
-                        </p>
-                    </motion.div>
-
-                    {stats.slice(0, 2).map((stat, i) => (
-                        <motion.div
+                {/* Left: Stats */}
+                <div className="w-full lg:w-2/5 grid grid-cols-1 gap-4 order-2 lg:order-1">
+                    {stats.map((stat, i) => (
+                        <M
                             key={i}
-                            initial={skipAnimations ? false : { opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            mobile={isMobile}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={skipAnimations ? { duration: 0 } : { duration: 1, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="bg-accent/5 border border-accent/10 p-8 rounded-4xl flex flex-col justify-between hover:bg-accent/10 transition-colors duration-700"
+                            transition={{ duration: 0.35, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                            className="flex items-center gap-6 p-6 bg-white/4 border border-white/8 rounded-2xl hover:bg-white/6 hover:border-accent/20 transition-all duration-500"
                         >
-                            <stat.icon className="w-8 h-8 text-accent mb-6" />
+                            <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/15 flex items-center justify-center shrink-0">
+                                <stat.icon className="w-6 h-6 text-accent" />
+                            </div>
                             <div>
-                                <div className="text-3xl font-black text-primary mb-1">
-                                    {skipAnimations ? stat.value : <AnimatedValue value={stat.value} />}
+                                <div className="text-3xl font-black text-foreground leading-none mb-1">
+                                    {isMobile ? stat.value : <AnimatedValue value={stat.value} />}
                                 </div>
-                                <div className="text-[10px] font-black uppercase tracking-wider text-primary/40 leading-tight">
+                                <div className="text-[10px] font-black uppercase tracking-wider text-foreground/40">
                                     {stat.label}
                                 </div>
                             </div>
-                        </motion.div>
+                        </M>
                     ))}
                 </div>
 
-                {/* Right Side: Content */}
-                <div className="w-full lg:w-1/2 order-1 lg:order-2">
-                    <motion.span
-                        initial={skipAnimations ? false : { opacity: 0, x: -30 }}
+                {/* Right: Content */}
+                <div className="w-full lg:w-3/5 order-1 lg:order-2">
+                    <M tag="span" mobile={isMobile}
+                        initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                         className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-6 block"
                     >
                         {t('about.badge')}
-                    </motion.span>
+                    </M>
 
-                    <motion.h2
-                        initial={skipAnimations ? false : { opacity: 0, y: 30 }}
+                    <M tag="h2" mobile={isMobile}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-4xl md:text-6xl font-black text-primary tracking-tighter leading-[0.85] mb-8"
+                        transition={{ duration: 0.45, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-4xl md:text-6xl font-black text-foreground tracking-tighter leading-[0.85] mb-8"
                     >
                         {t('about.title')} <br />
                         <span className="text-accent italic">{t('about.titleAccent')}</span>
-                    </motion.h2>
+                    </M>
 
-                    <motion.p
-                        initial={skipAnimations ? false : { opacity: 0, y: 30 }}
+                    <M tag="p" mobile={isMobile}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-lg md:text-xl text-primary/60 font-medium leading-relaxed mb-10"
+                        transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-lg md:text-xl text-foreground/60 font-medium leading-relaxed"
                     >
                         {t('about.description2')}
-                    </motion.p>
-
-                    <motion.div
-                        initial={skipAnimations ? false : { opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={skipAnimations ? { duration: 0 } : { duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-col gap-6"
-                    >
-                        <div className="flex items-center gap-6 p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-700">
-                            <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
-                                <ShieldCheck className="w-6 h-6" />
-                            </div>
-                            <div>
-                                <span className="block text-sm font-black text-primary tracking-widest mb-1">Elite Infrastructure</span>
-                                <span className="text-primary/40 text-sm font-medium">Sistemas robustos diseñados para fallar cero veces.</span>
-                            </div>
-                        </div>
-                    </motion.div>
+                    </M>
                 </div>
             </div>
         </section>
