@@ -46,8 +46,8 @@ export function About() {
     ];
 
     return (
-        <section id="nosotros" className="py-8 md:py-14 px-6 relative overflow-hidden bg-[#0a1625]/40">
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
+        <section id="nosotros" className="py-8 md:py-14 relative overflow-hidden">
+            <div className="max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)] flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
 
                 {/* Left: Stats */}
                 <div className="w-full lg:w-2/5 grid grid-cols-1 gap-4 order-2 lg:order-1">
@@ -59,16 +59,17 @@ export function About() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.35, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex items-center gap-6 p-6 bg-white/4 border border-white/8 rounded-2xl hover:bg-white/6 hover:border-accent/20 transition-all duration-500"
+                            className="flex items-center gap-6 p-6 rounded-2xl transition-all duration-500 hover:border-accent/30"
+                            style={{ background: "var(--elev)", border: "1px solid var(--rule)" }}
                         >
                             <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/15 flex items-center justify-center shrink-0">
                                 <stat.icon className="w-6 h-6 text-accent" />
                             </div>
                             <div>
-                                <div className="text-3xl font-black text-foreground leading-none mb-1">
+                                <div className="text-3xl font-black text-ink leading-none mb-1">
                                     {isMobile ? stat.value : <AnimatedValue value={stat.value} />}
                                 </div>
-                                <div className="text-[10px] font-black uppercase tracking-wider text-foreground/40">
+                                <div className="font-mono text-[11px] text-ink-3">
                                     {stat.label}
                                 </div>
                             </div>
@@ -83,9 +84,9 @@ export function About() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-6 block"
+                        className="font-mono text-[12px] text-accent mb-6 block"
                     >
-                        {t('about.badge')}
+                        // sobre nosotros
                     </M>
 
                     <M tag="h2" mobile={isMobile}
@@ -93,10 +94,10 @@ export function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.45, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-4xl md:text-6xl font-black text-foreground tracking-tighter leading-[0.85] mb-8"
+                        className="text-4xl md:text-6xl font-black text-ink tracking-tighter leading-[0.85] mb-8"
                     >
-                        {t('about.title')} <br />
-                        <span className="text-accent italic">{t('about.titleAccent')}</span>
+                        Ingeniería Con{" "}
+                        <em className="not-italic font-light text-accent">Propósito.</em>
                     </M>
 
                     <M tag="p" mobile={isMobile}
@@ -104,7 +105,7 @@ export function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-lg md:text-xl text-foreground/60 font-medium leading-relaxed"
+                        className="text-lg md:text-xl text-ink-2 font-medium leading-relaxed"
                     >
                         {t('about.description2')}
                     </M>

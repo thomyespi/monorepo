@@ -1,85 +1,259 @@
 "use client";
 
-import { useLanguage } from "@/context/LanguageContext";
-import { ArrowRight, ChevronRight, Zap } from "lucide-react";
-import { useIsMobile } from "@/hooks/useIsMobile";
 import { SCROLL_OFFSET } from "@/lib/constants";
-import { M } from "./ui/M";
+
+const MARQUEE_ITEMS = [
+    "Desarrollo Full-Stack",
+    "Inteligencia Artificial",
+    "E-Commerce",
+    "Apps a medida",
+    "Automatizaciones",
+    "UX / UI",
+    "Landing pages",
+    "Integraciones",
+];
 
 export function Hero() {
-    const { t } = useLanguage();
-    const isMobile = useIsMobile() === true;
+    const scrollTo = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET, behavior: "smooth" });
+    };
 
     return (
-        <section className="relative min-h-[85dvh] flex flex-col items-center justify-center pt-20 pb-16 md:pt-28 md:pb-24 px-6">
-            <M mobile={isMobile}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/25 mb-6"
+        <section id="inicio" className="max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)] pt-[clamp(40px,6vw,80px)] pb-10">
+
+            {/* Breadcrumb meta */}
+            <div className="flex items-center gap-3.5 font-mono text-[12px] text-ink-3 mb-10">
+                <span className="text-accent font-semibold">01</span>
+                <span className="text-ink-2">~/gen12 — desarrollo & IA</span>
+            </div>
+
+            {/* 2-col grid */}
+            <div
+                className="grid items-start gap-[clamp(32px,5vw,72px)] grid-cols-1 lg:grid-cols-[1.15fr_1fr]"
             >
-                <Zap className="w-4 h-4 text-accent fill-accent" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
-                    {t('hero.badge')}
-                </span>
-            </M>
-
-            <div className="max-w-5xl mx-auto text-center">
-                <M tag="h1" mobile={isMobile}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-3xl sm:text-5xl lg:text-6xl font-black text-foreground tracking-tight leading-none mb-6"
-                >
-                    {t('hero.title')} <br />
-                    <span className="text-accent italic">{t('hero.titleAccent')}</span> <br />
-                    {t('hero.titleSuffix')}
-                </M>
-
-                <M tag="p" mobile={isMobile}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-2xl mx-auto text-base md:text-xl text-foreground/60 font-medium leading-relaxed mb-10"
-                >
-                    {t('hero.description')}
-                </M>
-
-                <M mobile={isMobile}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-6"
-                >
-                    <a
-                        href="#contacto"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            const el = document.getElementById('contacto');
-                            if (el) window.scrollTo({ top: el.offsetTop - SCROLL_OFFSET, behavior: 'smooth' });
-                        }}
-                        className="group relative px-10 py-5 bg-accent text-primary rounded-2xl font-black tracking-widest overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-accent/25"
+                {/* ── Left: copy ── */}
+                <div className="min-w-0">
+                    <h1
+                        className="m-0 font-display font-extrabold text-ink leading-[0.96] tracking-[-0.045em]"
+                        style={{ fontSize: "clamp(48px, 8vw, 104px)" }}
                     >
-                        <span className="relative z-10 flex items-center gap-3">
-                            {t('hero.ctaMain')}
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        Construimos software{" "}
+                        <em
+                            className="not-italic font-light text-accent"
+                            style={{ letterSpacing: "-0.04em" }}
+                        >
+                            que&nbsp;funciona.
+                        </em>
+                    </h1>
+
+                    <p
+                        className="mt-7 max-w-[52ch] text-ink-2 leading-relaxed"
+                        style={{ fontSize: "clamp(15px, 1.3vw, 18px)" }}
+                    >
+                        Un equipo de developers que convierte ideas en producto real.
+                        Web, e-commerce, apps e IA —{" "}
+                        <span className="text-ink font-medium">rápido, limpio y sin deuda técnica.</span>
+                    </p>
+
+                    {/* CTAs */}
+                    <div className="flex flex-wrap gap-3 mt-8">
+                        <a
+                            href="#contacto"
+                            onClick={(e) => { e.preventDefault(); scrollTo("contacto"); }}
+                            className="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-accent font-display font-semibold text-[15px] tracking-[-0.01em] transition-all hover:-translate-y-px"
+                            style={{
+                                color: "#0A0B0F",
+                                boxShadow: "0 6px 30px -10px color-mix(in srgb, var(--accent) 60%, transparent)",
+                            }}
+                        >
+                            Arrancá tu proyecto
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M5 12h14M13 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                        <a
+                            href="#servicios"
+                            onClick={(e) => { e.preventDefault(); scrollTo("servicios"); }}
+                            className="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full font-display font-semibold text-[15px] tracking-[-0.01em] text-ink transition-all hover:text-accent"
+                            style={{ border: "1px solid var(--rule-2)" }}
+                        >
+                            <span className="font-mono">cat ./servicios</span>
+                        </a>
+                    </div>
+
+                    {/* Stats */}
+                    <dl
+                        className="mt-14 grid grid-cols-3 border-t"
+                        style={{ borderColor: "var(--rule)" }}
+                    >
+                        {[
+                            { dt: "proyectos entregados", dd: "20", suffix: "+", type: "plus" },
+                            { dt: "stack dominado", dd: "14", suffix: "+", type: "plus" },
+                            { dt: "respuesta inicial", dd: "rápida", suffix: "", type: "unit" },
+                        ].map(({ dt, dd, suffix, type }, i) => (
+                            <div
+                                key={dt}
+                                className="py-5"
+                                style={{
+                                    paddingRight: i < 2 ? "20px" : "0",
+                                    borderRight: i < 2 ? "1px solid var(--rule)" : "none",
+                                }}
+                            >
+                                <dt className="font-mono text-ink-3 text-[11px] lowercase mb-1.5">{dt}</dt>
+                                <dd className="m-0 font-display font-bold text-ink leading-none" style={{ fontSize: "clamp(30px, 3.5vw, 44px)", letterSpacing: "-0.03em" }}>
+                                    {dd}
+                                    {type === "plus" && <span className="text-accent font-normal">{suffix}</span>}
+                                    {type === "unit" && <span className="text-ink-3 ml-0.5" style={{ fontSize: "0.6em" }}>{suffix}</span>}
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
+                </div>
+
+                {/* ── Right: terminal + mock ── */}
+                <aside className="hidden lg:flex flex-col gap-4 min-w-0">
+
+                    {/* Terminal */}
+                    <div
+                        className="overflow-hidden rounded-[14px]"
+                        style={{ background: "#0B0D12", border: "1px solid var(--rule-2)", boxShadow: "0 30px 80px -40px rgba(0,0,0,0.8)" }}
+                    >
+                        <div
+                            className="flex items-center gap-2 px-3.5 py-2.5"
+                            style={{ borderBottom: "1px solid var(--rule)", background: "var(--paper)" }}
+                        >
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                            <span className="ml-2.5 font-mono text-ink-3 text-[12px]">gen12@studio — zsh</span>
+                        </div>
+                        <pre className="m-0 px-[18px] py-[18px] pb-[22px] font-mono text-[12.5px] leading-[1.7] text-ink-2 whitespace-pre-wrap wrap-break-word">
+                            <span className="text-accent">➜</span>{" "}
+                            <span className="text-ink-2">~/gen12</span>{" "}
+                            <span className="text-accent italic">main</span>{" "}
+                            {"npm run build\n"}
+                            <span className="text-ink-3">{"› "}</span>
+                            <span className="text-green-400">{"✓"}</span>
+                            {" compiled in "}
+                            <span className="text-accent">1.2s</span>
+                            {"\n"}
+                            <span className="text-ink-3">{"› "}</span>
+                            <span className="text-green-400">{"✓"}</span>
+                            {" "}
+                            <span className="text-accent">0</span>
+                            {" errors / "}
+                            <span className="text-accent">0</span>
+                            {" warnings\n"}
+                            <span className="text-ink-3">{"› "}</span>
+                            {"deploying to production…\n"}
+                            <span className="text-green-400">▲</span>
+                            {"  "}
+                            <span className="underline" style={{ textDecorationColor: "var(--accent-dim)" }}>
+                                https://tu-producto.com
+                            </span>
+                            {"\n"}
+                            <span className="text-accent">➜</span>{" "}
+                            <span className="text-ink-2">~/gen12</span>{" "}
+                            <span className="text-accent italic">main</span>{" "}
+                            <span className="text-accent animate-blink">█</span>
+                        </pre>
+                    </div>
+
+                    {/* Dashboard mock */}
+                    <div
+                        className="rounded-[14px] overflow-hidden"
+                        style={{
+                            border: "1px solid var(--rule)",
+                            background: "linear-gradient(180deg, rgba(232,234,240,0.015), rgba(232,234,240,0))",
+                        }}
+                        aria-label="producto de ejemplo"
+                    >
+                        <div
+                            className="flex justify-between items-center px-3.5 py-2.5 text-ink-3 text-[11px]"
+                            style={{ borderBottom: "1px solid var(--rule)", background: "rgba(232,234,240,0.02)" }}
+                        >
+                            <span className="font-mono">app.cliente.com</span>
+                            <span className="font-mono inline-flex items-center gap-1.5 text-accent">
+                                <i className="not-italic w-1.5 h-1.5 rounded-full bg-accent" />
+                                live
+                            </span>
+                        </div>
+                        <div className="p-4 grid gap-3.5">
+                            <div className="grid grid-cols-[1fr_auto] gap-4 items-end">
+                                <div
+                                    className="h-10 rounded-md"
+                                    style={{ background: "linear-gradient(90deg, rgba(232,234,240,0.06), rgba(232,234,240,0.02))" }}
+                                />
+                                <div className="text-right grid gap-0.5">
+                                    <span className="font-mono text-ink-3 text-[10px]">MRR</span>
+                                    <strong className="text-[28px] font-bold tracking-[-0.02em] text-ink leading-none">
+                                        +38<span className="text-accent text-[20px] font-normal ml-px">%</span>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div className="h-[70px]">
+                                <svg viewBox="0 0 200 70" preserveAspectRatio="none" className="w-full h-full">
+                                    <defs>
+                                        <linearGradient id="hero-chart-grad" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0" stopColor="var(--accent)" stopOpacity=".35" />
+                                            <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <path
+                                        d="M0,55 L20,50 L40,52 L60,42 L80,44 L100,30 L120,34 L140,22 L160,25 L180,14 L200,10 L200,70 L0,70 Z"
+                                        fill="url(#hero-chart-grad)"
+                                    />
+                                    <path
+                                        d="M0,55 L20,50 L40,52 L60,42 L80,44 L100,30 L120,34 L140,22 L160,25 L180,14 L200,10"
+                                        fill="none"
+                                        stroke="var(--accent)"
+                                        strokeWidth="1.5"
+                                    />
+                                </svg>
+                            </div>
+                            <div
+                                className="grid grid-cols-3 gap-2.5 pt-3"
+                                style={{ borderTop: "1px dashed var(--rule)" }}
+                            >
+                                {[
+                                    { label: "uptime", value: "99.98%" },
+                                    { label: "p95", value: "142ms" },
+                                    { label: "tests", value: "284 ✓" },
+                                ].map(({ label, value }) => (
+                                    <div key={label} className="grid gap-0.5">
+                                        <span className="font-mono text-ink-3 text-[10px]">{label}</span>
+                                        <b className="text-[13px] tracking-[-0.01em] font-semibold text-ink">{value}</b>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            {/* Marquee */}
+            <div
+                className="overflow-hidden mt-20 py-[18px]"
+                style={{
+                    borderTop: "1px solid var(--rule)",
+                    borderBottom: "1px solid var(--rule)",
+                    maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                    WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                }}
+                aria-hidden="true"
+            >
+                <div
+                    className="flex gap-7 whitespace-nowrap font-display italic font-normal text-ink-3 tracking-[-0.02em] animate-marquee"
+                    style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+                >
+                    {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
+                        <span key={i} className="inline-flex items-center gap-7">
+                            {item}
+                            <span className="text-accent not-italic">✦</span>
                         </span>
-                        <div className="absolute inset-0 bg-white/15 translate-y-full group-hover:translate-y-0 transition-transform duration-400" />
-                    </a>
-
-                    <a
-                        href="#clientes"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            const el = document.getElementById('clientes');
-                            if (el) window.scrollTo({ top: el.offsetTop - SCROLL_OFFSET, behavior: 'smooth' });
-                        }}
-                        className="flex items-center gap-3 px-10 py-5 rounded-2xl font-black tracking-widest text-foreground/70 border border-white/10 hover:border-white/20 hover:text-foreground transition-all cursor-pointer"
-                    >
-                        {t('hero.ctaSecondary')}
-                        <ChevronRight className="w-5 h-5" />
-                    </a>
-                </M>
+                    ))}
+                </div>
             </div>
         </section>
     );

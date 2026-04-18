@@ -21,7 +21,7 @@ export function useContactForm() {
         setSuccess(false);
 
         // Custom Validation
-        if (!name || !email || !phone || !service || !message) {
+        if (!name || !email || !message) {
             setError(t('contact.form.errorMandatory') || "Por favor, completa todos los campos.");
             setIsLoading(false);
             return;

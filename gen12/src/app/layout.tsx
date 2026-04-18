@@ -1,55 +1,63 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gen12-software.com"), // Placeholder for production URL
-  title: "GEN12 Software | Innovación en Desarrollo",
-  description: "Desarrollo de software premium, IA y soluciones tecnológicas escalables.",
+  metadataBase: new URL("https://gen12-software.com"),
+  title: "Gen12Software — Ingeniería con propósito",
+  description: "Construimos software que funciona. Web, e-commerce, apps e IA — rápido, limpio y sin deuda técnica.",
   openGraph: {
-    title: "GEN12 Software | Innovación en Desarrollo",
-    description: "Desarrollo de software premium, IA y soluciones tecnológicas escalables.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "GEN12 Software Preview",
-      },
-    ],
+    title: "Gen12Software",
+    description: "Construimos software que funciona.",
+    locale: "es_AR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "GEN12 Software",
-    description: "Desarrollo de software premium e IA.",
+    title: "Gen12Software",
+    description: "Construimos software que funciona.",
     images: ["/og-image.png"],
   },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
-    apple: "/favicon.ico", // Usually you'd want a PNG here, but .ico works in modern Safaris or as fallback
+    apple: "/favicon.ico",
   },
 };
 
-import { LanguageProvider } from "@/context/LanguageContext";
-
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} antialiased`} suppressHydrationWarning>
-      <body>
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+    <html
+      lang="es"
+      className={`${geistSans.variable} ${jetbrains.variable} ${instrument.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="antialiased">
+        <div className="grid-bg" aria-hidden="true" />
+        <div className="noise" aria-hidden="true" />
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

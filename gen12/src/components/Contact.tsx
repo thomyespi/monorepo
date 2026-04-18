@@ -1,296 +1,248 @@
 "use client";
 
-import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle2, XCircle, Loader2, Mail, Instagram, Linkedin } from "lucide-react";
+import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { useContactForm } from "@/hooks/useContactForm";
-import { useIsMobile } from "@/hooks/useIsMobile";
-import { M } from "./ui/M";
+
+const WA_ICON = (
+  <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor" aria-hidden="true">
+    <path d="M19.1 17.5c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 2 3 4.8 4.2 1.7.7 2.4.8 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3zM16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8c1.8 1 3.9 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2.1 0-4-.6-5.7-1.6l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16c0-5.8 4.8-10.6 10.6-10.6S26.6 10.2 26.6 16 21.8 26.6 16 26.6z" />
+  </svg>
+);
 
 export function Contact() {
-    const { t } = useLanguage();
-    const [showPolicies, setShowPolicies] = useState(false);
-    const isMobile = useIsMobile() === true;
+  const {
+    name, setName,
+    email, setEmail,
+    message, setMessage,
+    handleSubmit,
+    isLoading,
+    error,
+    success,
+    attemptedSubmit,
+  } = useContactForm();
 
-    const {
-        name, setName,
-        email, setEmail,
-        phone, setPhone,
-        service, setService,
-        message, setMessage,
-        handleSubmit,
-        isLoading,
-        error,
-        success,
-        attemptedSubmit
-    } = useContactForm();
+  const [showPolicies, setShowPolicies] = useState(false);
 
-    return (
-        <section id="contacto" className="py-10 md:py-16 px-6 bg-primary relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <div
-                    className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full translate-z-0"
-                    style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)' }}
-                />
-                <div
-                    className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full translate-z-0"
-                    style={{ background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)' }}
-                />
-            </div>
+  const inputClass = (invalid: boolean) =>
+    `w-full bg-transparent border-0 border-b text-ink font-sans text-[16px] py-2 px-0 outline-none resize-vertical transition-colors duration-200 placeholder:text-ink-4 focus:border-accent ${invalid ? "border-red-500/70" : "border-[var(--rule-2)]"}`;
 
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 items-center">
-                    <div className="lg:col-span-5">
-                        <M tag="span" mobile={isMobile}
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-6 block"
-                        >
-                            {t('contact.badge')}
-                        </M>
-                        <M tag="h2" mobile={isMobile}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.35, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.85] mb-8"
-                        >
-                            {t('contact.title')} <br />
-                            <span className="text-accent italic">{t('contact.titleAccent')}</span>
-                        </M>
-                        <p className="text-white/40 text-base md:text-xl font-medium max-w-xl leading-relaxed mb-12">
-                            {t('contact.desc')}
-                        </p>
+  return (
+    <section
+      id="contacto"
+      className="mt-[clamp(80px,10vw,140px)] pb-20 max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)]"
+    >
+      <div
+        className="grid gap-[clamp(32px,5vw,80px)] pt-10 grid-cols-1 lg:grid-cols-2"
+        style={{ borderTop: "1px solid var(--rule)" }}
+      >
+        {/* ── Left: copy + channels ── */}
+        <div>
+          <span className="font-mono text-accent text-[12px]">// contacto</span>
+          <h2
+            className="m-0 mt-5 font-display font-extrabold text-ink leading-none tracking-[-0.035em]"
+            style={{ fontSize: "clamp(40px, 6vw, 74px)" }}
+          >
+            Hablemos de{" "}
+            <em className="not-italic font-light text-accent">tu idea.</em>
+          </h2>
+          <p className="mt-[22px] mb-10 text-ink-2 max-w-[48ch]">
+            Tu visión merece una ejecución impecable. Escribinos y evaluemos la
+            viabilidad de tu proyecto — respondemos en menos de 24h.
+          </p>
 
-                        <div className="flex flex-col gap-6">
-                            <a href="mailto:gen12software@gmail.com" className="flex items-center gap-4 group">
-                                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent group-hover:text-white transition-all duration-700">
-                                    <Mail className="w-5 h-5" />
-                                </div>
-                                <div>
-                                    <span className="block text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">Email</span>
-                                    <span className="text-white font-bold tracking-tight group-hover:text-accent transition-colors">gen12software@gmail.com</span>
-                                </div>
-                            </a>
-
-                            <a href="https://wa.me/5491161591957" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent group-hover:text-white transition-all duration-700">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c-.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span className="block text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">WhatsApp</span>
-                                    <span className="text-white font-bold tracking-tight group-hover:text-accent transition-colors">+54 9 11 6159-1957</span>
-                                </div>
-                            </a>
-
-                            <a href="https://instagram.com/gen12.software" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent group-hover:text-white transition-all duration-700">
-                                    <Instagram className="w-5 h-5" />
-                                </div>
-                                <div>
-                                    <span className="block text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">Instagram</span>
-                                    <span className="text-white font-bold tracking-tight group-hover:text-accent transition-colors">@gen12.software</span>
-                                </div>
-                            </a>
-
-                            <a href="https://www.linkedin.com/company/gen12-software" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-accent group-hover:border-accent group-hover:text-white transition-all duration-700">
-                                    <Linkedin className="w-5 h-5" />
-                                </div>
-                                <div>
-                                    <span className="block text-[10px] font-black uppercase tracking-widest text-white/20 mb-1">LinkedIn</span>
-                                    <span className="text-white font-bold tracking-tight group-hover:text-accent transition-colors">GEN12 Software</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <M mobile={isMobile}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-7 bg-white/10 backdrop-blur-2xl p-10 md:p-14 rounded-[3.5rem] border border-white/10 shadow-2xl relative overflow-hidden group"
-                    >
-                        <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/5 blur-[100px] rounded-full group-hover:bg-accent/20 transition-colors duration-700" />
-
-                        <form onSubmit={handleSubmit} noValidate className="space-y-6 relative z-10">
-                            <div className="mb-10 p-2">
-                                <h4 className="text-xl font-bold text-white mb-2 tracking-tight">
-                                    {t('contact.form.whatsappTitle')}
-                                </h4>
-                                <p className="text-white/40 text-sm mb-6">
-                                    {t('contact.form.whatsappSubtitle')}
-                                </p>
-                                <a
-                                    href="https://wa.me/5491161591957"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-2xl font-black text-sm hover:scale-105 transition-all shadow-xl shadow-[#25D366]/20 group/wa relative overflow-hidden"
-                                >
-                                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/wa:translate-y-0 transition-transform duration-300" />
-                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 relative z-10">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c-.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                                    </svg>
-                                    <span className="relative z-10">{t('contact.form.whatsappCTA')}</span>
-                                </a>
-                            </div>
-
-                            <div className="flex items-center gap-4 py-4">
-                                <div className="h-px grow bg-white/10" />
-                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20 whitespace-nowrap">
-                                    {t('contact.form.title')}
-                                </span>
-                                <div className="h-px grow bg-white/10" />
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.name')}</label>
-                                    <input type="text" disabled={isLoading} value={name} onChange={(e) => setName(e.target.value)}
-                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !name ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
-                                        placeholder={t('contact.form.namePlaceholder')} />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.email')}</label>
-                                    <input type="email" disabled={isLoading} value={email} onChange={(e) => setEmail(e.target.value)}
-                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !email ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
-                                        placeholder={t('contact.form.emailPlaceholder')} />
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.phone')}</label>
-                                    <input type="tel" disabled={isLoading} value={phone} onChange={(e) => setPhone(e.target.value)}
-                                        className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 ${attemptedSubmit && !phone ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
-                                        placeholder={t('contact.form.phonePlaceholder')} />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.service')}</label>
-                                    <div className="relative">
-                                        <select disabled={isLoading} value={service} onChange={(e) => setService(e.target.value)}
-                                            className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all text-base disabled:opacity-50 appearance-none cursor-pointer ${attemptedSubmit && !service ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}>
-                                            <option value="" disabled>{t('contact.form.selectService')}</option>
-                                            <option value="eshop" className="bg-primary">Tienda con Pagos y Envíos</option>
-                                            <option value="ecommerce" className="bg-primary">E-Commerce a Medida</option>
-                                            <option value="landing" className="bg-primary">Landing Page que Convierte</option>
-                                            <option value="corporate" className="bg-primary">Sitio Web Corporativo</option>
-                                            <option value="saas" className="bg-primary">Panel de Control y Apps</option>
-                                            <option value="fullstack" className="bg-primary">Desarrollo Full-Stack</option>
-                                            <option value="ai" className="bg-primary">Inteligencia Artificial</option>
-                                            <option value="uxui" className="bg-primary">UX/UI Experience</option>
-                                            <option value="other" className="bg-primary">Otro</option>
-                                        </select>
-                                        <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-white/20">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 ml-2">{t('contact.form.message')}</label>
-                                <textarea rows={4} disabled={isLoading} value={message} onChange={(e) => setMessage(e.target.value)}
-                                    className={`w-full px-6 py-5 bg-white/5 border rounded-2xl text-white font-bold placeholder:text-white/20 outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/10 transition-all resize-none text-base disabled:opacity-50 ${attemptedSubmit && !message ? 'border-red-500/50 ring-4 ring-red-500/10' : 'border-white/10'}`}
-                                    placeholder={t('contact.form.messagePlaceholder')} />
-                            </div>
-
-                            <div className="flex justify-start">
-                                <span className="text-[9px] font-bold text-white/20 tracking-widest uppercase">NOTA: Todos los campos son obligatorios</span>
-                            </div>
-
-                            <button type="submit" disabled={isLoading}
-                                className="w-full py-7 bg-accent text-white rounded-3xl font-black tracking-normal text-lg flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-2xl shadow-accent/40 group/btn overflow-hidden relative disabled:opacity-70 disabled:scale-100">
-                                <span className="relative z-10 flex items-center gap-3">
-                                    {isLoading ? (
-                                        <>{t('contact.form.sending')}<Loader2 className="w-4 h-4 animate-spin" /></>
-                                    ) : (
-                                        <>{t('contact.form.send')}<Send className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" /></>
-                                    )}
-                                </span>
-                                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
-                            </button>
-
-                            {/* Error/success messages — AnimatePresence is fine here (UI feedback, not scroll) */}
-                            <AnimatePresence>
-                                {error && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                                        animate={{ opacity: 1, height: "auto", marginTop: 16 }}
-                                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                                        transition={{ duration: 0.25 }}
-                                        className="bg-red-500/20 border border-red-500/50 p-4 rounded-2xl flex items-center gap-3 text-red-200 text-sm font-bold overflow-hidden"
-                                    >
-                                        <XCircle className="w-5 h-5 shrink-0" />{error}
-                                    </motion.div>
-                                )}
-                                {success && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                                        animate={{ opacity: 1, height: "auto", marginTop: 16 }}
-                                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                                        transition={{ duration: 0.25 }}
-                                        className="bg-green-500/20 border border-green-500/50 p-4 rounded-2xl flex items-center gap-3 text-green-200 text-sm font-bold overflow-hidden"
-                                    >
-                                        <CheckCircle2 className="w-5 h-5 shrink-0" />{t('contact.form.success')}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </form>
-                    </M>
-                </div>
-
-                <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
-                    <p>© 2026 GEN12 SOFTWARE. {t('contact.footer.rights')}</p>
-                    <div className="flex gap-10">
-                        <button onClick={() => setShowPolicies(true)} className="text-[10px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors cursor-pointer">
-                            {t('contact.footer.policies')}
-                        </button>
-                        <a href="https://www.linkedin.com/company/gen12-software" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors cursor-pointer">
-                            Linkedin
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            {/* Policies Modal — AnimatePresence correcto: es una interacción UI, no scroll */}
-            <AnimatePresence>
-                {showPolicies && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-primary/95 backdrop-blur-xl"
-                    >
-                        <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.95, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="bg-[#0a1929] border border-white/10 p-10 md:p-16 rounded-[4rem] max-w-2xl w-full max-h-[80vh] overflow-y-auto relative"
-                        >
-                            <button onClick={() => setShowPolicies(false)} className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-foreground hover:bg-accent hover:text-white transition-all">
-                                <CheckCircle2 className="w-6 h-6" />
-                            </button>
-                            <h3 className="text-3xl font-black text-foreground mb-10 tracking-tighter">Políticas de Privacidad</h3>
-                            <div className="space-y-6 text-foreground/60 font-medium leading-relaxed">
-                                <p>En GEN12 SOFTWARE, la privacidad de su información es nuestra prioridad técnica.</p>
-                                <p>Los datos suministrados a través de este formulario son utilizados exclusivamente para la gestión de su consulta y el diseño preliminar de su propuesta tecnológica.</p>
-                                <p>No compartimos información con terceros ni utilizamos algoritmos de rastreo invasivos. Su proyecto es tratado bajo estrictos acuerdos de confidencialidad desde el primer contacto.</p>
-                            </div>
-                        </motion.div>
-                    </motion.div>
+          <ul
+            className="list-none m-0 p-0 font-mono text-[13px]"
+            style={{ borderTop: "1px solid var(--rule)" }}
+          >
+            {[
+              { k: "whatsapp", v: "+54 9 11 6159-1957", href: "https://wa.me/5491161591957" },
+              { k: "email",    v: "gen12software@gmail.com", href: "mailto:gen12software@gmail.com" },
+              { k: "instagram", v: "@gen12.software", href: "https://instagram.com/gen12.software" },
+              { k: "linkedin", v: "GEN12 Software", href: "https://www.linkedin.com/company/gen12-software" },
+              { k: "respuesta", v: "rápida · días hábiles", href: null },
+              { k: "zona",     v: "remoto · GMT-3", href: null },
+            ].map(({ k, v, href }) => (
+              <li
+                key={k}
+                className="grid gap-4 py-4 items-baseline"
+                style={{ gridTemplateColumns: "120px 1fr", borderBottom: "1px solid var(--rule)" }}
+              >
+                <span className="text-ink-3 text-[11.5px]">{k}</span>
+                {href ? (
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="text-ink hover:text-accent transition-colors"
+                    style={{ borderBottom: "1px solid var(--accent-dim)", paddingBottom: "1px" }}
+                  >
+                    {v}
+                  </a>
+                ) : (
+                  <span className="text-ink">{v}</span>
                 )}
-            </AnimatePresence>
-        </section>
-    );
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ── Right: form ── */}
+        <div
+          className="rounded-[22px] p-8 grid gap-[22px] content-start relative overflow-hidden"
+          style={{ background: "var(--paper)", border: "1px solid var(--rule)" }}
+        >
+          {/* "// new message" label */}
+          <span className="absolute top-3.5 right-[18px] font-mono text-ink-4 text-[11px]">
+            // new message
+          </span>
+
+          {/* WA direct */}
+          <div>
+            <p className="text-ink-2 text-[13px] mb-4">¿Preferís hablar directo?</p>
+            <a
+              href="https://wa.me/5491161591957"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full font-display font-semibold text-[14px] transition-all hover:border-[#25D366]"
+              style={{ background: "var(--paper)", border: "1px solid var(--rule-2)", color: "#25D366" }}
+            >
+              {WA_ICON}
+              WhatsApp directo
+            </a>
+          </div>
+
+          {/* Divider */}
+          <div className="flex items-center gap-4">
+            <div className="h-px grow" style={{ background: "var(--rule)" }} />
+            <span className="font-mono text-ink-4 text-[11px] whitespace-nowrap">o completá el formulario</span>
+            <div className="h-px grow" style={{ background: "var(--rule)" }} />
+          </div>
+
+          <form onSubmit={handleSubmit} noValidate className="grid gap-[22px]">
+            <div className="grid gap-2">
+              <label className="text-ink-3 text-[11.5px]">nombre</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Cómo te llamás"
+                disabled={isLoading}
+                className={inputClass(!!attemptedSubmit && !name)}
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <label className="text-ink-3 text-[11.5px]">email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="tu@email.com"
+                disabled={isLoading}
+                className={inputClass(!!attemptedSubmit && !email)}
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <label className="text-ink-3 text-[11.5px]">qué necesitás</label>
+              <textarea
+                rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Contame en una o dos líneas en qué te puedo ayudar"
+                disabled={isLoading}
+                className={inputClass(!!attemptedSubmit && !message)}
+              />
+            </div>
+
+            <div className="flex flex-wrap gap-3 mt-1">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-accent font-display font-semibold text-[15px] tracking-[-0.01em] transition-all hover:-translate-y-px disabled:opacity-60 disabled:translate-y-0"
+                style={{ color: "#0A0B0F", boxShadow: "0 6px 30px -10px color-mix(in srgb, var(--accent) 60%, transparent)" }}
+              >
+                {isLoading ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Enviando…</>
+                ) : (
+                  <>
+                    Enviar mensaje
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M13 5l7 7-7 7" />
+                    </svg>
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+
+          <AnimatePresence>
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="flex items-center gap-3 p-4 rounded-xl text-red-300 text-sm overflow-hidden"
+                style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)" }}
+              >
+                <XCircle className="w-4 h-4 shrink-0" />{error}
+              </motion.div>
+            )}
+            {success && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="flex items-center gap-3 p-4 rounded-xl text-green-300 text-sm overflow-hidden font-mono"
+                style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)" }}
+              >
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                ✓ mensaje enviado — te respondemos en &lt; 24h.
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+
+
+      {/* Policies modal */}
+      <AnimatePresence>
+        {showPolicies && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+            style={{ background: "rgba(7,14,24,0.95)", backdropFilter: "blur(20px)" }}
+            onClick={() => setShowPolicies(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.96, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.96, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="max-w-xl w-full p-10 rounded-[22px] relative"
+              style={{ background: "var(--paper)", border: "1px solid var(--rule)" }}
+            >
+              <button
+                onClick={() => setShowPolicies(false)}
+                className="absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center text-ink-3 hover:text-ink transition-colors"
+                style={{ background: "var(--rule)" }}
+              >
+                ×
+              </button>
+              <h3 className="font-display font-bold text-2xl text-ink mb-6 tracking-tight">Políticas de Privacidad</h3>
+              <div className="space-y-4 text-ink-2 text-[14px] leading-relaxed">
+                <p>En GEN12 SOFTWARE, la privacidad de su información es nuestra prioridad técnica.</p>
+                <p>Los datos suministrados a través de este formulario son utilizados exclusivamente para la gestión de su consulta y el diseño preliminar de su propuesta tecnológica.</p>
+                <p>No compartimos información con terceros. Su proyecto es tratado bajo estrictos acuerdos de confidencialidad desde el primer contacto.</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
 }
