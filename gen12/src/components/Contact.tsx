@@ -31,7 +31,7 @@ export function Contact() {
   return (
     <section
       id="contacto"
-      className="mt-[clamp(80px,10vw,140px)] pb-20 max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)]"
+      className="mt-[clamp(48px,6vw,80px)] pb-20 max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)]"
     >
       <div
         className="grid gap-[clamp(32px,5vw,80px)] pt-10 grid-cols-1 lg:grid-cols-2"

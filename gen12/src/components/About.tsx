@@ -46,7 +46,7 @@ export function About() {
     ];
 
     return (
-        <section id="nosotros" className="py-8 md:py-14 relative overflow-hidden">
+        <section id="nosotros" className="py-6 md:py-10 relative overflow-hidden">
             <div className="max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)] flex flex-col lg:flex-row gap-12 md:gap-20 items-center">
 
                 {/* Left: Stats */}
@@ -96,8 +96,8 @@ export function About() {
                         transition={{ duration: 0.45, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
                         className="text-4xl md:text-6xl font-black text-ink tracking-tighter leading-[0.85] mb-8"
                     >
-                        Ingeniería Con{" "}
-                        <em className="not-italic font-light text-accent">Propósito.</em>
+                        Ingeniería con{" "}
+                        <em className="not-italic font-light text-accent">propósito.</em>
                     </M>
 
                     <M tag="p" mobile={isMobile}

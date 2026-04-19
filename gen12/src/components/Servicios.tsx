@@ -27,12 +27,12 @@ const SERVICES = [
 ];
 
 const DELIVERABLES = [
-  { label: "Tienda online",       tech: "Next.js · Stripe · Shippo" },
+  { label: "Tienda online", tech: "Next.js · Stripe · Shippo" },
   { label: "E-Commerce a medida", tech: "Vite · Node · PostgreSQL" },
-  { label: "Landing page",        tech: "Next.js · Framer · Tailwind" },
-  { label: "Sitio corporativo",   tech: "React · CMS · SEO" },
-  { label: "Panel / SaaS",        tech: "React Query · Auth.js · SQL" },
-  { label: "Solución con IA",     tech: "OpenAI · LangChain · Python" },
+  { label: "Landing page", tech: "Next.js · Framer · Tailwind" },
+  { label: "Sitio corporativo", tech: "React · CMS · SEO" },
+  { label: "Panel / SaaS", tech: "React Query · Auth.js · SQL" },
+  { label: "Solución con IA", tech: "OpenAI · LangChain · Python" },
 ];
 
 export function Servicios() {
@@ -42,7 +42,7 @@ export function Servicios() {
   };
 
   return (
-    <section id="servicios" className="mt-[clamp(80px,10vw,140px)] max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)]">
+    <section id="servicios" className="mt-[clamp(48px,6vw,80px)] max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)]">
 
       {/* Header */}
       <div className="mb-[clamp(40px,6vw,70px)]">
@@ -57,19 +57,39 @@ export function Servicios() {
 
       {/* Service rows */}
       <div style={{ borderTop: "1px solid var(--rule)" }}>
-        {SERVICES.map(({ num, title, tag, desc, bullets }) => (
+        {SERVICES.map(({ num, title, tag, desc, bullets }, i) => (
           <div
             key={num}
-            className="group grid gap-6 py-9 transition-colors hover:bg-white/1.5 grid-cols-1 sm:grid-cols-[80px_1.3fr_2fr_1.2fr]"
-            style={{ borderBottom: "1px solid var(--rule)" }}
+            className="group relative grid gap-6 py-9 transition-all duration-300 hover:bg-white/2 grid-cols-1 sm:grid-cols-[80px_1.3fr_2fr_1.2fr] overflow-hidden"
+            style={{
+              borderBottom: "1px solid var(--rule)",
+              borderLeft: "2px solid transparent",
+              paddingLeft: "20px",
+              transition: "border-color 0.3s, background 0.3s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.borderLeftColor = "var(--accent)")}
+            onMouseLeave={e => (e.currentTarget.style.borderLeftColor = "transparent")}
           >
+            {/* Ghost number */}
+            <span
+              className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 font-display font-black select-none leading-none"
+              style={{
+                fontSize: "clamp(80px, 12vw, 160px)",
+                color: "rgba(212,175,55,0.04)",
+                letterSpacing: "-0.05em",
+                userSelect: "none",
+              }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+
             {/* Num */}
-            <span className="font-mono text-ink-3 text-[12px] pt-1">{num}</span>
+            <span className="font-mono text-ink-3 text-[12px] pt-1 relative z-10">{num}</span>
 
             {/* Title */}
-            <div>
+            <div className="relative z-10">
               <h3
-                className="m-0 font-display font-bold text-ink leading-[1.05] tracking-[-0.03em]"
+                className="m-0 font-display font-bold text-ink leading-[1.05] tracking-[-0.03em] group-hover:text-accent transition-colors duration-300"
                 style={{ fontSize: "clamp(20px, 2.2vw, 28px)" }}
               >
                 {title}
@@ -78,15 +98,13 @@ export function Servicios() {
             </div>
 
             {/* Desc */}
-            <p className="m-0 text-ink-2 leading-[1.55] max-w-[48ch] text-[15px]">{desc}</p>
+            <p className="m-0 text-ink-2 leading-[1.55] max-w-[48ch] text-[15px] relative z-10">{desc}</p>
 
             {/* Bullets */}
-            <ul className="list-none m-0 p-0 grid gap-1.5 content-start">
+            <ul className="list-none m-0 p-0 grid gap-1.5 content-start relative z-10">
               {bullets.map((b) => (
                 <li key={b} className="relative pl-3.5 text-[12px] text-ink-3">
-                  <span
-                    className="absolute left-0 top-[7px] w-1.5 h-1.5 rounded-full bg-accent"
-                  />
+                  <span className="absolute left-0 top-[7px] w-1.5 h-1.5 rounded-full bg-accent" />
                   {b}
                 </li>
               ))}
@@ -96,17 +114,40 @@ export function Servicios() {
       </div>
 
       {/* Deliverables grid */}
-      <div className="mt-14">
-        <p className="font-mono text-ink-3 text-[12px] mb-6">// lo que entregamos</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l" style={{ borderColor: "var(--rule)" }}>
-          {DELIVERABLES.map(({ label, tech }) => (
+      <div className="mt-16 rounded-2xl overflow-hidden" style={{ border: "1px solid var(--rule-2)", background: "var(--elev)" }}>
+        {/* Header del bloque */}
+        <div className="flex items-center justify-between px-6 py-4" style={{ borderBottom: "1px solid var(--rule)" }}>
+          <span className="font-mono text-accent text-[12px]">// lo que entregamos</span>
+          <span className="font-mono text-ink-4 text-[11px]">{DELIVERABLES.length} tipos de proyecto</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {DELIVERABLES.map(({ label, tech }, i) => (
             <div
               key={label}
-              className="p-5 border-b border-r transition-colors hover:bg-white/2"
-              style={{ borderColor: "var(--rule)" }}
+              className="group relative p-6 transition-all duration-300 cursor-default overflow-hidden"
+              style={{
+                borderRight: (i % 3 !== 2) ? "1px solid var(--rule)" : "none",
+                borderBottom: i < 3 ? "1px solid var(--rule)" : "none",
+              }}
             >
-              <span className="block font-display font-semibold text-ink text-[15px] tracking-[-0.01em] mb-1">{label}</span>
-              <span className="font-mono text-ink-4 text-[11px]">{tech}</span>
+              {/* Hover glow */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(212,175,55,0.06), transparent 70%)" }}
+              />
+
+              <span
+                className="block font-display font-bold text-ink text-[17px] tracking-[-0.02em] mb-2 group-hover:text-accent transition-colors duration-300 relative z-10"
+              >
+                {label}
+              </span>
+              <span className="font-mono text-ink-4 text-[11px] relative z-10">{tech}</span>
+
+              {/* Arrow on hover */}
+              <span className="absolute bottom-4 right-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[12px] font-mono">
+                →
+              </span>
             </div>
           ))}
         </div>
@@ -132,7 +173,7 @@ export function Servicios() {
           style={{ color: "#25D366" }}
         >
           <svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor">
-            <path d="M19.1 17.5c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 2 3 4.8 4.2 1.7.7 2.4.8 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3zM16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8c1.8 1 3.9 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2.1 0-4-.6-5.7-1.6l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16c0-5.8 4.8-10.6 10.6-10.6S26.6 10.2 26.6 16 21.8 26.6 16 26.6z"/>
+            <path d="M19.1 17.5c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 2 3 4.8 4.2 1.7.7 2.4.8 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3zM16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.8c1.8 1 3.9 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2.1 0-4-.6-5.7-1.6l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 0 1 5.4 16c0-5.8 4.8-10.6 10.6-10.6S26.6 10.2 26.6 16 21.8 26.6 16 26.6z" />
           </svg>
           WhatsApp directo
         </a>

@@ -36,7 +36,7 @@ const COLUMNS = [
 
 export function StackSection() {
   return (
-    <section id="stack" className="mt-[clamp(80px,10vw,140px)]">
+    <section id="stack" className="mt-[clamp(48px,6vw,80px)]">
       {/* Section header */}
       <div className="max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)] mb-[clamp(40px,6vw,70px)]">
         <span className="font-mono text-accent text-[12px]">// stack técnico</span>

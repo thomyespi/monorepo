@@ -61,7 +61,7 @@
 
   /* Animations */
   --animate-pulse-dot: pulse-dot 1.8s ease-in-out infinite;
-  --animate-marquee:   marquee 40s linear infinite;
+  --animate-marquee:   marquee 8s linear infinite;
   --animate-blink:     blink 1s step-end infinite;
 
   /* Infinite scroll (legacy) */

@@ -16,7 +16,7 @@ export function Process() {
     ];
 
     return (
-        <section id="metodo" className="py-12 md:py-16 relative overflow-hidden">
+        <section id="metodo" className="py-8 md:py-12 relative overflow-hidden">
             <div className="max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)] relative z-10">
                 <div className="mb-10 md:mb-14">
                     <M tag="span" mobile={isMobile}

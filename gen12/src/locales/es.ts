@@ -72,7 +72,7 @@ export const es = {
     },
     process: {
         title: "Nuestro",
-        titleAccent: "Método",
+        titleAccent: "método",
         steps: {
             discovery: {
                 title: "Estrategia & Diagnóstico",

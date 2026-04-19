@@ -37,7 +37,7 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="relative mt-[clamp(80px,10vw,140px)] max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)] grid gap-[clamp(32px,5vw,80px)] items-start grid-cols-1 lg:grid-cols-[0.9fr_1.4fr]"
+      className="relative mt-[clamp(48px,6vw,80px)] max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)] grid gap-[clamp(32px,5vw,80px)] items-start grid-cols-1 lg:grid-cols-[0.9fr_1.4fr]"
     >
       {/* Sticky head */}
       <div>
@@ -52,18 +52,6 @@ export function FAQ() {
         <p className="mt-5 text-ink-2 max-w-[40ch]">
           Las dudas que casi siempre aparecen en la primera llamada, respondidas acá para que llegués con menos ruido.
         </p>
-        <div
-          className="mt-10 px-[18px] py-4 rounded-[10px] flex justify-between items-center text-[12px] text-ink-3 font-mono"
-          style={{ border: "1px dashed var(--rule-2)" }}
-        >
-          <span>¿otra pregunta?</span>
-          <a
-            href="#contacto"
-            className="text-accent hover:underline"
-          >
-            escribinos →
-          </a>
-        </div>
       </div>
 
       {/* Accordion */}
@@ -107,6 +95,15 @@ export function FAQ() {
             )}
           </div>
         ))}
+        <div
+          className="mt-6 px-[18px] py-4 rounded-[10px] flex justify-between items-center text-[12px] text-ink-3 font-mono"
+          style={{ border: "1px dashed var(--rule-2)" }}
+        >
+          <span>¿otra pregunta?</span>
+          <a href="#contacto" className="text-accent hover:underline">
+            escribinos →
+          </a>
+        </div>
       </div>
     </section>
   );

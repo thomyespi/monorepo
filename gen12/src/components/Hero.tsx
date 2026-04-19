@@ -1,5 +1,6 @@
 "use client";
 
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { SCROLL_OFFSET } from "@/lib/constants";
 
 const MARQUEE_ITEMS = [
@@ -14,6 +15,7 @@ const MARQUEE_ITEMS = [
 ];
 
 export function Hero() {
+    const isMobile = useIsMobile();
     const scrollTo = (id: string) => {
         const el = document.getElementById(id);
         if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET, behavior: "smooth" });
@@ -88,20 +90,21 @@ export function Hero() {
                         style={{ borderColor: "var(--rule)" }}
                     >
                         {[
-                            { dt: "proyectos entregados", dd: "20", suffix: "+", type: "plus" },
-                            { dt: "stack dominado", dd: "14", suffix: "+", type: "plus" },
-                            { dt: "respuesta inicial", dd: "rápida", suffix: "", type: "unit" },
+                            { dt: "proyectos\nentregados", dd: "20", suffix: "+", type: "plus" },
+                            { dt: "stack\ndominado", dd: "14", suffix: "+", type: "plus" },
+                            { dt: "respuesta\ninicial", dd: "rápida", suffix: "", type: "unit" },
                         ].map(({ dt, dd, suffix, type }, i) => (
                             <div
                                 key={dt}
-                                className="py-5"
+                                className="py-5 flex flex-col justify-between"
                                 style={{
-                                    paddingRight: i < 2 ? "20px" : "0",
+                                    paddingRight: i < 2 ? "16px" : "0",
+                                    paddingLeft: i > 0 ? "16px" : "0",
                                     borderRight: i < 2 ? "1px solid var(--rule)" : "none",
                                 }}
                             >
-                                <dt className="font-mono text-ink-3 text-[11px] lowercase mb-1.5">{dt}</dt>
-                                <dd className="m-0 font-display font-bold text-ink leading-none" style={{ fontSize: "clamp(30px, 3.5vw, 44px)", letterSpacing: "-0.03em" }}>
+                                <dt className="font-mono text-ink-3 text-[10px] lowercase mb-2 whitespace-pre-line leading-[1.3]">{dt}</dt>
+                                <dd className="m-0 font-display font-bold text-ink leading-none" style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-0.03em" }}>
                                     {dd}
                                     {type === "plus" && <span className="text-accent font-normal">{suffix}</span>}
                                     {type === "unit" && <span className="text-ink-3 ml-0.5" style={{ fontSize: "0.6em" }}>{suffix}</span>}
@@ -236,16 +239,18 @@ export function Hero() {
             <div
                 className="overflow-hidden mt-20 py-[18px]"
                 style={{
+                    marginLeft: "calc(-1 * clamp(20px, 4vw, 64px))",
+                    marginRight: "calc(-1 * clamp(20px, 4vw, 64px))",
                     borderTop: "1px solid var(--rule)",
                     borderBottom: "1px solid var(--rule)",
-                    maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-                    WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                    maskImage: "linear-gradient(to right, transparent, 5%, black 12%, black 88%, transparent 95%)",
+                    WebkitMaskImage: "linear-gradient(to right, transparent, 5%, black 12%, black 88%, transparent 95%)",
                 }}
                 aria-hidden="true"
             >
                 <div
-                    className="flex gap-7 whitespace-nowrap font-display italic font-normal text-ink-3 tracking-[-0.02em] animate-marquee"
-                    style={{ fontSize: "clamp(22px, 3vw, 38px)" }}
+                    className="flex gap-7 whitespace-nowrap font-display italic font-normal text-ink-3 tracking-[-0.02em]"
+                    style={{ fontSize: "clamp(22px, 3vw, 38px)", animation: `marquee ${isMobile ? "3s" : "7s"} linear infinite`, WebkitAnimation: `marquee ${isMobile ? "3s" : "7s"} linear infinite`, willChange: "transform" }}
                 >
                     {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
                         <span key={i} className="inline-flex items-center gap-7">

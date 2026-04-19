@@ -27,7 +27,7 @@ const ITEMS = [
 
 export function Strip() {
   return (
-    <section className="max-w-[1280px] mx-auto mt-[clamp(80px,10vw,140px)] px-[clamp(20px,4vw,64px)]">
+    <section className="max-w-[1280px] mx-auto mt-[clamp(48px,6vw,80px)] px-[clamp(20px,4vw,64px)]">
       <div
         className="grid grid-cols-4 border-t border-b max-[960px]:grid-cols-2 max-[560px]:grid-cols-1"
         style={{ borderColor: "var(--rule)" }}
