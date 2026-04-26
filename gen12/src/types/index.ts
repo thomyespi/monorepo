@@ -26,4 +26,6 @@ export interface ClientItem {
     url: string;
     logo: string;
     testimonial: string;
+    logoScale?: number;
+    featured?: boolean;
 }

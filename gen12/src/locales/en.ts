@@ -228,6 +228,14 @@ export const en = {
         view: "Visit Site",
         items: [
             {
+                name: "Instituto Lengua Inglesa",
+                url: "https://institutolenguainglesa.com/",
+                logo: "/clients/institutolenguainglesa.png",
+                logoScale: 1.5,
+                featured: true,
+                testimonial: "Thank you for your patience and for listening to my ideas. For all the guidance you gave me throughout the process. I'm truly super happy, I highly recommend them. A 10/10, thank you so much guys!"
+            },
+            {
                 name: "IL Catering Company",
                 url: "https://ilcateringcompany.com/",
                 logo: "/clients/il-catering.png",

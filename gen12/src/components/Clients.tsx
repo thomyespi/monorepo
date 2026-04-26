@@ -46,20 +46,31 @@ export function Clients() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.35, delay: index * 0.07, ease: "easeOut" }}
-                        className="max-[640px]:flex max-[640px]:flex-col max-[640px]:gap-5 max-[640px]:py-7 grid items-center gap-8 py-8"
-                        style={{ gridTemplateColumns: "220px 1fr auto", borderBottom: "1px solid var(--rule)" }}
+                        className="max-[640px]:flex max-[640px]:flex-col max-[640px]:gap-5 max-[640px]:py-7 grid items-center gap-8 py-8 px-6 rounded-2xl"
+                        style={{
+                            gridTemplateColumns: "220px 1fr auto",
+                            borderBottom: "1px solid var(--rule)",
+                            ...(client.featured && {
+                                background: "linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, transparent), color-mix(in srgb, var(--accent) 3%, transparent))",
+                                border: "1px solid color-mix(in srgb, var(--accent) 20%, transparent)",
+                                borderBottom: "1px solid color-mix(in srgb, var(--accent) 20%, transparent)",
+                                marginLeft: "-24px",
+                                marginRight: "-24px",
+                            })
+                        }}
                     >
                         {/* Logo + name */}
                         <div className="flex items-center gap-4">
                             <div
-                                className="w-12 h-12 rounded-xl overflow-hidden shrink-0"
-                                style={{ border: "1px solid var(--rule-2)" }}
+                                className={`overflow-hidden shrink-0 ${client.featured ? "w-16 h-16 rounded-2xl" : "w-12 h-12 rounded-xl"}`}
+                                style={{ border: client.featured ? "1px solid color-mix(in srgb, var(--accent) 35%, transparent)" : "1px solid var(--rule-2)" }}
                             >
                                 <img
                                     src={client.logo}
                                     alt={client.name}
                                     loading="lazy"
                                     className="w-full h-full object-cover"
+                                    style={client.logoScale ? { transform: `scale(${client.logoScale})` } : undefined}
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
                                         target.style.display = 'none';
@@ -73,13 +84,20 @@ export function Clients() {
                                     }}
                                 />
                             </div>
-                            <span className="font-display font-bold text-[15px] text-ink tracking-tight leading-tight">
-                                {client.name}
-                            </span>
+                            <div className="flex flex-col gap-1">
+                                {client.featured && (
+                                    <span className="font-mono text-[10px] text-accent tracking-widest uppercase">
+                                        // página destacada
+                                    </span>
+                                )}
+                                <span className={`font-display font-bold tracking-tight leading-tight ${client.featured ? "text-[17px] text-accent" : "text-[15px] text-ink"}`}>
+                                    {client.name}
+                                </span>
+                            </div>
                         </div>
 
                         {/* Testimonial */}
-                        <p className="text-ink-2 text-[14px] leading-relaxed">
+                        <p className={`text-[14px] leading-relaxed ${client.featured ? "text-ink" : "text-ink-2"}`}>
                             "{client.testimonial}"
                         </p>
 
