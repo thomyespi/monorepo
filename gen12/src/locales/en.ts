@@ -228,11 +228,18 @@ export const en = {
         view: "Visit Site",
         items: [
             {
+                name: "SUM",
+                url: "https://www.sumsa.com.ar/",
+                logo: "/clients/SUM.png",
+                logoFit: "contain",
+                featured: true,
+                testimonial: "A great experience. Attentive, patient and always willing to answer all my questions. They met the deadlines they promised and the result was exactly what we expected. Their commitment shows. I recommend them without hesitation!"
+            },
+            {
                 name: "Instituto Lengua Inglesa",
                 url: "https://institutolenguainglesa.com/",
                 logo: "/clients/institutolenguainglesa.png",
                 logoScale: 1.5,
-                featured: true,
                 testimonial: "Thank you for your patience and for listening to my ideas. For all the guidance you gave me throughout the process. I'm truly super happy, I highly recommend them. A 10/10, thank you so much guys!"
             },
             {
@@ -246,6 +253,13 @@ export const en = {
                 url: "https://www.cosciaasesores.com/",
                 logo: "/clients/coscia.png",
                 testimonial: "The website design exceeded my expectations; they understood exactly what I was looking for. Highly professional and very approachable."
+            },
+            {
+                name: "Insagas",
+                url: "https://insagasweb.com/",
+                logo: "/clients/insagas.png",
+                logoFit: "contain",
+                testimonial: "Absolute geniuses. I asked them for a website for my shop and they built it better than I expected — they exceeded my expectations. Whenever I needed a tweak or an improvement they were available. I'll definitely reach out to them again for future projects."
             },
             {
                 name: "Make It Studio",

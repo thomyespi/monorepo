@@ -13,7 +13,7 @@ export function Clients() {
     const clients = tData<ClientItem[]>('clients.items') || [];
 
     return (
-        <section id="clientes" className="mt-[clamp(48px,6vw,80px)] max-w-[1280px] mx-auto px-[clamp(20px,4vw,64px)]">
+        <section id="clientes" className="mt-[clamp(48px,6vw,80px)] max-w-7xl mx-auto px-[clamp(20px,4vw,64px)]">
             {/* Header */}
             <div className="mb-10 md:mb-14" style={{ borderTop: "1px solid var(--rule)", paddingTop: "clamp(32px,4vw,56px)" }}>
                 <M tag="span" mobile={isMobile}
@@ -69,7 +69,7 @@ export function Clients() {
                                     src={client.logo}
                                     alt={client.name}
                                     loading="lazy"
-                                    className="w-full h-full object-cover"
+                                    className={`w-full h-full ${client.logoFit === "contain" ? "object-contain p-1.5" : "object-cover"}`}
                                     style={client.logoScale ? { transform: `scale(${client.logoScale})` } : undefined}
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;

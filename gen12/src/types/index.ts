@@ -27,5 +27,7 @@ export interface ClientItem {
     logo: string;
     testimonial: string;
     logoScale?: number;
+    /** "contain" para logos anchos/rectangulares que se recortarían con el cover por defecto */
+    logoFit?: "cover" | "contain";
     featured?: boolean;
 }
