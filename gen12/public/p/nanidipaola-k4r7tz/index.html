@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Propuesta Digital NANIDIPAOLA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6f1e9;
+    --paper:#fbf8f3;
+    --ink:#1b1715;
+    --muted:#6f655d;
+    --line:#ddd3c6;
+    --wine:#5b1a24;
+    --wine-soft:#7a2a36;
+    --gold:#b08a4f;
+    --gold-soft:#e9dcc5;
+    --dip-green:#b8c43a;
+    --dip-red:#c2283a;
+    --dip-blue:#2a8fb5;
+    --dip-violet:#5a4f86;
+    --radius:4px;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .kicker{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1}
+  h2{font-size:clamp(34px,5vw,52px);margin:10px 0 18px}
+  h2 em{font-style:italic;color:var(--wine)}
+  p.lead{font-size:19px;color:var(--muted);max-width:640px}
+  section{padding:96px 0;border-top:1px solid var(--line)}
+  .num{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.1em}
+
+  /* ---------- Portada ---------- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;background:var(--ink);color:var(--cream);padding:40px 0 48px;position:relative;overflow:hidden;border:0}
+  .hero::after{content:"";position:absolute;right:-8vw;top:0;bottom:0;width:46vw;
+    background:repeating-linear-gradient(90deg, rgba(176,138,79,.0) 0 10px, rgba(176,138,79,.18) 10px 12px, rgba(176,138,79,0) 12px 22px, rgba(233,220,197,.10) 22px 23px);
+    -webkit-mask:radial-gradient(ellipse at 70% 50%, #000 30%, transparent 72%);mask:radial-gradient(ellipse at 70% 50%, #000 30%, transparent 72%);pointer-events:none}
+  .hero .wrap{width:100%}
+  .hero .top{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#bfb3a3;position:relative;z-index:1}
+  .brand{font-family:var(--sans);font-weight:600;letter-spacing:.42em;font-size:clamp(26px,5.4vw,64px);color:var(--cream);margin:22px 0 18px}
+  .hero h1{font-size:clamp(40px,7vw,88px);font-weight:400;max-width:820px;color:var(--cream)}
+  .hero h1 em{color:var(--gold);font-style:italic}
+  .hero p{color:#cfc5b8;max-width:560px;margin-top:22px;font-size:18px}
+  .hero-body{position:relative;z-index:1}
+  .bars{display:flex;gap:6px;margin-top:40px}
+  .bars span{width:42px;height:6px;border-radius:2px}
+  .hero .meta{display:flex;gap:48px;flex-wrap:wrap;font-size:13px;color:#a99e90;position:relative;z-index:1;letter-spacing:.06em}
+  .hero .meta b{display:block;color:var(--cream);font-weight:400;font-size:15px;letter-spacing:0}
+
+  /* ---------- Diagnóstico ---------- */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  .fact{background:var(--paper);padding:26px 22px}
+  .fact b{font-family:var(--serif);font-size:44px;font-weight:500;display:block;line-height:1;color:var(--wine)}
+  .fact span{font-size:14px;color:var(--muted)}
+  .insight{margin-top:28px;padding:22px 24px;background:var(--cream);border-left:3px solid var(--gold);font-size:16px}
+  .insight strong{font-weight:500}
+
+  /* ---------- Opciones ---------- */
+  .group-title{display:flex;align-items:baseline;gap:16px;margin:56px 0 22px}
+  .group-title h3{font-size:30px}
+  .group-title small{color:var(--muted);font-size:14px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .cards.two-col{grid-template-columns:repeat(2,1fr)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px 28px;display:flex;flex-direction:column;position:relative;transition:transform .25s, box-shadow .25s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -24px rgba(27,23,21,.35)}
+  .card .stripe{position:absolute;top:0;left:0;right:0;height:4px;border-radius:var(--radius) var(--radius) 0 0}
+  .card.featured{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+  .card.featured .muted,.card.featured li{color:#cfc5b8}
+  .card.featured li::before{color:var(--gold)}
+  .badge{position:absolute;top:-12px;right:22px;background:var(--gold);color:var(--ink);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;font-weight:500;border-radius:2px}
+  .card h4{font-family:var(--serif);font-size:28px;font-weight:500;margin:6px 0 4px}
+  .card .muted{color:var(--muted);font-size:15px;min-height:48px}
+  .price{margin:22px 0 4px;font-family:var(--serif);font-size:40px;font-weight:500;line-height:1}
+  .price small{font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:.04em;opacity:.7}
+  .from{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.65}
+  .time{font-size:13px;opacity:.7;margin-bottom:18px}
+  .card ul{list-style:none;border-top:1px solid var(--line);padding-top:18px;margin-top:auto}
+  .card.featured ul{border-color:#3a332e}
+  .card li{font-size:15px;padding:5px 0 5px 22px;position:relative}
+  .card li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+
+  /* ---------- Comparativa ---------- */
+  .table-wrap{overflow-x:auto;margin-top:36px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+  table{width:100%;border-collapse:collapse;min-width:640px;font-size:15px}
+  th,td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+  th{font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);background:var(--cream)}
+  td:not(:first-child),th:not(:first-child){text-align:center}
+  tr:last-child td{border-bottom:0}
+  .y{color:var(--wine);font-weight:500}
+  .n{color:#c3b8aa}
+
+  /* ---------- Armá tu propuesta ---------- */
+  .builder{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;margin-top:40px;align-items:start}
+  .opts fieldset{border:0;margin-bottom:28px}
+  .opts legend{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:12px}
+  .opt{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:8px;cursor:pointer;transition:border-color .2s, background .2s}
+  .opt:hover{border-color:var(--gold)}
+  .opt input{accent-color:var(--wine);width:18px;height:18px;flex:none}
+  .opt .t{flex:1;font-size:15px}
+  .opt .t small{display:block;color:var(--muted);font-size:13px}
+  .opt .p{font-family:var(--serif);font-size:20px;white-space:nowrap}
+  .opt:has(input:checked){border-color:var(--wine);background:#fdf9f4}
+  .summary{position:sticky;top:24px;background:var(--ink);color:var(--cream);padding:30px 28px;border-radius:var(--radius)}
+  .summary h4{font-family:var(--serif);font-size:26px;font-weight:500;margin-bottom:16px}
+  .summary .row{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#cfc5b8;padding:6px 0}
+  .summary .total{border-top:1px solid #3a332e;margin-top:14px;padding-top:16px}
+  .summary .total .row{color:var(--cream);font-size:15px}
+  .summary .big{font-family:var(--serif);font-size:34px;color:var(--gold)}
+  .summary .disc{color:var(--dip-green);font-size:13px}
+  .summary p.note{font-size:12px;color:#8f857a;margin-top:16px;line-height:1.5}
+
+  /* ---------- Proceso ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;border-top:1px solid var(--ink)}
+  .step{padding:22px 22px 0 0}
+  .step .num{display:block;margin-bottom:8px}
+  .step h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:6px}
+  .step p{font-size:15px;color:var(--muted)}
+
+  /* ---------- Condiciones ---------- */
+  .conds{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px}
+  .cond{padding:24px;background:var(--cream);border-radius:var(--radius)}
+  .cond h4{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--wine);margin-bottom:10px}
+  .cond p{font-size:15px;color:var(--muted)}
+
+  /* ---------- Cierre ---------- */
+  .closing{background:var(--ink);color:var(--cream);text-align:center;border:0}
+  .closing h2{color:var(--cream)}
+  .closing h2 em{color:var(--gold)}
+  .closing p{color:#cfc5b8;margin:0 auto}
+  .contact{display:inline-flex;gap:36px;flex-wrap:wrap;justify-content:center;margin-top:36px;font-size:14px;letter-spacing:.08em;color:#bfb3a3}
+  .contact b{color:var(--cream);font-weight:400;display:block;font-size:16px;letter-spacing:0}
+  .contact a{color:inherit;text-decoration:none;border-bottom:1px solid var(--gold)}
+  .contact a:hover{color:var(--gold)}
+  footer{background:var(--ink);color:#6f655d;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:0 0 36px}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .two,.builder{grid-template-columns:1fr}
+    .cards,.cards.two-col,.conds{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr;row-gap:28px}
+    .summary{position:static}
+    section{padding:72px 0}
+    .hero::after{width:90vw;opacity:.5}
+  }
+  @media (max-width:520px){
+    body{font-size:16px}
+    .wrap{padding:0 16px}
+    .steps{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr}
+    .fact b{font-size:36px}
+    .brand{letter-spacing:.28em}
+    .hero .meta{gap:24px}
+  }
+  @media print{
+    .hero{min-height:auto;padding:60px 0}
+    section{padding:48px 0;break-inside:avoid}
+    .card:hover{transform:none;box-shadow:none}
+    .summary{position:static}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PORTADA ============ -->
+<header class="hero">
+  <div class="wrap top">
+    <span>Propuesta comercial</span>
+    <span id="fecha">Noviembre 2026</span>
+  </div>
+  <div class="wrap hero-body">
+    <div class="brand">NANIDIPAOLA</div>
+    <h1>Que el vino se descubra <em>tan bien</em> como se toma.</h1>
+    <p>Propuesta de presencia digital para NANIDIPAOLA Wines: redes sociales, sitio web y tienda online, en opciones que pueden crecer con la bodega.</p>
+    <div class="bars">
+      <span style="background:var(--dip-green)"></span>
+      <span style="background:var(--dip-red)"></span>
+      <span style="background:var(--dip-blue)"></span>
+      <span style="background:var(--dip-violet)"></span>
+      <span style="background:var(--gold)"></span>
+    </div>
+  </div>
+  <div class="wrap meta">
+    <div>Preparado para<b>Nani Di Paola y familia</b></div>
+    <div>Preparado por<b><a href="https://gen12software.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--gold)">gen12 software</a></b></div>
+    <div>Validez<b>15 días</b></div>
+  </div>
+</header>
+
+<!-- ============ DIAGNÓSTICO ============ -->
+<section>
+  <div class="wrap two">
+    <div>
+      <span class="num">01</span>
+      <div class="kicker">Lo que vemos</div>
+      <h2>Vinos de <em>95 puntos</em>,<br>todavía por descubrir.</h2>
+      <p class="lead">NANIDIPAOLA nació en 2024 con dos líneas muy bien pensadas —DIP y TERREST— y un diseño que ya es parte de su identidad. Los puntajes acompañan. Lo que falta es que esa historia llegue a la gente.</p>
+      <div class="insight"><strong>La oportunidad:</strong> hoy alguien que busca "Di Paola vino" no encuentra un lugar propio de la marca donde conocer los vinos, leer la historia de Nani y comprar. Ese es el primer paso.</div>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>2024</b><span>Primera cosecha</span></div>
+      <div class="fact"><b>8</b><span>Etiquetas en dos líneas</span></div>
+      <div class="fact"><b>95</b><span>Descorchados · TERREST Malbec y Corte</span></div>
+      <div class="fact"><b>Top 10</b><span>Vinómanos · DIP Cabernet Franc</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPCIONES ============ -->
+<section id="opciones">
+  <div class="wrap">
+    <span class="num">02</span>
+    <div class="kicker">Opciones</div>
+    <h2>Elegí por dónde <em>empezar</em>.</h2>
+    <p class="lead">Dos frentes que se pueden contratar por separado o juntos. Los valores son de referencia y se ajustan al alcance final.</p>
+
+    <div class="group-title"><h3>Sitio web</h3><small>Pago único · desarrollo</small></div>
+    <div class="cards" id="cards-web"></div>
+
+    <div class="group-title"><h3>Redes sociales</h3><small>Abono mensual</small></div>
+    <div class="cards two-col" id="cards-redes"></div>
+  </div>
+</section>
+
+<!-- ============ COMPARATIVA ============ -->
+<section>
+  <div class="wrap">
+    <span class="num">03</span>
+    <div class="kicker">Comparativa</div>
+    <h2>Qué incluye <em>cada sitio</em>.</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Incluye</th><th>Landing</th><th>Web institucional</th><th>Tienda online</th></tr></thead>
+        <tbody id="tabla"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARMÁ TU PROPUESTA ============ -->
+<section id="armar">
+  <div class="wrap">
+    <span class="num">04</span>
+    <div class="kicker">Armá tu propuesta</div>
+    <h2>Combiná y mirá <em>el total</em>.</h2>
+    <p class="lead">Si se contratan redes por 6 meses o más, el desarrollo web tiene un <span id="desc-txt"></span> de descuento. Y si eligen la propuesta completa —Tienda online + Plan Crecimiento— el descuento sube al <span id="desc-full-txt"></span>.</p>
+    <div class="builder">
+      <form class="opts" id="form"></form>
+      <aside class="summary">
+        <h4>Resumen</h4>
+        <div id="lines"></div>
+        <div class="total">
+          <div class="row"><span>Inversión inicial</span><span class="big" id="t-unico">$ 0</span></div>
+          <div class="row"><span>Mensual</span><span class="big" id="t-mes">$ 0</span></div>
+          <div class="row disc" id="t-desc"></div>
+        </div>
+        <p class="note">Valores en pesos argentinos. No incluyen dominio, hosting ni comisiones de Mercado Pago. Mantenimiento y cambios posteriores a la entrega: USD 80 por hora.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESO ============ -->
+<section>
+  <div class="wrap">
+    <span class="num">05</span>
+    <div class="kicker">Cómo trabajamos</div>
+    <h2>De la bodega <em>a la pantalla</em>.</h2>
+    <div class="steps">
+      <div class="step"><span class="num">I</span><h4>Encuentro</h4><p>Una charla en la bodega o por videollamada para entender la historia, el público y los objetivos.</p></div>
+      <div class="step"><span class="num">II</span><h4>Propuesta visual</h4><p>Diseño respetando la identidad de DIP y TERREST. Una ronda de cambios incluida.</p></div>
+      <div class="step"><span class="num">III</span><h4>Desarrollo</h4><p>Construcción del sitio, carga de vinos y fichas técnicas, pruebas en celular y computadora.</p></div>
+      <div class="step"><span class="num">IV</span><h4>Lanzamiento</h4><p>Publicación y acompañamiento el primer mes. En la tienda, capacitación para administrarla.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONDICIONES ============ -->
+<section>
+  <div class="wrap">
+    <span class="num">06</span>
+    <div class="kicker">Condiciones</div>
+    <h2>Para <em>tener en cuenta</em>.</h2>
+    <div class="conds">
+      <div class="cond"><h4>Forma de pago</h4><p>Desarrollo web: 50% al inicio y 50% contra entrega. Redes: abono mensual por adelantado.</p></div>
+      <div class="cond"><h4>A cargo de la bodega</h4><p>Dominio, hosting y cuenta de Mercado Pago. Los asesoramos en todo.</p></div>
+      <div class="cond"><h4>Contenido</h4><p>Partimos de la presentación y fotos actuales. Si hace falta, sumamos una sesión de fotos de producto. Los plazos son estimativos y se cuentan desde que recibimos el material necesario.</p></div>
+      <div class="cond"><h4>Mantenimiento y cambios</h4><p>Una vez entregado el sitio, las actualizaciones, cambios de contenido y nuevas funciones se cotizan a USD 80 por hora, a demanda y sin abono fijo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section class="closing">
+  <div class="wrap">
+    <div class="kicker">Gracias</div>
+    <h2>Te invitamos a <em>ser parte</em><br>de esta historia.</h2>
+    <p class="lead">Quedamos a disposición para ajustar cualquier opción a lo que necesiten.</p>
+    <div class="contact">
+      <div>Contacto<b>Leandro Torales</b></div>
+      <div>WhatsApp<b><a href="https://wa.me/5491161591957" target="_blank" rel="noopener">+54 9 11 6159-1957</a></b></div>
+      <div>Mail<b><a href="mailto:gen12software@gmail.com">gen12software@gmail.com</a></b></div>
+      <div>Web<b><a href="https://gen12software.com/" target="_blank" rel="noopener">gen12software.com</a></b></div>
+    </div>
+  </div>
+</section>
+<footer>NANIDIPAOLA · Propuesta digital por <a href="https://gen12software.com/" target="_blank" rel="noopener" style="color:inherit">gen12software.com</a></footer>
+
+<script>
+/* =====================================================
+   PRECIOS Y CONTENIDOS — editá acá y se actualiza todo
+   ===================================================== */
+const DESCUENTO_COMBO = 0.10;   // 10% sobre el desarrollo web si contratan redes >= 6 meses
+const DESCUENTO_FULL  = 0.20;   // 20% sobre el desarrollo web si eligen Tienda online + Plan Crecimiento (>= 6 meses)
+
+const WEB = [
+  { id:"landing", nombre:"Landing page", precio:650000, plazo:"1 semana", color:"var(--dip-green)",
+    desc:"Una sola página elegante para presentar la bodega y derivar a WhatsApp.",
+    items:["Historia de Nani y la bodega","Las dos líneas: DIP y TERREST","Botón a WhatsApp e Instagram","Adaptada a celular"] },
+  { id:"institucional", nombre:"Web institucional", precio:1150000, plazo:"2 semanas", color:"var(--dip-blue)", destacado:true, badge:"Recomendado para iniciar",
+    desc:"El sitio oficial de la marca, con una página para cada vino.",
+    items:["Todo lo de la landing","Ficha de cada vino con puntajes","Sección para distribuidores y restaurantes","Formulario de contacto","SEO básico: aparecer en Google"] },
+  { id:"tienda", nombre:"Tienda online", precio:3300000, plazo:"3 semanas", color:"var(--gold)",
+    desc:"Venta directa al consumidor, con carrito, pagos y envíos.",
+    items:["Todo lo de la web institucional","Desarrollo a medida, sin plantillas","Carrito y pago con Mercado Pago","Venta por botella y por caja x6","Envíos y retiro en bodega","Stock, pedidos y cupones","Capacitación para administrarla"] },
+];
+
+const REDES = [
+  { id:"presencia", nombre:"Plan Presencia", precio:420000, color:"var(--dip-red)",
+    desc:"Para tener Instagram activo, prolijo y coherente con la marca.",
+    items:["Instagram + Facebook","8 publicaciones al mes","8 historias al mes","Diseño de plantillas propias","Reporte mensual"] },
+  { id:"crecimiento", nombre:"Plan Crecimiento", precio:690000, color:"var(--dip-violet)", destacado:true,
+    desc:"Para hacer crecer la comunidad y empujar ventas.",
+    items:["Todo lo del Plan Presencia","12 publicaciones + 4 reels al mes","Historias semanales","Respuesta de mensajes y comentarios","Reporte y reunión mensual"] },
+];
+
+const EXTRAS = [
+  { id:"fotos", nombre:"Sesión de fotos de producto", nota:"8 etiquetas, fondo y ambientadas", precio:380000, tipo:"unico" },
+];
+
+const COMPARATIVA = [
+  ["Diseño a medida con la identidad de la marca", 1,1,1],
+  ["Adaptado a celular",                            1,1,1],
+  ["Enlace a WhatsApp e Instagram",                 1,1,1],
+  ["Página por cada vino con ficha técnica",        0,1,1],
+  ["Panel autoadministrable",                       0,0,1],
+  ["Sección para distribuidores / gastronomía",     0,1,1],
+  ["SEO básico",                                    0,1,1],
+  ["Carrito y pagos online",                        0,0,1],
+  ["Gestión de envíos y stock",                     0,0,1],
+  ["Plazo estimado",                                "1 semana aprox.","2 semanas aprox.","3 semanas aprox."],
+];
+
+/* ===================================================== */
+const fmt = n => "$ " + Math.round(n).toLocaleString("es-AR");
+
+function card(o, sufijo){
+  return `<article class="card${o.destacado?" featured":""}">
+    <div class="stripe" style="background:${o.color}"></div>
+    ${o.destacado?`<span class="badge">${o.badge||"Recomendado"}</span>`:""}
+    <h4>${o.nombre}</h4>
+    <p class="muted">${o.desc}</p>
+    <div class="from">Desde</div>
+    <div class="price">${fmt(o.precio)} <small>${sufijo}</small></div>
+    ${o.plazo?`<div class="time">Plazo estimado: aprox. ${o.plazo}</div>`:'<div class="time">Mínimo sugerido: 3 meses</div>'}
+    <ul>${o.items.map(i=>`<li>${i}</li>`).join("")}</ul>
+  </article>`;
+}
+document.getElementById("cards-web").innerHTML   = WEB.map(o=>card(o,"")).join("");
+document.getElementById("cards-redes").innerHTML = REDES.map(o=>card(o,"/ mes")).join("");
+
+document.getElementById("tabla").innerHTML = COMPARATIVA.map(r =>
+  `<tr><td>${r[0]}</td>${r.slice(1).map(v =>
+    typeof v==="string" ? `<td>${v}</td>` : `<td class="${v?"y":"n"}">${v?"✓":"—"}</td>`).join("")}</tr>`).join("");
+
+document.getElementById("desc-txt").textContent = Math.round(DESCUENTO_COMBO*100) + "%";
+document.getElementById("desc-full-txt").textContent = Math.round(DESCUENTO_FULL*100) + "%";
+
+/* Builder */
+const opt = (type,name,id,t,small,p,checked) =>
+  `<label class="opt"><input type="${type}" name="${name}" value="${id}" ${checked?"checked":""}>
+   <span class="t">${t}${small?`<small>${small}</small>`:""}</span><span class="p">${p}</span></label>`;
+
+document.getElementById("form").innerHTML = `
+  <fieldset><legend>Sitio web</legend>
+    ${opt("radio","web","none","Sin sitio web","", "—", false)}
+    ${WEB.map(o=>opt("radio","web",o.id,o.nombre,"Plazo estimado: aprox. "+o.plazo,fmt(o.precio),o.id==="institucional")).join("")}
+  </fieldset>
+  <fieldset><legend>Redes sociales</legend>
+    ${opt("radio","redes","none","Sin gestión de redes","", "—", false)}
+    ${REDES.map(o=>opt("radio","redes",o.id,o.nombre,"",fmt(o.precio)+" /mes",o.id==="presencia")).join("")}
+  </fieldset>
+  <fieldset><legend>Compromiso de redes</legend>
+    ${opt("radio","meses","3","3 meses","","", false)}
+    ${opt("radio","meses","6","6 meses",`Activa ${Math.round(DESCUENTO_COMBO*100)}% off en el sitio web`,"", true)}
+  </fieldset>
+  <fieldset><legend>Extras</legend>
+    ${EXTRAS.map(o=>opt("checkbox","extra",o.id,o.nombre,o.nota,fmt(o.precio)+(o.tipo==="mes"?" /mes":""),false)).join("")}
+  </fieldset>`;
+
+function calc(){
+  const f = new FormData(document.getElementById("form"));
+  const w = WEB.find(o=>o.id===f.get("web"));
+  const r = REDES.find(o=>o.id===f.get("redes"));
+  const meses = +f.get("meses");
+  const ex = f.getAll("extra").map(id=>EXTRAS.find(e=>e.id===id));
+  let unico=0, mes=0, lines=[];
+  if(w){ unico+=w.precio; lines.push([w.nombre, fmt(w.precio)]); }
+  if(r){ mes+=r.precio; lines.push([r.nombre, fmt(r.precio)+" /mes"]); }
+  ex.forEach(e=>{ if(e.tipo==="mes"){mes+=e.precio; lines.push([e.nombre, fmt(e.precio)+" /mes"]);} else {unico+=e.precio; lines.push([e.nombre, fmt(e.precio)]);} });
+  let desc = 0;
+  const full = w && r && w.id==="tienda" && r.id==="crecimiento";
+  if(w && r && meses>=6){ desc = w.precio*(full?DESCUENTO_FULL:DESCUENTO_COMBO); unico-=desc; }
+  document.getElementById("lines").innerHTML = lines.length
+    ? lines.map(l=>`<div class="row"><span>${l[0]}</span><span>${l[1]}</span></div>`).join("")
+    : '<div class="row"><span>Elegí alguna opción</span></div>';
+  document.getElementById("t-unico").textContent = fmt(unico);
+  document.getElementById("t-mes").textContent = fmt(mes);
+  document.getElementById("t-desc").textContent = desc ? `Incluye descuento ${full?"propuesta completa":"combo"} (${Math.round((full?DESCUENTO_FULL:DESCUENTO_COMBO)*100)}%): −${fmt(desc)}` : "";
+}
+document.getElementById("form").addEventListener("change", calc);
+calc();
+</script>
+</body>
+</html>
