@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Propuesta Dance Style</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Big+Shoulders+Display:wght@700;800;900&family=Yellowtail&family=Permanent+Marker&display=swap">
+<style>html{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Layout: pitch shell (graphite) with tabs → each tab shows one device-framed mockup in the client's own burgundy/pink street identity */
+:root{
+  color-scheme: dark;
+  --shell:#141215; --shell-2:#1d1a1e; --shell-line:#2e2a30; --shell-fg:#ece7ea; --shell-mute:#9a9198;
+  --bordo:#6f1840; --bordo-2:#8c1f52; --bordo-dk:#3d0c23; --rosa:#f4b6cf; --rosa-2:#ffd9e8;
+  --hueso:#f3efec; --grafito:#1a1719; --gris:#cfc8c9; --red:#e0263a; --ok:#3fbf7f;
+  --f-display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --f-body:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-script:"Yellowtail", "Brush Script MT", cursive;
+  --f-tag:"Permanent Marker", "Comic Sans MS", cursive;
+}
+*{box-sizing:border-box}
+body{background:var(--shell);color:var(--shell-fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--rosa);outline-offset:2px}
+img{display:block}
+
+/* ---------- shell ---------- */
+.shell{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;max-width:1320px;margin:0 auto}
+.intro{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:22px}
+.intro-brand{display:flex;align-items:center;gap:14px}
+.logo-dot{width:52px;height:52px;border-radius:50%;overflow:hidden;flex:none;background:var(--bordo)}
+.logo-dot img{width:100%;height:100%;object-fit:cover;transform:scale(1.2)}
+.intro h1{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,4.4vw,46px);line-height:.95;letter-spacing:.01em;text-transform:uppercase;margin:0;text-wrap:balance}
+.intro h1 span{color:var(--rosa)}
+.intro p{margin:4px 0 0;color:var(--shell-mute);font-size:14px}
+.tabs{display:flex;gap:6px;background:var(--shell-2);border:1px solid var(--shell-line);padding:5px;border-radius:999px;flex-wrap:wrap}
+.tab{border:0;background:transparent;color:var(--shell-mute);padding:9px 16px;border-radius:999px;font-weight:600;font-size:14px;display:flex;align-items:center;gap:8px}
+.tab .n{font-family:var(--f-display);font-weight:800;font-size:15px;color:inherit;opacity:.6}
+.tab[aria-selected="true"]{background:var(--rosa);color:var(--bordo-dk)}
+.tab[aria-selected="true"] .n{opacity:1}
+.note{font-size:12.5px;color:var(--shell-mute);margin:14px 0 0;display:flex;gap:8px;align-items:center}
+.note b{color:var(--shell-fg);font-weight:600}
+.view-head{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;margin:4px 0 16px}
+.view-head h2{font-family:var(--f-display);font-weight:800;font-size:26px;text-transform:uppercase;margin:0;letter-spacing:.02em}
+.view-head p{margin:0;color:var(--shell-mute);max-width:70ch;font-size:14px}
+
+/* browser frame */
+.browser{border:1px solid var(--shell-line);border-radius:14px;overflow:hidden;background:var(--shell-2);box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--shell-line)}
+.dots{display:flex;gap:6px;flex:none}.dots i{width:10px;height:10px;border-radius:50%;background:#3a353b}
+.url{flex:1;min-width:0;background:var(--shell);border-radius:8px;padding:5px 12px;font-size:12.5px;color:var(--shell-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.url b{color:var(--shell-fg);font-weight:500}
+.screen{background:var(--hueso);color:var(--grafito);position:relative;overflow:hidden}
+
+/* ---------- LANDING ---------- */
+.l-nav{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(16px,4vw,44px);color:#fff}
+.wordmark{font-family:var(--f-script);font-size:30px;line-height:1;letter-spacing:.01em}
+.l-links{display:flex;gap:22px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.l-links span{opacity:.85}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 20px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;border:0;white-space:nowrap}
+.pill.rosa{background:var(--rosa);color:var(--bordo-dk)}
+.pill.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.pill.bordo{background:var(--bordo);color:#fff}
+.pill.sm{padding:8px 14px;font-size:12px}
+.hero{position:relative;min-height:560px;display:grid;align-items:end;color:#fff;background:var(--bordo-dk)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(.9)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(61,12,35,.15) 0%,rgba(61,12,35,.25) 45%,rgba(61,12,35,.95) 100%)}
+.hero-in{position:relative;z-index:2;padding:110px clamp(16px,4vw,44px) 44px;display:grid;gap:18px;max-width:900px}
+.tag{font-family:var(--f-tag);color:var(--rosa);font-size:20px;transform:rotate(-3deg);display:inline-block;width:max-content}
+.hero h3{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(52px,9vw,116px);line-height:.85;margin:0;letter-spacing:.005em}
+.hero h3 em{font-style:normal;color:var(--rosa)}
+.hero p{margin:0;font-size:17px;max-width:46ch;opacity:.92}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:10px}
+.marquee{background:var(--rosa);color:var(--bordo-dk);overflow:hidden;white-space:nowrap;border-block:2px solid var(--bordo-dk)}
+.marquee div{display:inline-block;padding:12px 0;font-family:var(--f-display);font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.04em;animation:mq 28s linear infinite}
+.marquee span{padding:0 18px}
+@keyframes mq{to{transform:translateX(-50%)}}
+.l-sec{padding:56px clamp(16px,4vw,44px)}
+.sec-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:24px}
+.sec-h h4{font-family:var(--f-display);font-weight:900;font-size:clamp(34px,5vw,54px);line-height:.9;text-transform:uppercase;margin:0;color:var(--bordo)}
+.sec-h p{margin:0;max-width:42ch;color:#5a4f53}
+.drops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.drop{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5;background:var(--gris)}
+.drop img{width:100%;height:100%;object-fit:cover}
+.drop .lbl{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;align-items:end;gap:8px}
+.drop .lbl b{background:var(--grafito);color:#fff;font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:22px;line-height:1;padding:7px 10px}
+.drop .lbl span{background:var(--rosa);color:var(--bordo-dk);font-weight:700;font-size:12px;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.move{background:var(--grafito);color:#fff;display:grid;grid-template-columns:1.1fr 1fr;gap:0}
+.move-txt{padding:56px clamp(16px,4vw,44px);display:grid;gap:18px;align-content:center}
+.move-txt h4{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,5.5vw,68px);line-height:.88;margin:0}
+.move-txt h4 em{font-style:normal;color:var(--rosa)}
+.move-txt p{margin:0;color:#cfc6ca;max-width:44ch}
+.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:6px}
+.feat{border-top:2px solid var(--rosa);padding-top:10px}
+.feat b{display:block;font-family:var(--f-display);font-size:20px;text-transform:uppercase;font-weight:800}
+.feat span{font-size:13px;color:#b9afb3}
+.move-img{display:grid;grid-template-columns:1fr 1fr;min-height:420px}
+.move-img img{width:100%;height:100%;object-fit:cover}
+.talles{display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:start}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #ddd3d5}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#7c6d72;font-weight:700}
+td:first-child{font-family:var(--f-display);font-weight:800;font-size:18px;color:var(--bordo)}
+.mayor{margin:0 clamp(16px,4vw,44px) 56px;background:var(--bordo);color:#fff;border-radius:8px;padding:36px clamp(20px,4vw,44px);display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center;position:relative;overflow:hidden}
+.mayor::before{content:"MAYORISTAS";position:absolute;right:-10px;bottom:-26px;font-family:var(--f-display);font-weight:900;font-size:120px;line-height:1;color:rgba(255,255,255,.06);pointer-events:none}
+.mayor h4{font-family:var(--f-display);font-weight:900;font-size:clamp(30px,4vw,44px);line-height:.95;text-transform:uppercase;margin:0 0 8px}
+.mayor p{margin:0;color:#f0d7e2;max-width:48ch}
+.mayor ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;position:relative}
+.mayor li{display:flex;gap:10px;align-items:center;font-weight:600;font-size:14px}
+.mayor li::before{content:"";width:8px;height:8px;background:var(--rosa);border-radius:50%;flex:none}
+.l-foot{background:var(--bordo-dk);color:#e9d6de;padding:36px clamp(16px,4vw,44px);display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:24px;font-size:14px}
+.l-foot .wordmark{color:#fff;font-size:34px}
+.l-foot b{display:block;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px}
+.wa{position:absolute;right:18px;bottom:18px;z-index:4;width:54px;height:54px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+
+/* ---------- TIENDA ---------- */
+.s-top{background:var(--bordo-dk);color:#f3d9e5;font-size:12.5px;text-align:center;padding:7px 16px;font-weight:600;letter-spacing:.03em}
+.s-head{display:flex;align-items:center;gap:20px;padding:14px clamp(16px,3vw,32px);background:#fff;border-bottom:1px solid #e6dfe1;flex-wrap:wrap}
+.s-head .wordmark{color:var(--bordo);font-size:30px}
+.s-cats{display:flex;gap:18px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#4a4044}
+.s-cats .on{color:var(--bordo);box-shadow:inset 0 -2px 0 var(--bordo)}
+.search{flex:1;min-width:160px;background:#f1ecee;border-radius:999px;padding:9px 16px;font-size:13px;color:#8a7d82}
+.cart-btn{position:relative;background:var(--grafito);color:#fff;border:0;border-radius:999px;padding:9px 16px;font-weight:700;font-size:13px;display:flex;gap:8px;align-items:center}
+.cart-btn .c{background:var(--rosa);color:var(--bordo-dk);border-radius:999px;min-width:20px;height:20px;display:grid;place-items:center;font-size:12px;padding:0 6px;font-variant-numeric:tabular-nums}
+.s-body{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;padding:24px clamp(16px,3vw,32px) 40px}
+.filters{display:grid;gap:22px;align-content:start;font-size:14px}
+.filters h5{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#7c6d72}
+.fl{display:flex;flex-direction:column;gap:6px}
+.fl label{display:flex;gap:8px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid #d8ced1;background:#fff;border-radius:6px;padding:5px 10px;font-size:13px;font-weight:600}
+.sw{display:flex;gap:6px}.sw i{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #d0c6c9}
+.toggle-box{background:#fff;border:1px solid #e6dfe1;border-radius:10px;padding:12px;display:grid;gap:8px}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:700;font-size:13.5px}
+.switch{width:42px;height:24px;border-radius:999px;background:#d6cdd0;border:0;position:relative;flex:none;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s}
+.switch[aria-checked="true"]{background:var(--bordo)}
+.switch[aria-checked="true"]::after{transform:translateX(18px)}
+.toggle-box small{color:#7c6d72;font-size:12px;line-height:1.4}
+.s-banner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.s-banner h4{margin:0;font-family:var(--f-display);font-weight:900;font-size:34px;text-transform:uppercase;color:var(--bordo);line-height:1}
+.s-banner span{font-size:13px;color:#7c6d72}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:#fff;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;border:1px solid #ebe4e6}
+.card .ph{position:relative;aspect-ratio:1/1;background:#e9e4e5;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card:hover .ph img{transform:scale(1.04)}
+.badge{position:absolute;top:10px;left:10px;background:var(--rosa);color:var(--bordo-dk);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:4px 8px;border-radius:4px}
+.badge.dk{background:var(--grafito);color:#fff}
+.card .bd{padding:12px 14px 14px;display:grid;gap:8px;flex:1}
+.card h6{margin:0;font-size:14.5px;font-weight:700;line-height:1.25}
+.price{display:flex;gap:8px;align-items:baseline;font-variant-numeric:tabular-nums}
+.price b{font-size:18px;color:var(--grafito)}
+.price s{font-size:13px;color:#9b8d92}
+.price .cuotas{font-size:12px;color:#3d8a5f;font-weight:600}
+.sizes{display:flex;gap:5px}
+.sz{width:32px;height:30px;border:1px solid #d8ced1;background:#fff;border-radius:5px;font-size:12px;font-weight:700;color:#3a3236}
+.sz[aria-pressed="true"]{background:var(--grafito);color:#fff;border-color:var(--grafito)}
+.add{margin-top:auto;background:var(--bordo);color:#fff;border:0;border-radius:6px;padding:10px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;transition:background .15s}
+.add:hover{background:var(--bordo-2)}
+.add.done{background:var(--ok)}
+.min{font-size:11.5px;color:var(--bordo);font-weight:700}
+.drawer{position:absolute;top:0;right:0;bottom:0;width:min(360px,100%);background:#fff;z-index:6;box-shadow:-20px 0 50px rgba(0,0,0,.25);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .3s ease}
+.drawer.open{transform:none}
+.dr-h{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #eee}
+.dr-h b{font-family:var(--f-display);font-size:24px;text-transform:uppercase;font-weight:900;color:var(--bordo)}
+.x{border:0;background:#f1ecee;border-radius:50%;width:32px;height:32px;font-size:18px;line-height:1}
+.dr-items{flex:1;overflow:auto;padding:8px 18px;display:grid;gap:12px;align-content:start}
+.it{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;font-size:13px}
+.it img{width:56px;height:56px;object-fit:cover;border-radius:6px}
+.it small{color:#7c6d72;display:block}
+.it b{font-variant-numeric:tabular-nums}
+.empty{color:#8a7d82;font-size:14px;padding:20px 0}
+.dr-f{padding:16px 18px;border-top:1px solid #eee;display:grid;gap:10px}
+.ship{background:#f6f1f3;border-radius:8px;padding:10px;font-size:12.5px;display:grid;gap:6px}
+.ship .bar2{height:6px;background:#e3d9dd;border-radius:9px;overflow:hidden}
+.ship .bar2 i{display:block;height:100%;background:var(--bordo);width:0;transition:width .3s}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:17px;font-variant-numeric:tabular-nums}
+.pay{display:flex;gap:6px;flex-wrap:wrap}
+.pay span{font-size:11px;font-weight:700;border:1px solid #ddd;border-radius:4px;padding:3px 7px;color:#555}
+
+/* ---------- INSTAGRAM ---------- */
+.ig-wrap{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:28px;align-items:start}
+.phone{background:#000;border-radius:44px;padding:12px;border:1px solid var(--shell-line);box-shadow:0 30px 80px -30px rgba(0,0,0,.8);max-width:400px;width:100%;justify-self:center}
+.ph-screen{background:#000;border-radius:34px;overflow:hidden;color:#f5f5f5;font-size:13px;height:760px;overflow-y:auto;scrollbar-width:none}
+.ph-screen::-webkit-scrollbar{display:none}
+.ig-status{display:flex;justify-content:space-between;padding:12px 26px 6px;font-weight:600;font-size:13px}
+.ig-top{display:flex;justify-content:space-between;align-items:center;padding:6px 16px 10px;font-weight:700;font-size:17px}
+.ig-top .vb{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;background:#3897f0;color:#fff;font-size:10px;margin-left:4px;vertical-align:1px}
+.ig-prof{display:grid;grid-template-columns:86px 1fr;gap:18px;align-items:center;padding:4px 16px}
+.ring{width:86px;height:86px;border-radius:50%;padding:3px;background:conic-gradient(var(--rosa),var(--bordo-2),var(--rosa))}
+.ring div{width:100%;height:100%;border-radius:50%;border:3px solid #000;overflow:hidden;background:var(--bordo)}
+.ring img{width:100%;height:100%;object-fit:cover;transform:scale(1.2)}
+.stats{display:flex;justify-content:space-around;text-align:center;font-variant-numeric:tabular-nums}
+.stats b{display:block;font-size:16px}
+.stats span{font-size:12.5px;color:#ccc}
+.bio{padding:10px 16px 4px;line-height:1.45;font-size:13px}
+.bio .nm{font-weight:700}
+.bio .cat{color:#a8a8a8}
+.bio a{color:#e0f1ff;font-weight:600}
+.ig-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px 16px}
+.ig-btns span{background:#262626;border-radius:8px;text-align:center;padding:7px 0;font-weight:600;font-size:13px}
+.ig-btns span.f{background:#0095f6}
+.hl{display:flex;gap:14px;padding:8px 16px 14px;overflow-x:auto;scrollbar-width:none}
+.hl div{display:grid;justify-items:center;gap:5px;font-size:11.5px;flex:none}
+.hl i{width:62px;height:62px;border-radius:50%;border:1px solid #333;padding:3px;display:block}
+.hl i b{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:13px;letter-spacing:.02em;text-transform:uppercase;font-style:normal}
+.ig-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #262626}
+.ig-tabs span{display:grid;place-items:center;padding:10px 0;color:#777}
+.ig-tabs span.on{color:#fff;box-shadow:inset 0 -1px 0 #fff}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.post{aspect-ratio:4/5;position:relative;overflow:hidden;background:#222}
+.post img{width:100%;height:100%;object-fit:cover}
+.post .ico{position:absolute;top:6px;right:6px;width:14px;height:14px}
+.t{position:absolute;inset:0;display:grid;align-content:center;justify-items:center;text-align:center;padding:8px;gap:2px}
+.t .big{font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.85;font-size:30px}
+.t .sm{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+.t .scr{font-family:var(--f-script);font-size:22px;line-height:1}
+.t .tg{font-family:var(--f-tag);font-size:12px}
+.ov{position:absolute;left:0;right:0;bottom:0;padding:6px 7px;background:linear-gradient(transparent,rgba(0,0,0,.75));font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:13px;line-height:1}
+.ov.rosa{color:var(--rosa)}
+
+.plan{display:grid;gap:18px;min-width:0}
+.panel{background:var(--shell-2);border:1px solid var(--shell-line);border-radius:12px;padding:20px}
+.panel h3{margin:0 0 4px;font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.panel > p{margin:0 0 14px;color:var(--shell-mute);font-size:13.5px}
+.pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.pillar{background:var(--shell);border-radius:8px;padding:12px;display:grid;gap:4px;border-top:3px solid var(--c)}
+.pillar b{font-size:14px}
+.pillar span{font-size:12.5px;color:var(--shell-mute);line-height:1.4}
+.pillar em{font-style:normal;font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--c)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.day{background:var(--shell);border-radius:8px;padding:10px 8px;display:grid;gap:6px;align-content:start;min-height:118px}
+.day > span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--shell-mute);font-weight:700}
+.slot{border-radius:6px;padding:6px 7px;font-size:11.5px;line-height:1.3;background:color-mix(in srgb,var(--c) 18%,transparent);border-left:3px solid var(--c)}
+.slot small{display:block;color:var(--shell-mute);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:12px;color:var(--shell-mute)}
+.legend span{display:flex;gap:6px;align-items:center}
+.legend i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+.copy{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:start}
+.copy img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px}
+.cap{font-size:13.5px;line-height:1.55;background:var(--shell);border-radius:8px;padding:14px;white-space:pre-line}
+.cap .h{color:#8fb8ff}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kpi{background:var(--shell);border-radius:8px;padding:12px}
+.kpi b{display:block;font-family:var(--f-display);font-size:26px;font-weight:800;color:var(--rosa)}
+.kpi span{font-size:12.5px;color:var(--shell-mute)}
+
+/* ---------- compare (resumen) ---------- */
+.cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.cmp > div{background:var(--shell-2);border:1px solid var(--shell-line);border-radius:12px;padding:16px 18px}
+.cmp b{font-family:var(--f-display);font-size:19px;text-transform:uppercase;font-weight:800;color:var(--rosa)}
+.cmp ul{margin:8px 0 0;padding-left:18px;color:var(--shell-mute);font-size:13.5px;display:grid;gap:3px}
+
+/* ---------- presupuesto ---------- */
+.q-wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.q-steps{display:grid;gap:26px;min-width:0}
+.q-step h3{margin:0 0 4px;font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.02em;display:flex;gap:10px;align-items:baseline}
+.q-step h3 i{font-style:normal;color:var(--rosa);font-size:15px}
+.q-step > p{margin:0 0 12px;color:var(--shell-mute);font-size:13.5px}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.opt{position:relative;text-align:left;background:var(--shell-2);border:1.5px solid var(--shell-line);border-radius:12px;padding:16px;color:var(--shell-fg);display:grid;gap:8px;align-content:start;transition:border-color .15s,background .15s}
+.opt:hover{border-color:#5a4a52}
+.opt[aria-checked="true"]{border-color:var(--rosa);background:color-mix(in srgb,var(--bordo) 30%,var(--shell-2))}
+.opt .on-mark{position:absolute;top:14px;right:14px;width:18px;height:18px;border-radius:50%;border:1.5px solid #5a4a52}
+.opt[aria-checked="true"] .on-mark{border-color:var(--rosa);background:radial-gradient(var(--rosa) 0 45%,transparent 50%)}
+.opt .nm{font-weight:700;font-size:15px;padding-right:26px}
+.opt .pr{font-family:var(--f-display);font-weight:800;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.opt .pr small{font-family:var(--f-body);font-size:12.5px;font-weight:500;color:var(--shell-mute)}
+.opt ul{margin:0;padding-left:16px;font-size:12.5px;color:#c9bfc4;display:grid;gap:3px;line-height:1.4}
+.opt .meta{font-size:12px;color:var(--rosa);font-weight:600}
+.opt.none{align-content:center;min-height:0}
+.reco{position:absolute;top:-10px;left:14px;background:var(--rosa);color:var(--bordo-dk);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:4px}
+.extra{display:flex;align-items:center;gap:12px;background:var(--shell-2);border:1px solid var(--shell-line);border-radius:12px;padding:12px 16px;margin-top:12px;font-size:13.5px}
+.extra b{display:block;font-size:14px}
+.extra span{color:var(--shell-mute)}
+.extra .switch{margin-left:auto}
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pk{background:var(--shell);border-radius:8px;padding:10px 12px;display:grid;gap:2px}
+.pk b{font-size:13px}
+.pk span{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--rosa);font-variant-numeric:tabular-nums}
+.pk small{font-size:11.5px;color:var(--shell-mute)}
+@media (max-width:480px){.packs{grid-template-columns:1fr}}
+.q-sum{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--hueso);color:var(--grafito);border-radius:14px;padding:22px;display:grid;gap:14px}
+.q-sum h3{margin:0;font-family:var(--f-display);font-weight:900;font-size:26px;text-transform:uppercase;color:var(--bordo);line-height:1}
+.cur{display:flex;gap:4px;background:#e7e0e2;border-radius:999px;padding:3px;width:max-content}
+.cur button{border:0;background:transparent;border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:700;color:#6b5e63}
+.cur button[aria-pressed="true"]{background:var(--grafito);color:#fff}
+.rate{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#6b5e63}
+.rate input{width:90px;border:1px solid #d3c9cc;border-radius:6px;padding:5px 8px;font:inherit;font-variant-numeric:tabular-nums;background:#fff;color:var(--grafito)}
+.lines{display:grid;gap:8px;font-size:13.5px}
+.ln{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
+.ln span{color:#5a4f53}
+.ln.disc{color:#2f8a5a;font-weight:700}
+.ln.disc span{color:inherit}
+.big-t{border-top:1.5px dashed #cfc5c8;padding-top:12px;display:grid;gap:10px}
+.big-t .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.big-t .row span{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:#6b5e63}
+.big-t .row b{font-family:var(--f-display);font-weight:900;font-size:30px;color:var(--grafito);font-variant-numeric:tabular-nums;line-height:1}
+.big-t .row b.m{color:var(--bordo)}
+.q-sum .small{font-size:12px;color:#6b5e63;line-height:1.45;margin:0}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.terms > div{background:var(--shell-2);border:1px solid var(--shell-line);border-radius:12px;padding:16px 18px}
+.terms b{font-family:var(--f-display);font-size:18px;text-transform:uppercase;font-weight:800;color:var(--rosa)}
+.terms ul{margin:8px 0 0;padding-left:18px;color:#c9bfc4;font-size:13px;display:grid;gap:4px}
+#v-presupuesto:not([hidden]) ~ .cmp{display:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .q-wrap{grid-template-columns:1fr}
+  .q-sum{position:static}
+  .opts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .terms{grid-template-columns:1fr}
+}
+@media (max-width:480px){.opts{grid-template-columns:1fr}}
+@media (max-width:980px){
+  .s-body{grid-template-columns:1fr}
+  .filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ig-wrap{grid-template-columns:1fr}
+  .week{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pillars{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .l-links{display:none}
+  .drops,.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .move,.talles,.mayor,.l-foot{grid-template-columns:1fr}
+  .move-img{min-height:300px}
+  .s-cats{display:none}
+  .cmp{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .drops,.grid,.feats{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .card .bd{padding:10px}
+  .sizes .sz:nth-child(n+4){display:none}
+  .filters{grid-template-columns:1fr}
+  .week{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpis{grid-template-columns:1fr}
+  .copy{grid-template-columns:1fr}
+  .copy img{max-width:180px}
+  .hero{min-height:480px}
+  .bar .dots{display:none}
+  .ph-screen{height:680px}
+}
+@media (prefers-reduced-motion:reduce){.marquee div{animation:none}*{transition:none!important}}
+</style>
+
+<div class="shell">
+  <header class="intro">
+    <div>
+      <div class="intro-brand">
+        <div class="logo-dot"><img src="img/logo.png" alt="Logo Dance Style"></div>
+        <h1>Dance Style <span>en digital</span></h1>
+      </div>
+      <p>Tres piezas de una misma propuesta: la web de marca, la tienda online y el Instagram con gestión de CM.</p>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Maquetas">
+      <button class="tab" role="tab" id="t-landing" data-v="landing"><span class="n">A</span>Landing</button>
+      <button class="tab" role="tab" id="t-tienda" data-v="tienda"><span class="n">B</span>Tienda online</button>
+      <button class="tab" role="tab" id="t-instagram" data-v="instagram"><span class="n">C</span>Instagram con CM</button>
+      <button class="tab" role="tab" id="t-presupuesto" data-v="presupuesto"><span class="n">$</span>Presupuesto</button>
+    </nav>
+  </header>
+
+  <!-- ===================== LANDING ===================== -->
+  <section id="v-landing" class="view">
+    <div class="view-head">
+      <h2>Opción A · Landing</h2>
+      <p>Una sola página que presenta la marca, muestra los drops y lleva todas las ventas a WhatsApp. Rápida de lanzar y fácil de mantener.</p>
+    </div>
+    <div class="browser">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url"><b>dancestyle.com.ar</b></div></div>
+      <div class="screen">
+        <nav class="l-nav">
+          <span class="wordmark">Dance Style</span>
+          <div class="l-links"><span>Colección</span><span>Talles</span><span>Mayoristas</span><span>Local</span></div>
+          <span class="pill rosa sm">Pedir por WhatsApp</span>
+        </nav>
+        <div class="hero">
+          <img src="img/dance3.jpg" alt="Bailarina con pantalón Dance Style en escenario">
+          <div class="hero-in">
+            <span class="tag">nueva temporada 26'</span>
+            <h3>Hecha para<br><em>bailar</em> en serio</h3>
+            <p>Ropa urbana con actitud. Joggers, bermudas over y remeras oversize pensadas para el estudio, el escenario y la calle.</p>
+            <div class="ctas"><span class="pill rosa">Ver colección</span><span class="pill ghost">Soy mayorista</span></div>
+          </div>
+        </div>
+        <div class="marquee" aria-hidden="true"><div>
+          <span>Envíos a todo el país</span><span>✦</span><span>Mayoristas y minoristas</span><span>✦</span><span>Local en Tortuguitas</span><span>✦</span><span>Nuevos drops cada mes</span><span>✦</span>
+          <span>Envíos a todo el país</span><span>✦</span><span>Mayoristas y minoristas</span><span>✦</span><span>Local en Tortuguitas</span><span>✦</span><span>Nuevos drops cada mes</span><span>✦</span>
+        </div></div>
+        <div class="l-sec">
+          <div class="sec-h"><h4>Últimos drops</h4><p>Cada prenda pasa por clase antes de salir a la venta. Si no aguanta un freestyle, no entra al catálogo.</p></div>
+          <div class="drops">
+            <div class="drop"><img src="img/rosa-pastel.jpg" alt="Pantalón rosa pastel"><div class="lbl"><b>Rosa pastel</b><span>Nuevo</span></div></div>
+            <div class="drop"><img src="img/bermuda-camo.jpg" alt="Bermuda over 3/4 camuflada"><div class="lbl"><b>Over 3/4</b><span>4 colores</span></div></div>
+            <div class="drop"><img src="img/jogger-azul.jpg" alt="Jogger azul con franja roja"><div class="lbl"><b>Jogger</b><span>Franja roja</span></div></div>
+          </div>
+        </div>
+        <div class="move">
+          <div class="move-txt">
+            <span class="tag">la usan ustedes</span>
+            <h4>Se mueve<br>con <em>vos</em></h4>
+            <p>Bailarines, academias y crews de todo el país ya entrenan con Dance Style. Etiquetanos y aparecé acá.</p>
+            <div class="feats">
+              <div class="feat"><b>Tiro bajo</b><span>Libertad para pasos de piso</span></div>
+              <div class="feat"><b>Calce wide</b><span>Caída que se ve en video</span></div>
+              <div class="feat"><b>Algodón</b><span>Frisa liviana, no da calor</span></div>
+            </div>
+          </div>
+          <div class="move-img"><img src="img/dance1.jpg" alt="Clase de baile con joggers"><img src="img/dance2.jpg" alt="Bailarines con remeras Dance Style"></div>
+        </div>
+        <div class="l-sec talles">
+          <div class="sec-h" style="display:block"><h4>Guía de talles</h4><p style="margin-top:10px">Medí un pantalón que te quede cómodo, apoyado en el piso. Si estás entre dos talles, elegí el más grande para el calce oversize.</p></div>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>Talle</th><th>Cintura</th><th>Cadera</th><th>Largo</th></tr></thead>
+            <tbody>
+              <tr><td>S</td><td>64–70 cm</td><td>94 cm</td><td>100 cm</td></tr>
+              <tr><td>M</td><td>70–76 cm</td><td>100 cm</td><td>102 cm</td></tr>
+              <tr><td>L</td><td>76–84 cm</td><td>106 cm</td><td>104 cm</td></tr>
+              <tr><td>XL</td><td>84–92 cm</td><td>112 cm</td><td>106 cm</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="mayor">
+          <div><h4>¿Tenés local o academia?</h4><p>Comprá por mayor con precio de fábrica y reponé cada drop antes que nadie.</p><div style="margin-top:16px"><span class="pill rosa">Quiero la lista mayorista</span></div></div>
+          <ul><li>Compra mínima de 6 prendas</li><li>Envíos a todo el país</li><li>Talles y colores surtidos</li><li>Atención directa por WhatsApp</li></ul>
+        </div>
+        <footer class="l-foot">
+          <div><span class="wordmark">Dance Style</span><p style="margin:8px 0 0">Ropa para bailarines.</p></div>
+          <div><b>Local</b>Brasil 1719, Tortuguitas<br>Lunes a sábado</div>
+          <div><b>Seguinos</b>@dance.style35<br>Pedidos por mensaje directo</div>
+        </footer>
+        <span class="wa" aria-label="WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1.9 2 1.2 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TIENDA ===================== -->
+  <section id="v-tienda" class="view" hidden>
+    <div class="view-head">
+      <h2>Opción B · Tienda online</h2>
+      <p>Catálogo completo con carrito, pago online y envíos. Activá el modo mayorista para ver cómo cambia la tienda para revendedores. Probá agregar productos al carrito.</p>
+    </div>
+    <div class="browser">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url"><b>dancestyle.com.ar</b>/tienda/pantalones</div></div>
+      <div class="screen" id="store">
+        <div class="s-top" id="topmsg">3 cuotas sin interés · Envío gratis desde $80.000</div>
+        <div class="s-head">
+          <span class="wordmark">Dance Style</span>
+          <div class="s-cats"><span class="on">Pantalones</span><span>Bermudas</span><span>Remeras</span><span>Drops</span></div>
+          <div class="search">Buscar jogger, over 3/4, rosa…</div>
+          <button class="cart-btn" id="openCart" type="button">Carrito <span class="c" id="count">0</span></button>
+        </div>
+        <div class="s-body">
+          <aside class="filters">
+            <div class="toggle-box">
+              <div class="toggle"><span>Precio mayorista</span><button class="switch" id="mayo" role="switch" aria-checked="false" aria-label="Ver precios mayoristas" type="button"></button></div>
+              <small>Clientes mayoristas ven su lista de precios al iniciar sesión.</small>
+            </div>
+            <div><h5>Categoría</h5><div class="fl">
+              <label><input type="checkbox" id="f1" checked> Joggers</label>
+              <label><input type="checkbox" id="f2" checked> Bermudas over</label>
+              <label><input type="checkbox" id="f3" checked> Remeras oversize</label>
+            </div></div>
+            <div><h5>Talle</h5><div class="chips"><span class="chip">S</span><span class="chip">M</span><span class="chip">L</span><span class="chip">XL</span></div></div>
+            <div><h5>Color</h5><div class="sw"><i style="background:#7a1d45"></i><i style="background:#f4b6cf"></i><i style="background:#9a9a9a"></i><i style="background:#222"></i><i style="background:#2a2f6b"></i><i style="background:#5b5a3a"></i></div></div>
+          </aside>
+          <div style="min-width:0">
+            <div class="s-banner"><h4>Toda la colección</h4><span id="resCount">9 productos</span></div>
+            <div class="grid" id="grid"></div>
+          </div>
+        </div>
+        <aside class="drawer" id="drawer" aria-label="Carrito">
+          <div class="dr-h"><b>Tu carrito</b><button class="x" id="closeCart" type="button" aria-label="Cerrar carrito">×</button></div>
+          <div class="dr-items" id="items"></div>
+          <div class="dr-f">
+            <div class="ship"><span id="shipTxt">Te faltan $80.000 para el envío gratis</span><div class="bar2"><i id="shipBar"></i></div></div>
+            <div class="tot"><span>Total</span><span id="total">$0</span></div>
+            <span class="pill bordo" style="justify-content:center">Finalizar compra</span>
+            <div class="pay"><span>Mercado Pago</span><span>Transferencia</span><span>Visa</span><span>Master</span><span>Correo Argentino</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INSTAGRAM ===================== -->
+  <section id="v-instagram" class="view" hidden>
+    <div class="view-head">
+      <h2>Opción C · Instagram con CM</h2>
+      <p>El mismo perfil con una grilla planificada: portadas con identidad, destacadas ordenadas, contenido por pilares y una agenda semanal fija.</p>
+    </div>
+    <div class="ig-wrap">
+      <div class="phone">
+        <div class="ph-screen">
+          <div class="ig-status"><span>9:41</span><span>●●● ▮</span></div>
+          <div class="ig-top"><span>dance.style35<span class="vb">✓</span></span><span>☰</span></div>
+          <div class="ig-prof">
+            <div class="ring"><div><img src="img/logo.png" alt="Avatar Dance Style"></div></div>
+            <div class="stats"><div><b>412</b><span>posts</span></div><div><b>23,2 mil</b><span>seguidores</span></div><div><b>341</b><span>seguidos</span></div></div>
+          </div>
+          <div class="bio">
+            <div class="nm">Dance Style | Ropa para bailarines</div>
+            <div class="cat">Tienda de ropa</div>
+            Hecha para bailar en serio 🩰<br>
+            Mayoristas y minoristas · Envíos a todo el país 🚚<br>
+            📍 Brasil 1719, Tortuguitas<br>
+            👇 Comprá online o pedí la lista mayorista<br>
+            <a>dancestyle.com.ar</a>
+          </div>
+          <div class="ig-btns"><span class="f">Seguir</span><span>Mensaje</span><span>Tienda</span></div>
+          <div class="hl">
+            <div><i><b style="background:var(--bordo);color:var(--rosa)">Drops</b></i>Drops</div>
+            <div><i><b style="background:var(--rosa);color:var(--bordo-dk)">Talles</b></i>Talles</div>
+            <div><i><b style="background:var(--bordo);color:#fff">Envíos</b></i>Envíos</div>
+            <div><i><b style="background:#f3efec;color:var(--bordo)">Por mayor</b></i>Mayoristas</div>
+            <div><i><b style="background:var(--rosa);color:var(--bordo-dk)">Ustedes</b></i>Ustedes</div>
+          </div>
+          <div class="ig-tabs"><span class="on">▦</span><span>▷</span><span>☺</span></div>
+          <div class="ig-grid">
+            <div class="post" style="background:var(--bordo)"><div class="t"><span class="sm" style="color:var(--rosa)">Drop 07</span><span class="big" style="color:#fff">Rosa<br>pastel</span><span class="tg" style="color:var(--rosa)">ya disponible</span></div></div>
+            <div class="post"><img src="img/dance3.jpg" alt=""><span class="ov">▷ CST 26'</span></div>
+            <div class="post"><img src="img/rosa-pastel.jpg" alt=""><span class="ov rosa">$41.900</span></div>
+            <div class="post"><img src="img/dance1.jpg" alt=""><span class="ov">▷ Clase abierta</span></div>
+            <div class="post" style="background:var(--rosa)"><div class="t"><span class="sm" style="color:var(--bordo)">Tip de talle</span><span class="big" style="color:var(--bordo-dk)">¿S o M?</span><span class="sm" style="color:var(--bordo)">Deslizá →</span></div></div>
+            <div class="post"><img src="img/bermuda-camo.jpg" alt=""><span class="ov rosa">Over 3/4</span></div>
+            <div class="post"><img src="img/jogger-bordo.jpg" alt=""><span class="ov rosa">Jogger bordó</span></div>
+            <div class="post" style="background:#f3efec"><div class="t"><span class="scr" style="color:var(--bordo)">Ustedes</span><span class="big" style="color:var(--grafito);font-size:24px">@crew<br>del mes</span></div></div>
+            <div class="post"><img src="img/dance2.jpg" alt=""><span class="ov">▷ Coreo</span></div>
+            <div class="post"><img src="img/remera-rosa.jpg" alt=""><span class="ov rosa">Oversize</span></div>
+            <div class="post" style="background:var(--grafito)"><div class="t"><span class="sm" style="color:#aaa">Mayoristas</span><span class="big" style="color:var(--rosa);font-size:26px">Mín. 6<br>prendas</span><span class="sm" style="color:#fff">Escribinos</span></div></div>
+            <div class="post"><img src="img/productora.jpg" alt=""><span class="ov">▷ Detrás de escena</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan">
+        <div class="panel">
+          <h3>Pilares de contenido</h3>
+          <p>Cada publicación cumple uno de estos cuatro roles, en esta proporción.</p>
+          <div class="pillars">
+            <div class="pillar" style="--c:#f4b6cf"><em>40%</em><b>Movimiento</b><span>Reels de clases, coreos y escenario con la ropa puesta.</span></div>
+            <div class="pillar" style="--c:#c2406f"><em>25%</em><b>Producto</b><span>Drops, detalles, precio y talles. Portadas con la marca.</span></div>
+            <div class="pillar" style="--c:#8fb8ff"><em>20%</em><b>Comunidad</b><span>Reposteos de bailarines, academias y “crew del mes”.</span></div>
+            <div class="pillar" style="--c:#e8c26a"><em>15%</em><b>Venta directa</b><span>Mayoristas, envíos, cómo comprar, preguntas frecuentes.</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Semana tipo</h3>
+          <p>3 posteos en el feed, historias todos los días y respuesta a mensajes en el día.</p>
+          <div class="week">
+            <div class="day"><span>Lun</span><div class="slot" style="--c:#c2406f"><small>Post</small>Carrusel del drop</div><div class="slot" style="--c:#e8c26a"><small>Story</small>Encuesta de colores</div></div>
+            <div class="day"><span>Mar</span><div class="slot" style="--c:#8fb8ff"><small>Story</small>Reposteos de etiquetas</div></div>
+            <div class="day"><span>Mié</span><div class="slot" style="--c:#f4b6cf"><small>Reel</small>Coreo con academia</div></div>
+            <div class="day"><span>Jue</span><div class="slot" style="--c:#e8c26a"><small>Story</small>Lista mayorista</div></div>
+            <div class="day"><span>Vie</span><div class="slot" style="--c:#f4b6cf"><small>Reel</small>Prueba de prenda en clase</div><div class="slot" style="--c:#8fb8ff"><small>Story</small>Caja de preguntas</div></div>
+            <div class="day"><span>Sáb</span><div class="slot" style="--c:#c2406f"><small>Story</small>Local en vivo</div></div>
+            <div class="day"><span>Dom</span><div class="slot" style="--c:#8fb8ff"><small>Story</small>Crew del mes</div></div>
+          </div>
+          <div class="legend"><span style="--c:#f4b6cf"><i></i>Movimiento</span><span style="--c:#c2406f"><i></i>Producto</span><span style="--c:#8fb8ff"><i></i>Comunidad</span><span style="--c:#e8c26a"><i></i>Venta directa</span></div>
+        </div>
+        <div class="panel">
+          <h3>Ejemplo de publicación</h3>
+          <p>Texto listo para el carrusel del nuevo pantalón rosa pastel.</p>
+          <div class="copy">
+            <img src="img/rosa-pastel.jpg" alt="Pantalón rosa pastel">
+            <div class="cap">NUEVO DROP 🩷 Rosa pastel
+Cintura alta con cordón, frisa liviana y calce wide para que cada paso se vea.
+
+Talles S a XL · Envíos a todo el país
+Comprá en el link de la bio o escribinos por MD.
+¿Tenés academia o local? Pedí la lista mayorista.
+
+<span class="h">#dancestyle #ropaparabailar #dancewear #urbandance #tortuguitas</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Qué medimos cada mes</h3>
+          <p>Un reporte mensual con estos números y qué cambiar el mes siguiente.</p>
+          <div class="kpis">
+            <div class="kpi"><b>Alcance</b><span>Cuentas nuevas que vieron los reels</span></div>
+            <div class="kpi"><b>Consultas</b><span>Mensajes directos que preguntan por precio o talle</span></div>
+            <div class="kpi"><b>Clics</b><span>Visitas a la web desde el link de la bio</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRESUPUESTO ===================== -->
+  <section id="v-presupuesto" class="view" hidden>
+    <div class="view-head">
+      <h2>Presupuesto</h2>
+      <p>Elegí la web y el plan de redes. El total se arma solo, y si contratan web y CM juntos el armado de la web tiene descuento.</p>
+    </div>
+    <div class="q-wrap">
+      <div class="q-steps">
+        <div class="q-step">
+          <h3><i>1</i>La web</h3>
+          <p>Pago único. Incluye diseño a medida con la identidad de Dance Style.</p>
+          <div class="opts" role="radiogroup" aria-label="Web" id="g-web">
+            <button type="button" class="opt" role="radio" data-k="landing"><span class="on-mark"></span>
+              <span class="nm">Landing</span><span class="pr" data-usd="380"></span>
+              <ul><li>Una página con hasta 7 secciones</li><li>Pedidos por WhatsApp</li><li>Guía de talles y bloque mayorista</li><li>2 rondas de cambios</li></ul>
+              <span class="meta">Lista en 1 semana</span></button>
+            <button type="button" class="opt" role="radio" data-k="tienda"><span class="reco">Recomendada</span><span class="on-mark"></span>
+              <span class="nm">Tienda online</span><span class="pr" data-usd="950"></span>
+              <ul><li>Todo lo de la landing</li><li>Carrito y checkout</li><li>Panel de administración propio para productos, talles, colores, stock y pedidos</li><li>Precios y mínimo para mayoristas</li><li>Capacitación para usar el panel</li><li>La carga de productos, Mercado Pago y envíos quedan a cargo de Dance Style</li></ul>
+              <span class="meta">Lista 2 semanas después de recibir fotos y textos</span></button>
+            <button type="button" class="opt none" role="radio" data-k="none"><span class="on-mark"></span><span class="nm">Sin web por ahora</span></button>
+          </div>
+          <div class="extra" style="display:grid;gap:10px"><div><b>Mantenimiento en packs de horas</b><span>Cambios de diseño, secciones o funciones nuevas y soporte técnico. Lo del día a día lo hacen ustedes desde el panel. Se compra solo cuando lo necesitan y las horas valen por 3 meses.</span></div>
+            <div class="packs">
+              <div class="pk"><b>1 hora</b><span data-usd="40"></span></div>
+              <div class="pk"><b>Pack 5 horas</b><span data-usd="150"></span><small>USD 30 la hora</small></div>
+              <div class="pk"><b>Pack 10 horas</b><span data-usd="250"></span><small>USD 25 la hora</small></div>
+            </div></div>
+        </div>
+        <div class="q-step">
+          <h3><i>2</i>Instagram con CM</h3>
+          <p>Abono mensual. Contrato mínimo de 3 meses para que el plan de contenido dé resultados.</p>
+          <div class="opts" role="radiogroup" aria-label="Plan de CM" id="g-cm">
+            <button type="button" class="opt" role="radio" data-k="esencial"><span class="on-mark"></span>
+              <span class="nm">Esencial</span><span class="pr" data-usd="280" data-mes="1"></span>
+              <ul><li>12 publicaciones al mes</li><li>Historias 3 veces por semana</li><li>Grilla planificada y textos</li><li>Diseño de portadas y destacadas</li></ul></button>
+            <button type="button" class="opt" role="radio" data-k="completo"><span class="reco">Recomendado</span><span class="on-mark"></span>
+              <span class="nm">Completo</span><span class="pr" data-usd="360" data-mes="1"></span>
+              <ul><li>Todo lo de Esencial</li><li>4 reels editados al mes</li><li>Historias todos los días</li><li>Respuesta de mensajes en horario comercial</li><li>Reporte mensual</li></ul></button>
+            <button type="button" class="opt" role="radio" data-k="pro"><span class="on-mark"></span>
+              <span class="nm">Pro</span><span class="pr" data-usd="450" data-mes="1"></span>
+              <ul><li>Todo lo de Completo</li><li>1 jornada de producción al mes en el local o una academia</li><li>Gestión de publicidad paga</li><li>Colaboraciones con bailarines</li></ul></button>
+          </div>
+          <div class="extra" style="justify-content:space-between"><div><b>Sin redes por ahora</b><span>Solo la web.</span></div><button type="button" class="switch" id="noCm" role="switch" aria-checked="false" aria-label="Sin plan de redes"></button></div>
+        </div>
+      </div>
+
+      <aside class="q-sum" aria-live="polite">
+        <h3>Tu propuesta</h3>
+        <div class="cur" role="group" aria-label="Moneda"><button type="button" id="c-usd" aria-pressed="true">USD</button><button type="button" id="c-ars" aria-pressed="false">Pesos</button></div>
+        <label class="rate" id="rateBox" hidden>Dólar del día $ <input id="rate" type="number" min="1" step="10" value="1450"></label>
+        <div class="lines" id="lines"></div>
+        <div class="big-t">
+          <div class="row"><span>Pago único</span><b id="sumOnce">—</b></div>
+          <div class="row"><span>Por mes</span><b class="m" id="sumMonth">—</b></div>
+        </div>
+        <p class="small" id="sumNote"></p>
+        <p class="small"><b>Hosting y base de datos:</b> la web se publica en Vercel, gratis mientras el tráfico sea moderado. La base de datos de la tienda arranca gratis y, cuando el uso crece, pasa a USD 25 por mes, a cargo de Dance Style.</p>
+        <p class="small">No incluye: dominio (.com.ar, pago anual), presupuesto de publicidad paga ni sesiones de fotos profesionales.</p>
+      </aside>
+    </div>
+    <div class="terms">
+      <div><b>Cómo se paga</b><ul><li>Web: 50% para empezar, 50% al publicarla</li><li>CM: el mes se paga por adelantado</li><li>Solo por transferencia, en pesos al valor del dólar del día de pago</li></ul></div>
+      <div><b>Cómo trabajamos</b><ul><li>Una reunión de arranque para definir fotos y productos</li><li>Avances cada semana por WhatsApp</li><li>La web y el Instagram salen con la misma estética</li></ul></div>
+      <div><b>Qué queda para ustedes</b><ul><li>La web, el dominio y las cuentas son de Dance Style</li><li>Capacitación para cargar productos solos</li><li>El plan de contenido queda en un calendario compartido</li></ul></div>
+    </div>
+  </section>
+
+  <div class="cmp">
+    <div><b>Landing</b><ul><li>Presenta la marca y los drops</li><li>Ventas por WhatsApp, como hoy</li><li>Se lanza rápido y cuesta menos</li></ul></div>
+    <div><b>Tienda online</b><ul><li>Venden las 24 horas sin responder mensajes</li><li>Pago con Mercado Pago y cálculo de envío</li><li>Precios y mínimos aparte para mayoristas</li></ul></div>
+  </div>
+  <p class="note"><b>Maqueta de ejemplo.</b> Fotos tomadas del Instagram de Dance Style. Precios, talles y textos son ilustrativos.</p>
+</div>
+
+<script>
+(function(){
+  /* ---------- tabs with hash routing ---------- */
+  const views=["landing","tienda","instagram","presupuesto"];
+  function show(v){
+    if(!views.includes(v)) v="landing";
+    views.forEach(n=>{
+      document.getElementById("v-"+n).hidden = n!==v;
+      document.getElementById("t-"+n).setAttribute("aria-selected", n===v ? "true":"false");
+    });
+  }
+  document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
+    const v=b.dataset.v;
+    if(location.hash!=="#"+v) location.hash=v; else show(v);
+  }));
+  window.addEventListener("hashchange",()=>show(location.hash.slice(1)));
+  show(location.hash.slice(1));
+
+  /* ---------- store ---------- */
+  const P=[
+    {id:1,n:"Pantalón Rosa Pastel",img:"rosa-pastel",p:41900,b:"Nuevo",s:["S","M","L","XL"]},
+    {id:2,n:"Jogger Bordó Franja Rosa",img:"jogger-bordo",p:38900,b:"Nuevo",s:["S","M","L","XL"]},
+    {id:3,n:"Jogger Azul Franja Roja",img:"jogger-azul",p:38900,s:["S","M","L","XL"]},
+    {id:4,n:"Bermuda Over 3/4 Camuflada",img:"bermuda-camo",p:29900,b:"Más vendido",dk:1,s:["S","M","L","XL"]},
+    {id:5,n:"Bermudas Over 3/4 · 4 colores",img:"bermudas-over",p:27900,s:["S","M","L","XL"]},
+    {id:6,n:"Pantalón Gris Franja Negra",img:"pantalon-gris",p:39900,s:["S","M","L","XL"]},
+    {id:7,n:"Remera Oversize Verde Militar",img:"remera-verde",p:19900,s:["S","M","L","XL"]},
+    {id:8,n:"Remera Oversize Rosa",img:"remera-rosa",p:19900,b:"Últimas",dk:1,s:["S","M","L","XL"]},
+    {id:9,n:"Remera Oversize Blanca",img:"remera-blanca",p:19900,s:["S","M","L","XL"]},
+  ];
+  const fmt=n=>"$"+Math.round(n).toLocaleString("es-AR");
+  const W=.65, FREE=80000;
+  let mayor=false; const sel={}; const cart=[];
+  const price=p=>mayor? Math.round(p.p*W/100)*100 : p.p;
+  const grid=document.getElementById("grid");
+  function render(){
+    grid.innerHTML=P.map(p=>{
+      const s=sel[p.id]||"M";
+      return `<article class="card"><div class="ph"><img src="img/${p.img}.jpg" alt="${p.n}" loading="lazy">${p.b?`<span class="badge${p.dk?" dk":""}">${p.b}</span>`:""}</div>
+      <div class="bd"><h6>${p.n}</h6>
+      <div class="price"><b>${fmt(price(p))}</b>${mayor?`<s>${fmt(p.p)}</s>`:`<span class="cuotas">3 x ${fmt(p.p/3)}</span>`}</div>
+      ${mayor?`<span class="min">Precio por unidad · mínimo 6 prendas</span>`:""}
+      <div class="sizes">${p.s.map(z=>`<button type="button" class="sz" data-id="${p.id}" data-s="${z}" aria-pressed="${z===s}">${z}</button>`).join("")}</div>
+      <button type="button" class="add" data-add="${p.id}">Agregar al carrito</button></div></article>`;
+    }).join("");
+  }
+  grid.addEventListener("click",e=>{
+    const z=e.target.closest(".sz");
+    if(z){ sel[z.dataset.id]=z.dataset.s; z.parentNode.querySelectorAll(".sz").forEach(b=>b.setAttribute("aria-pressed",b===z)); return; }
+    const a=e.target.closest(".add");
+    if(a){
+      const p=P.find(x=>x.id==a.dataset.add); const s=sel[p.id]||"M";
+      const f=cart.find(c=>c.id===p.id&&c.s===s); f? f.q++ : cart.push({id:p.id,s,q:1});
+      a.classList.add("done"); a.textContent="Agregado ✓";
+      setTimeout(()=>{a.classList.remove("done");a.textContent="Agregar al carrito"},1300);
+      renderCart();
+    }
+  });
+  const drawer=document.getElementById("drawer");
+  function renderCart(){
+    const q=cart.reduce((s,c)=>s+c.q,0);
+    document.getElementById("count").textContent=q;
+    const items=document.getElementById("items");
+    items.innerHTML = cart.length? cart.map(c=>{const p=P.find(x=>x.id===c.id);return `<div class="it"><img src="img/${p.img}.jpg" alt=""><div>${p.n}<small>Talle ${c.s} · ${c.q} u.</small></div><b>${fmt(price(p)*c.q)}</b></div>`}).join("")
+      : `<div class="empty">Todavía no agregaste nada. Elegí un talle y tocá “Agregar al carrito”.</div>`;
+    const t=cart.reduce((s,c)=>s+price(P.find(x=>x.id===c.id))*c.q,0);
+    document.getElementById("total").textContent=fmt(t);
+    const st=document.getElementById("shipTxt"), sb=document.getElementById("shipBar");
+    if(mayor){ st.textContent = q>=6 ? "Mínimo mayorista cumplido ✓" : `Te faltan ${6-q} prendas para el mínimo mayorista`; sb.style.width=Math.min(100,q/6*100)+"%"; }
+    else { st.textContent = t>=FREE ? "Tenés envío gratis ✓" : `Te faltan ${fmt(FREE-t)} para el envío gratis`; sb.style.width=Math.min(100,t/FREE*100)+"%"; }
+  }
+  document.getElementById("openCart").addEventListener("click",()=>drawer.classList.add("open"));
+  document.getElementById("closeCart").addEventListener("click",()=>drawer.classList.remove("open"));
+  document.getElementById("mayo").addEventListener("click",e=>{
+    mayor=!mayor; e.currentTarget.setAttribute("aria-checked",mayor);
+    document.getElementById("topmsg").textContent = mayor ? "Modo mayorista · Precios por unidad · Compra mínima 6 prendas" : "3 cuotas sin interés · Envío gratis desde $80.000";
+    render(); renderCart();
+  });
+  render(); renderCart();
+
+  /* ---------- presupuesto ---------- */
+  const WEB={landing:{n:"Landing",usd:380},tienda:{n:"Tienda online",usd:950},none:null};
+  const CM={esencial:{n:"CM Esencial",usd:280},completo:{n:"CM Completo",usd:360},pro:{n:"CM Pro",usd:450}};
+  const COMBO=.10;
+  const st={web:"tienda",cm:"completo",mant:true,noCm:false,ars:false,rate:1450};
+  const money=u=> st.ars ? "$"+(Math.round(u*st.rate/1000)*1000).toLocaleString("es-AR") : "USD "+Math.round(u).toLocaleString("es-AR");
+  const $=id=>document.getElementById(id);
+  function pick(group,key){
+    $(group).querySelectorAll(".opt").forEach(o=>o.setAttribute("aria-checked",o.dataset.k===key));
+  }
+  $("g-web").addEventListener("click",e=>{const o=e.target.closest(".opt");if(o){st.web=o.dataset.k;q();}});
+  $("g-cm").addEventListener("click",e=>{const o=e.target.closest(".opt");if(o){st.cm=o.dataset.k;st.noCm=false;q();}});
+  $("noCm").addEventListener("click",()=>{st.noCm=!st.noCm;q();});
+  $("c-usd").addEventListener("click",()=>{st.ars=false;q();});
+  $("c-ars").addEventListener("click",()=>{st.ars=true;q();});
+  $("rate").addEventListener("input",e=>{const v=parseFloat(e.target.value);if(v>0){st.rate=v;q();}});
+  function q(){
+    pick("g-web",st.web); pick("g-cm",st.noCm?"":st.cm);
+    $("noCm").setAttribute("aria-checked",st.noCm);
+    const w=WEB[st.web], c=st.noCm?null:CM[st.cm];
+    document.querySelectorAll(".pk span").forEach(s=>s.textContent=money(+s.dataset.usd));
+    $("c-usd").setAttribute("aria-pressed",!st.ars); $("c-ars").setAttribute("aria-pressed",st.ars);
+    $("rateBox").hidden=!st.ars;
+    document.querySelectorAll("#v-presupuesto .pr").forEach(p=>{p.innerHTML=money(+p.dataset.usd)+(p.dataset.mes?" <small>/ mes</small>":"");});
+    const L=[]; let once=0, month=0;
+    if(w){ L.push([w.n,money(w.usd)]); once+=w.usd;
+      if(c){ const d=w.usd*COMBO; once-=d; L.push(["Descuento por combo web + CM (10%)","− "+money(d),1]); } }
+    if(c){ L.push([c.n,money(c.usd)+" / mes"]); month+=c.usd; }
+    if(w){ L.push(["Mantenimiento (si lo piden)","packs desde "+money(150)]); }
+    $("lines").innerHTML = L.length ? L.map(l=>`<div class="ln${l[2]?" disc":""}"><span>${l[0]}</span><b>${l[1]}</b></div>`).join("") : `<div class="ln"><span>Elegí al menos un servicio.</span></div>`;
+    $("sumOnce").textContent = once ? money(once) : "—";
+    $("sumMonth").textContent = month ? money(month) : "—";
+    $("sumNote").textContent = (once||month) ? `Para arrancar: ${money(once/2 + (c?c.usd:0))} (50% de la web${c?" + primer mes de CM":""}).` + (st.ars?` Pesos al dólar de $${st.rate.toLocaleString("es-AR")}, redondeado.`:"") : "";
+  }
+  q();
+})();
+</script>
+</body>
+</html>

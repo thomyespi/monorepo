@@ -3,12 +3,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   devIndicators: false,
 
-  // Private client pages: static files in public/p/<slug>/index.html,
-  // reachable only by direct link at /p/<slug>. Never link them from the site,
-  // the sitemap or robots.txt.
-  async rewrites() {
-    return [{ source: "/p/:slug", destination: "/p/:slug/index.html" }];
-  },
+  // Private client pages: static folders in public/p/<slug>/ (index.html plus
+  // assets such as img/), reachable only by direct link. Never link them from
+  // the site, the sitemap or robots.txt.
+  // Canonical URL is /p/<slug>/ (with trailing slash) so relative asset paths
+  // like "img/x.jpg" resolve inside the page folder. Routing lives in
+  // src/proxy.ts, because config redirects/rewrites can't tell "/p/x" from
+  // "/p/x/". Disabling Next's built-in "/x/" -> "/x" redirect lets the proxy
+  // see the trailing slash.
+  skipTrailingSlashRedirect: true,
   async headers() {
     return [
       {
