@@ -207,10 +207,10 @@ td:first-child{font-family:var(--f-display);font-weight:800;font-size:18px;color
 .ig-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px 16px}
 .ig-btns span{background:#262626;border-radius:8px;text-align:center;padding:7px 0;font-weight:600;font-size:13px}
 .ig-btns span.f{background:#0095f6}
-.hl{display:flex;gap:14px;padding:8px 16px 14px;overflow-x:auto;scrollbar-width:none}
-.hl div{display:grid;justify-items:center;gap:5px;font-size:11.5px;flex:none}
-.hl i{width:62px;height:62px;border-radius:50%;border:1px solid #333;padding:3px;display:block}
-.hl i b{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:13px;letter-spacing:.02em;text-transform:uppercase;font-style:normal}
+.hl{display:flex;justify-content:space-between;gap:8px;padding:8px 16px 14px}
+.hl div{display:grid;justify-items:center;gap:5px;font-size:11.5px;flex:0 1 62px;min-width:0}
+.hl i{box-sizing:border-box;width:100%;max-width:62px;aspect-ratio:1;border-radius:50%;border:1px solid #333;padding:3px;display:block}
+.hl i b{box-sizing:border-box;width:100%;height:100%;border-radius:50%;display:grid;place-items:center;text-align:center;line-height:1;padding:0 6px;font-family:var(--f-display);font-weight:900;font-size:13px;letter-spacing:.02em;text-transform:uppercase;font-style:normal}
 .ig-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #262626}
 .ig-tabs span{display:grid;place-items:center;padding:10px 0;color:#777}
 .ig-tabs span.on{color:#fff;box-shadow:inset 0 -1px 0 #fff}
@@ -546,21 +546,21 @@ td:first-child{font-family:var(--f-display);font-weight:800;font-size:18px;color
           <h3>Pilares de contenido</h3>
           <p>Cada publicación cumple uno de estos cuatro roles, en esta proporción.</p>
           <div class="pillars">
-            <div class="pillar" style="--c:#f4b6cf"><em>40%</em><b>Movimiento</b><span>Reels de clases, coreos y escenario con la ropa puesta.</span></div>
-            <div class="pillar" style="--c:#c2406f"><em>25%</em><b>Producto</b><span>Drops, detalles, precio y talles. Portadas con la marca.</span></div>
+            <div class="pillar" style="--c:#c2406f"><em>40%</em><b>Producto</b><span>Drops, detalles, precio y talles. Portadas con la marca.</span></div>
+            <div class="pillar" style="--c:#f4b6cf"><em>25%</em><b>Movimiento</b><span>Reels de clases, coreos y escenario con la ropa puesta.</span></div>
             <div class="pillar" style="--c:#8fb8ff"><em>20%</em><b>Comunidad</b><span>Reposteos de bailarines, academias y “crew del mes”.</span></div>
             <div class="pillar" style="--c:#e8c26a"><em>15%</em><b>Venta directa</b><span>Mayoristas, envíos, cómo comprar, preguntas frecuentes.</span></div>
           </div>
         </div>
         <div class="panel">
           <h3>Semana tipo</h3>
-          <p>3 posteos en el feed, historias todos los días y respuesta a mensajes en el día.</p>
+          <p>Con el plan Completo: un posteo y un reel en el feed por semana, e historias todos los días.</p>
           <div class="week">
             <div class="day"><span>Lun</span><div class="slot" style="--c:#c2406f"><small>Post</small>Carrusel del drop</div><div class="slot" style="--c:#e8c26a"><small>Story</small>Encuesta de colores</div></div>
             <div class="day"><span>Mar</span><div class="slot" style="--c:#8fb8ff"><small>Story</small>Reposteos de etiquetas</div></div>
             <div class="day"><span>Mié</span><div class="slot" style="--c:#f4b6cf"><small>Reel</small>Coreo con academia</div></div>
             <div class="day"><span>Jue</span><div class="slot" style="--c:#e8c26a"><small>Story</small>Lista mayorista</div></div>
-            <div class="day"><span>Vie</span><div class="slot" style="--c:#f4b6cf"><small>Reel</small>Prueba de prenda en clase</div><div class="slot" style="--c:#8fb8ff"><small>Story</small>Caja de preguntas</div></div>
+            <div class="day"><span>Vie</span><div class="slot" style="--c:#f4b6cf"><small>Story</small>Prueba de prenda en clase</div><div class="slot" style="--c:#8fb8ff"><small>Story</small>Caja de preguntas</div></div>
             <div class="day"><span>Sáb</span><div class="slot" style="--c:#c2406f"><small>Story</small>Local en vivo</div></div>
             <div class="day"><span>Dom</span><div class="slot" style="--c:#8fb8ff"><small>Story</small>Crew del mes</div></div>
           </div>
@@ -582,8 +582,8 @@ Comprá en el link de la bio o escribinos por MD.
           </div>
         </div>
         <div class="panel">
-          <h3>Qué medimos cada mes</h3>
-          <p>Un reporte mensual con estos números y qué cambiar el mes siguiente.</p>
+          <h3>Qué medimos</h3>
+          <p>Un reporte trimestral con estos números y qué cambiar en los meses siguientes.</p>
           <div class="kpis">
             <div class="kpi"><b>Alcance</b><span>Cuentas nuevas que vieron los reels</span></div>
             <div class="kpi"><b>Consultas</b><span>Mensajes directos que preguntan por precio o talle</span></div>
@@ -629,13 +629,13 @@ Comprá en el link de la bio o escribinos por MD.
           <div class="opts" role="radiogroup" aria-label="Plan de CM" id="g-cm">
             <button type="button" class="opt" role="radio" data-k="esencial"><span class="on-mark"></span>
               <span class="nm">Esencial</span><span class="pr" data-usd="280" data-mes="1"></span>
-              <ul><li>12 publicaciones al mes</li><li>Historias 3 veces por semana</li><li>Grilla planificada y textos</li><li>Diseño de portadas y destacadas</li></ul></button>
+              <ul><li>8 publicaciones al mes</li><li>Historias 2 veces por semana</li><li>Grilla planificada y textos</li><li>Diseño de portadas y destacadas</li></ul></button>
             <button type="button" class="opt" role="radio" data-k="completo"><span class="reco">Recomendado</span><span class="on-mark"></span>
               <span class="nm">Completo</span><span class="pr" data-usd="360" data-mes="1"></span>
-              <ul><li>Todo lo de Esencial</li><li>4 reels editados al mes</li><li>Historias todos los días</li><li>Respuesta de mensajes en horario comercial</li><li>Reporte mensual</li></ul></button>
+              <ul><li>4 publicaciones al mes</li><li>4 reels editados al mes</li><li>Historias todos los días</li><li>Grilla planificada y textos</li><li>Diseño de portadas y destacadas</li><li>Reporte trimestral</li></ul></button>
             <button type="button" class="opt" role="radio" data-k="pro"><span class="on-mark"></span>
               <span class="nm">Pro</span><span class="pr" data-usd="450" data-mes="1"></span>
-              <ul><li>Todo lo de Completo</li><li>1 jornada de producción al mes en el local o una academia</li><li>Gestión de publicidad paga</li><li>Colaboraciones con bailarines</li></ul></button>
+              <ul><li>Todo lo de Completo</li><li>1 jornada de producción al mes</li><li>Gestión de publicidad paga (la inversión en anuncios la paga Dance Style aparte, no está incluida en el abono)</li></ul></button>
           </div>
           <div class="extra" style="justify-content:space-between"><div><b>Sin redes por ahora</b><span>Solo la web.</span></div><button type="button" class="switch" id="noCm" role="switch" aria-checked="false" aria-label="Sin plan de redes"></button></div>
         </div>
