@@ -96,6 +96,31 @@
   .plazo-note strong{color:var(--ink);font-weight:600}
   .note-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:22px}
   .note-grid .note-box{margin:0}
+  .note-grid.two-up{grid-template-columns:repeat(2,1fr)}
+
+  /* Cómo funciona */
+  .how-title{font-family:var(--serif);font-size:24px;margin:44px 0 16px;color:var(--ink)}
+  .how{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;list-style:none}
+  .how-step{background:var(--cream);border-radius:var(--radius);padding:24px 24px 22px}
+  .how-step .n{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:14px}
+  .how-step h4{font-family:var(--serif);font-size:20px;font-weight:700;line-height:1.25;margin-bottom:6px;color:var(--ink)}
+  .how-step p{font-size:17px;line-height:1.5;color:var(--ink)}
+
+  /* Ejemplo de aviso */
+  .wa-example{margin-top:28px;max-width:440px}
+  .wa-example .lbl{font-size:14px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--teal);margin-bottom:10px}
+  .wa-example .msg{background:#dcf8c6;color:#1b2a1b;border-radius:16px 16px 16px 4px;padding:16px 18px;font-size:17px;line-height:1.5;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+
+  /* Banda de lo que incluye */
+  .incl-band{margin-top:32px;padding:26px 28px;border-radius:var(--radius);background:linear-gradient(135deg,var(--ink),#2f63c4);color:#fff;border-left:4px solid var(--lime)}
+  .incl-band h3{font-family:var(--serif);font-size:28px;color:#fff;margin-bottom:14px}
+  .incl-band h3 .ck{color:var(--lime)}
+  .incl-band .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:17px}
+  .incl-band .pill{background:#fff;color:var(--ink);font-weight:700;padding:6px 14px;border-radius:999px;font-size:17px;white-space:nowrap}
+  .incl-line{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:-4px 0 26px;padding:16px 20px;background:var(--teal-soft);border-left:4px solid var(--teal);border-radius:var(--radius);font-size:18px;font-weight:600;color:var(--ink)}
+  .incl-line .ck{font-size:22px;color:var(--teal);font-weight:700}
+  .incl-line .pill{background:var(--ink);color:#fff;font-weight:700;padding:6px 14px;border-radius:999px;font-size:17px;white-space:nowrap}
+  .incl-aside{margin-top:14px;font-size:16px;color:var(--muted)}
 
   /* Tabla */
   .table-wrap{overflow-x:auto;margin-top:32px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
@@ -166,7 +191,7 @@
   footer a{color:inherit}
 
   @media (max-width:900px){
-    .two,.builder,.note-grid{grid-template-columns:1fr}
+    .two,.builder,.note-grid,.note-grid.two-up,.how{grid-template-columns:1fr}
     .cards,.cards.three,.conds,.needs{grid-template-columns:1fr}
     .summary{position:static}
     section{padding:68px 0}
@@ -237,16 +262,23 @@
     <span class="num">02</span>
     <div class="kicker">Bot de atención</div>
     <h2>Un bot por número, <em>cada uno con su equipo</em>.</h2>
-    <p class="lead">Cada número tiene su menú, sus respuestas y su derivación a las personas de ese sector. La base de información, el panel y el servidor se comparten entre los tres.</p>
+    <p class="lead">Un asistente que responde solo las consultas de todos los días en los 3 números de WhatsApp, en Instagram y en Facebook, a cualquier hora. Cuando hace falta una persona, le pasa la conversación al sector que corresponde.</p>
 
-    <div class="group-title"><h3>Opciones</h3><small>Pago único · incluye los 3 números de WhatsApp, Instagram y Facebook</small></div>
+    <h3 class="how-title">Cómo funciona</h3>
+    <ol class="how">
+      <li class="how-step"><span class="n">1</span><h4>El socio escribe</h4><p>Por WhatsApp, Instagram o Facebook, como siempre.</p></li>
+      <li class="how-step"><span class="n">2</span><h4>El bot responde al instante</h4><p>Planes, precios, medios de pago, horarios y requisitos.</p></li>
+      <li class="how-step"><span class="n">3</span><h4>Si hace falta, lo atiende una persona</h4><p>Alguien de Cobranzas, Ventas o Administración sigue la conversación.</p></li>
+    </ol>
+
+    <div class="group-title"><h3>Dos versiones</h3></div>
+    <div class="incl-line"><span class="ck">✓</span><span>Las dos incluyen</span><span class="pill">3 números de WhatsApp</span><span class="pill">Instagram</span><span class="pill">Facebook</span></div>
     <div class="cards" id="cards-bot"></div>
     <p class="plazo-note"><strong>Sobre los plazos:</strong> son estimados y varían mucho según los tiempos de respuesta de SUM. Empiezan a correr cuando tenemos todo lo necesario (accesos de Meta, información de cada sector y aprobación de los flujos). Cuanto antes llegue eso, antes sale el bot.</p>
 
-    <div class="note-grid">
+    <div class="note-grid two-up">
       <div class="note-box"><strong>Emergencias, siempre primero.</strong> El bot no atiende emergencias ni da indicaciones médicas. Si detecta una urgencia, o la persona escribe algo que lo parezca, responde de inmediato con el número de emergencias de SUM y no sigue con el menú. Esto se configura y se prueba antes que cualquier otra respuesta.</div>
       <div class="note-box"><strong>Seguridad de los datos.</strong> El bot no consulta ni muestra deudas, facturas ni datos personales en el chat, porque cualquiera podría hacerse pasar por otro socio con un DNI o número de socio. Esas consultas se derivan a una persona o se envían al mail registrado. Tratamos los datos según la Ley 25.326.</div>
-      <div class="note-box"><strong>Pueden empezar por el simple.</strong> Si más adelante quieren sumar la IA, pasan al híbrido pagando solo la diferencia (<span id="upgrade"></span>).</div>
     </div>
 
     <div class="table-wrap">
@@ -264,102 +296,31 @@
     <span class="num">03</span>
     <div class="kicker">Avisos automáticos</div>
     <h2>El aviso de deuda, <em>por WhatsApp</em>.</h2>
-    <p class="lead">Procesos programados, independientes del bot, que revisan los datos y envían un mensaje personalizado a cada socio desde el número de Cobranzas. Si el socio responde, lo atiende el bot de ese número.</p>
+    <p class="lead">Un mensaje de WhatsApp que le llega a cada socio con deuda, con su nombre, el monto y cómo pagar. Sale solo, el día que ustedes elijan, desde el número de Cobranzas.</p>
 
-    <div class="group-title"><h3>Opciones</h3><small>Pago único · se contrata aparte del bot</small></div>
+    <h3 class="how-title">Cómo funciona</h3>
+    <ol class="how">
+      <li class="how-step"><span class="n">1</span><h4>Se carga el listado</h4><p>Exportan los deudores de Ops y lo suben al panel (con la opción Ops, el sistema lo toma solo).</p></li>
+      <li class="how-step"><span class="n">2</span><h4>Salen los avisos</h4><p>Cada socio recibe su mensaje en el día y horario programados.</p></li>
+      <li class="how-step"><span class="n">3</span><h4>Si responde, lo atiende el bot</h4><p>El bot de Cobranzas contesta o lo pasa a una persona.</p></li>
+    </ol>
+
+    <div class="wa-example">
+      <div class="lbl">Ejemplo de aviso</div>
+      <div class="msg">Hola Martín, te escribimos de SUM. Tenés un saldo pendiente de $18.400 con vencimiento el 10/12. Podés pagar por transferencia, débito o link de pago. Si ya pagaste, ignorá este mensaje.</div>
+    </div>
+
+    <div class="group-title"><h3>Opciones</h3><small>Se contratan aparte del bot</small></div>
     <div class="cards three" id="cards-avisos"></div>
 
     <div class="note-box"><strong>Requisito de Meta.</strong> Cada mensaje que inicia la empresa tiene que usar una plantilla aprobada por Meta, y el socio tiene que haber aceptado recibir mensajes por WhatsApp. Nosotros redactamos las plantillas y gestionamos su aprobación.</div>
   </div>
 </section>
 
-<!-- 04 ARMÁ TU PROPUESTA -->
-<section id="armar">
-  <div class="wrap">
-    <span class="num">04</span>
-    <div class="kicker">Armá tu propuesta</div>
-    <h2>Combiná y mirá <em>el total</em>.</h2>
-    <p class="lead">Elegí el bot, los avisos y los adicionales. El total no incluye los costos de Meta ni de la IA, que se pagan aparte (punto 05).</p>
-    <div class="builder">
-      <form class="opts" id="form"></form>
-      <aside class="summary">
-        <h4>Resumen</h4>
-        <div id="lines"></div>
-        <div class="total">
-          <div class="row"><span>Inversión inicial</span><span class="big" id="t-unico">USD 0</span></div>
-        </div>
-        <p class="note" id="t-note">Valores en dólares, pagaderos en pesos al dólar del día de pago. Cambios fuera de lo incluido: USD 40 por hora.</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- 05 COSTOS DE TERCEROS -->
-<section>
-  <div class="wrap">
-    <span class="num">05</span>
-    <div class="kicker">Costos de terceros</div>
-    <h2>Lo que se paga <em>directo al proveedor</em>.</h2>
-    <p class="lead">Estas cuentas quedan a nombre de SUM y el consumo lo factura cada proveedor. Así las cuentas son siempre suyas.</p>
-    <div class="conds">
-      <div class="cond"><h4>Meta (WhatsApp)</h4><p>Entre USD 0,02 y 0,03 por mensaje enviado, tanto respuestas del bot como avisos. Por ejemplo: 1.000 conversaciones de 5 mensajes en el mes son unos USD 100–150, y 1.000 avisos de deuda son unos USD 20–30. Se necesita una tarjeta cargada en la cuenta de Meta.</p></div>
-      <div class="cond"><h4>Inteligencia artificial (solo híbrido)</h4><p>Con un modelo chico, menos de USD 15 por mes para el volumen esperado. Se paga al proveedor de IA (OpenAI, Google, Anthropic u otro) y le configuramos un límite de gasto mensual.</p></div>
-      <div class="cond"><h4>Servidor y base de datos</h4><p>El bot y los avisos se publican en servicios que arrancan gratis con un uso moderado. Si el volumen crece, la base de datos pasa a unos USD 25 por mes, a cargo de SUM. Les avisamos antes de que haga falta.</p></div>
-    </div>
-    <div class="note-box">Les pasamos una estimación más precisa cuando nos digan cuántos mensajes reciben por mes en cada número. Como Meta cobra por mensaje, diseñamos el bot para resolver cada consulta en la menor cantidad de mensajes posible.</div>
-  </div>
-</section>
-
-<!-- 06 QUÉ NECESITAMOS -->
-<section id="necesitamos">
-  <div class="wrap">
-    <span class="num">06</span>
-    <div class="kicker">Qué necesitamos de ustedes</div>
-    <h2>La lista para <em>arrancar sin demoras</em>.</h2>
-    <p class="lead">Ordenada por tema. Lo que está en Meta conviene resolverlo primero, porque la verificación del negocio la revisa Meta y puede tardar unos días.</p>
-    <div class="needs">
-      <div class="need"><h4>Para arrancar</h4><ul>
-        <li>La opción elegida y el anticipo del 50%</li>
-        <li>Una persona de referencia por sector<small>Cobranzas, Ventas y Administración: quien conozca las consultas del día a día</small></li>
-      </ul></div>
-      <div class="need"><h4>Accesos de Meta</h4><ul>
-        <li>Acceso de administrador al Business Manager de SUM<small>Si no tienen uno, lo creamos juntos</small></li>
-        <li>Página de Facebook e Instagram profesional vinculados</li>
-        <li>Datos para verificar el negocio<small>Razón social, CUIT, dirección, web y un comprobante a nombre de SUM (constancia de CUIT o factura de un servicio)</small></li>
-        <li>Los 3 números de WhatsApp<small>Con alguien que pueda recibir el código de verificación el día que los conectamos</small></li>
-        <li>Definir si cada número se sigue usando desde el celular<small>Lo vemos juntos según cada caso</small></li>
-      </ul></div>
-      <div class="need"><h4>Pagos a terceros</h4><ul>
-        <li>Tarjeta cargada en la cuenta de Meta, a nombre de SUM</li>
-        <li>Si eligen el híbrido: cuenta en el proveedor de IA a nombre de SUM<small>Los ayudamos a crearla y la conectamos al bot</small></li>
-      </ul></div>
-      <div class="need"><h4>Contenido de cada sector</h4><ul>
-        <li>Las preguntas que más reciben y cómo las responden hoy<small>Sirven capturas de chats reales, sin datos personales</small></li>
-        <li>Planes y precios vigentes</li>
-        <li>Medios de pago: alias, CBU, links de pago</li>
-        <li>Horarios y requisitos de alta y baja</li>
-        <li>Los temas que el bot no tiene que responder y siempre debe derivar</li>
-      </ul></div>
-      <div class="need"><h4>Equipo de atención</h4><ul>
-        <li>Quién recibe las conversaciones derivadas en cada número</li>
-        <li>En qué horario atienden</li>
-        <li>Qué tiene que contestar el bot fuera de ese horario</li>
-      </ul></div>
-      <div class="need"><h4>Para los avisos</h4><ul>
-        <li>Un ejemplo del listado de deudores que exporta Ops<small>Nombre, teléfono, monto y vencimiento</small></li>
-        <li>El texto que mandan hoy por mail</li>
-        <li>Cada cuánto quieren enviar los avisos</li>
-        <li>Confirmar que los socios aceptaron recibir WhatsApp<small>Si no, sumamos ese consentimiento al alta o al primer contacto</small></li>
-      </ul></div>
-    </div>
-    <div class="note-box"><strong>Durante el proyecto</strong> les vamos a pedir dos cosas más: revisar y aprobar los flujos en 1 o 2 días hábiles, y participar de los días de prueba con el equipo de cada sector.</div>
-  </div>
-</section>
-
-<!-- 07 PASO A PASO -->
+<!-- 04 PASO A PASO -->
 <section id="pasos">
   <div class="wrap">
-    <span class="num">07</span>
+    <span class="num">04</span>
     <div class="kicker">Paso a paso</div>
     <h2>Del primer mensaje <em>al lanzamiento</em>.</h2>
     <p class="lead">Los plazos son estimados y se cuentan desde que recibimos los accesos y la información de cada sector. En cada paso se indica quién participa.</p>
@@ -409,6 +370,98 @@
         <p>El bot queda funcionando solo. Si más adelante necesitan cambios de respuestas, precios o funciones nuevas, se cotizan a USD 40 por hora, sin abono fijo.</p>
         <div class="who"><span class="tag">gen12</span></div></div></div>
     </div>
+  </div>
+</section>
+
+<!-- 05 QUÉ NECESITAMOS -->
+<section id="necesitamos">
+  <div class="wrap">
+    <span class="num">05</span>
+    <div class="kicker">Qué necesitamos de ustedes</div>
+    <h2>La lista para <em>arrancar sin demoras</em>.</h2>
+    <p class="lead">Ordenada por tema. Lo que está en Meta conviene resolverlo primero, porque la verificación del negocio la revisa Meta y puede tardar unos días.</p>
+    <div class="needs">
+      <div class="need"><h4>Para arrancar</h4><ul>
+        <li>La opción elegida y el anticipo del 50%</li>
+        <li>Una persona de referencia por sector<small>Cobranzas, Ventas y Administración: quien conozca las consultas del día a día</small></li>
+      </ul></div>
+      <div class="need"><h4>Accesos de Meta</h4><ul>
+        <li>Acceso de administrador al Business Manager de SUM<small>Si no tienen uno, lo creamos juntos</small></li>
+        <li>Página de Facebook e Instagram profesional vinculados</li>
+        <li>Datos para verificar el negocio<small>Razón social, CUIT, dirección, web y un comprobante a nombre de SUM (constancia de CUIT o factura de un servicio)</small></li>
+        <li>Los 3 números de WhatsApp<small>Con alguien que pueda recibir el código de verificación el día que los conectamos</small></li>
+        <li>Definir si cada número se sigue usando desde el celular<small>Lo vemos juntos según cada caso</small></li>
+      </ul></div>
+      <div class="need"><h4>Pagos a terceros</h4><ul>
+        <li>Tarjeta cargada en la cuenta de Meta, a nombre de SUM</li>
+        <li>Si eligen el híbrido: cuenta en el proveedor de IA a nombre de SUM<small>Los ayudamos a crearla y la conectamos al bot</small></li>
+      </ul></div>
+      <div class="need"><h4>Contenido de cada sector</h4><ul>
+        <li>Las preguntas que más reciben y cómo las responden hoy<small>Sirven capturas de chats reales, sin datos personales</small></li>
+        <li>Planes y precios vigentes</li>
+        <li>Medios de pago: alias, CBU, links de pago</li>
+        <li>Horarios y requisitos de alta y baja</li>
+        <li>Los temas que el bot no tiene que responder y siempre debe derivar</li>
+      </ul></div>
+      <div class="need"><h4>Equipo de atención</h4><ul>
+        <li>Quién recibe las conversaciones derivadas en cada número</li>
+        <li>En qué horario atienden</li>
+        <li>Qué tiene que contestar el bot fuera de ese horario</li>
+      </ul></div>
+      <div class="need"><h4>Para los avisos</h4><ul>
+        <li>Un ejemplo del listado de deudores que exporta Ops<small>Nombre, teléfono, monto y vencimiento</small></li>
+        <li>El texto que mandan hoy por mail</li>
+        <li>Cada cuánto quieren enviar los avisos</li>
+        <li>Confirmar que los socios aceptaron recibir WhatsApp<small>Si no, sumamos ese consentimiento al alta o al primer contacto</small></li>
+      </ul></div>
+    </div>
+    <div class="note-box"><strong>Durante el proyecto</strong> les vamos a pedir dos cosas más: revisar y aprobar los flujos en 1 o 2 días hábiles, y participar de los días de prueba con el equipo de cada sector.</div>
+  </div>
+</section>
+
+<!-- 06 INVERSIÓN -->
+<section id="inversion">
+  <div class="wrap">
+    <span class="num">06</span>
+    <div class="kicker">Inversión</div>
+    <h2>Combiná y mirá <em>el total</em>.</h2>
+    <p class="lead">Elegí el bot, los avisos y los adicionales. El total no incluye los costos de Meta ni de la IA, que se pagan aparte (punto 07).</p>
+
+    <div class="incl-band">
+      <h3><span class="ck">✓</span> Pago único</h3>
+      <div class="row"><span>El bot incluye</span><span class="pill">WhatsApp ×3</span><span class="pill">Instagram</span><span class="pill">Facebook</span></div>
+    </div>
+    <p class="incl-aside">Los avisos automáticos también son un pago único y se contratan aparte del bot.</p>
+
+    <div class="builder">
+      <form class="opts" id="form"></form>
+      <aside class="summary">
+        <h4>Resumen</h4>
+        <div id="lines"></div>
+        <div class="total">
+          <div class="row"><span>Inversión inicial</span><span class="big" id="t-unico">USD 0</span></div>
+        </div>
+        <p class="note" id="t-note">Valores en dólares, pagaderos en pesos al dólar del día de pago. Cambios fuera de lo incluido: USD 40 por hora.</p>
+      </aside>
+    </div>
+
+    <div class="note-box"><strong>Pueden empezar por el simple.</strong> Si más adelante quieren sumar la IA, pasan al híbrido pagando solo la diferencia (<span id="upgrade"></span>).</div>
+  </div>
+</section>
+
+<!-- 07 COSTOS DE TERCEROS -->
+<section>
+  <div class="wrap">
+    <span class="num">07</span>
+    <div class="kicker">Costos de terceros</div>
+    <h2>Lo que se paga <em>directo al proveedor</em>.</h2>
+    <p class="lead">Estas cuentas quedan a nombre de SUM y el consumo lo factura cada proveedor. Así las cuentas son siempre suyas.</p>
+    <div class="conds">
+      <div class="cond"><h4>Meta (WhatsApp)</h4><p>Entre USD 0,02 y 0,03 por mensaje enviado, tanto respuestas del bot como avisos. Por ejemplo: 1.000 conversaciones de 5 mensajes en el mes son unos USD 100–150, y 1.000 avisos de deuda son unos USD 20–30. Se necesita una tarjeta cargada en la cuenta de Meta.</p></div>
+      <div class="cond"><h4>Inteligencia artificial (solo híbrido)</h4><p>Con un modelo chico, menos de USD 15 por mes para el volumen esperado. Se paga al proveedor de IA (OpenAI, Google, Anthropic u otro) y le configuramos un límite de gasto mensual.</p></div>
+      <div class="cond"><h4>Servidor y base de datos</h4><p>El bot y los avisos se publican en servicios que arrancan gratis con un uso moderado. Si el volumen crece, la base de datos pasa a unos USD 25 por mes, a cargo de SUM. Les avisamos antes de que haga falta.</p></div>
+    </div>
+    <div class="note-box">Les pasamos una estimación más precisa cuando nos digan cuántos mensajes reciben por mes en cada número. Como Meta cobra por mensaje, diseñamos el bot para resolver cada consulta en la menor cantidad de mensajes posible.</div>
   </div>
 </section>
 
@@ -486,22 +539,22 @@ const COMPARATIVA = [
 /* ===================================================== */
 const fmt = n => "USD " + Math.round(n).toLocaleString("es-AR");
 
-function card(o){
+function card(o, showPrice = true){
   return `<article class="card${o.destacado?" featured":""}">
     <div class="stripe" style="background:${o.color}"></div>
     ${o.destacado?`<span class="badge">Recomendado</span>`:""}
     <h4>${o.nombre}</h4>
     <p class="muted">${o.desc}</p>
-    <div class="from">${o.desde?"Desde":""}</div>
-    <div class="price">${fmt(o.precio)} <small>${o.extra?"cada uno":"pago único"}</small></div>
+    ${showPrice ? `<div class="from">${o.desde?"Desde":""}</div>
+    <div class="price">${fmt(o.precio)} <small>${o.extra?"cada uno":"pago único"}</small></div>` : ""}
     <div class="time">${o.plazo?"Plazo estimado: "+o.plazo+(o.plazo.includes("semana")?" aprox.":""):"&nbsp;"}</div>
     <ul>${o.items.map(i=>`<li>${i}</li>`).join("")}</ul>
   </article>`;
 }
-document.getElementById("cards-bot").innerHTML = BOT.map(card).join("");
+document.getElementById("cards-bot").innerHTML = BOT.map(o=>card(o,false)).join("");
 document.getElementById("cards-avisos").innerHTML =
-  AVISOS.map(card).join("") +
-  card({...AVISO_EXTRA, color:"var(--amber)", extra:true});
+  AVISOS.map(o=>card(o,false)).join("") +
+  card({...AVISO_EXTRA, color:"var(--amber)", extra:true}, false);
 
 document.getElementById("upgrade").textContent = fmt(BOT[1].precio - BOT[0].precio);
 
